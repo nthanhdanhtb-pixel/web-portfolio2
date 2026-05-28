@@ -1,13 +1,1 @@
-const menuToggle = document.getElementById('menuToggle');
-const mainNav = document.getElementById('mainNav');
-
-menuToggle?.addEventListener('click', () => {
-  mainNav.classList.toggle('open');
-});
-
-const links = document.querySelectorAll('.main-nav a');
-links.forEach(link => {
-  link.addEventListener('click', () => {
-    mainNav.classList.remove('open');
-  });
-});
+// Javascript functionalities are self-contained and embedded within index.html for maximum performance and portability
