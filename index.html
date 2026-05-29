@@ -24,11 +24,11 @@
           },
           colors: {
             brand: {
-              dark: '#080c14',
-              card: '#0f1626',
-              accent: '#8b5cf6',
-              cyan: '#00f2fe',
-              purple: '#8a2be2',
+              light: '#f8fafc',
+              card: '#ffffff',
+              cyan: '#06b6d4',
+              blue: '#3b82f6',
+              purple: '#8b5cf6',
             }
           }
         }
@@ -36,44 +36,44 @@
     }
   </script>
 
-  <!-- Custom Stylesheet (Module hóa) -->
+  <!-- Custom Stylesheet (Module hóa - Phiên bản sáng cao cấp) -->
   <link rel="stylesheet" href="./styles.css">
 </head>
 
-<body class="selection:bg-cyan-500/30 selection:text-cyan-200">
+<body class="selection:bg-blue-500/10 selection:text-blue-700">
 
-  <!-- ================= HEADER / NAVIGATION ================= -->
-  <header class="fixed top-0 left-0 w-full z-50 bg-slate-950/70 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
+  <!-- ================= HEADER / NAVIGATION (KÍNH MỜ SÁNG CAO CẤP) ================= -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <!-- Logo/Brand -->
       <a href="#home" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-600 flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform duration-300">
           <span class="text-white font-extrabold text-lg">TD</span>
         </div>
         <div class="flex flex-col">
-          <span class="text-white font-bold tracking-wide group-hover:text-cyan-400 transition-colors duration-300">Nguyễn Thành Danh</span>
-          <span class="text-[10px] text-slate-400 font-mono tracking-wider">MSSV: 25020058</span>
+          <span class="text-slate-900 font-bold tracking-wide group-hover:text-blue-600 transition-colors duration-300">Nguyễn Thành Danh</span>
+          <span class="text-[10px] text-slate-500 font-mono tracking-wider">MSSV: 25020058</span>
         </div>
       </a>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="#home" class="hover:text-cyan-400 transition-colors duration-200">Trang chủ</a>
-        <a href="#intro" class="hover:text-cyan-400 transition-colors duration-200">Giới thiệu</a>
-        <a href="#projects" class="hover:text-cyan-400 transition-colors duration-200">Bài tập dự án</a>
-        <a href="#reflection" class="hover:text-cyan-400 transition-colors duration-200">Tổng kết</a>
-        <a href="#ethics" class="hover:text-cyan-400 transition-colors duration-200">Đạo đức AI</a>
+      <!-- Desktop Nav (Đổi "Đạo đức AI" -> "Liêm chính học thuật") -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+        <a href="#home" class="hover:text-blue-600 transition-colors duration-200">Trang chủ</a>
+        <a href="#intro" class="hover:text-blue-600 transition-colors duration-200">Giới thiệu</a>
+        <a href="#projects" class="hover:text-blue-600 transition-colors duration-200">Bài tập dự án</a>
+        <a href="#reflection" class="hover:text-blue-600 transition-colors duration-200">Tổng kết</a>
+        <a href="#ethics" class="hover:text-blue-600 transition-colors duration-200">Liêm chính học thuật</a>
       </nav>
 
-      <!-- CTA Button -->
+      <!-- CTA Button (Dáng Pill shape tối giản đẳng cấp) -->
       <div class="hidden md:flex items-center">
-        <a href="#contact" class="px-5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-900/50 text-slate-200 hover:text-white font-semibold text-sm hover:shadow-[0_0_15px_rgba(0,242,254,0.15)] transition-all duration-300">
+        <a href="#contact" class="px-6 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm shadow-sm hover:shadow-md transition-all duration-300">
           Liên hệ
         </a>
       </div>
 
       <!-- Mobile Menu Button -->
-      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white focus:outline-none" aria-label="Toggle Navigation Menu">
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 focus:outline-none" aria-label="Toggle Navigation Menu">
         <svg class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -81,159 +81,169 @@
     </div>
 
     <!-- Mobile Nav Dropdown -->
-    <div id="mobileMenu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800 px-4 pt-2 pb-6 flex flex-col gap-4 text-slate-300 font-medium">
-      <a href="#home" class="mobile-link py-2 hover:text-cyan-400 transition-colors duration-200">Trang chủ</a>
-      <a href="#intro" class="mobile-link py-2 hover:text-cyan-400 transition-colors duration-200">Giới thiệu</a>
-      <a href="#projects" class="mobile-link py-2 hover:text-cyan-400 transition-colors duration-200">Bài tập dự án</a>
-      <a href="#reflection" class="mobile-link py-2 hover:text-cyan-400 transition-colors duration-200">Tổng kết học thuật</a>
-      <a href="#ethics" class="mobile-link py-2 hover:text-cyan-400 transition-colors duration-200">Đạo đức AI</a>
-      <a href="#contact" class="mobile-link py-2.5 text-center rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold transition-all duration-200">
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 border-b border-slate-200 px-4 pt-2 pb-6 flex flex-col gap-4 text-slate-700 font-semibold">
+      <a href="#home" class="mobile-link py-2 hover:text-blue-600 transition-colors duration-200">Trang chủ</a>
+      <a href="#intro" class="mobile-link py-2 hover:text-blue-600 transition-colors duration-200">Giới thiệu</a>
+      <a href="#projects" class="mobile-link py-2 hover:text-blue-600 transition-colors duration-200">Bài tập dự án</a>
+      <a href="#reflection" class="mobile-link py-2 hover:text-blue-600 transition-colors duration-200">Tổng kết</a>
+      <a href="#ethics" class="mobile-link py-2 hover:text-blue-600 transition-colors duration-200">Liêm chính học thuật</a>
+      <a href="#contact" class="mobile-link py-2.5 text-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold transition-all duration-200">
         Liên hệ
       </a>
     </div>
   </header>
 
-  <!-- ================= HERO SECTION ================= -->
-  <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Ambient glowing backgrounds -->
-    <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-neon"></div>
-    <div class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[450px] h-[450px] bg-purple-600/10 rounded-full blur-3xl animate-pulse-neon" style="animation-delay: 2s"></div>
-
-    <!-- Abstract Grid Overlay -->
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.003)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.003)_1px,transparent_1px)] bg-[size:30px_30px] opacity-20 z-0"></div>
+  <!-- ================= HERO SECTION (LIGHTMODE DYNAMIC & STAGGERED) ================= -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-gradient-to-br from-slate-50 via-slate-50/50 to-slate-100/80">
+    <!-- Ambient soft light glowing backgrounds -->
+    <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-cyan-200/20 rounded-full blur-3xl animate-pulse-neon"></div>
+    <div class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-purple-200/20 rounded-full blur-3xl animate-pulse-neon" style="animation-delay: 2s"></div>
 
     <!-- Content Container -->
     <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 text-xs font-semibold tracking-wide text-cyan-400 mb-8 shadow-[0_0_15px_rgba(0,242,254,0.1)]">
-        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+      
+      <!-- Badge mượt mà trượt xuống (anim-fade-in-down) -->
+      <div class="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/70 border border-slate-200 text-xs font-semibold tracking-wide text-blue-600 mb-8 shadow-sm backdrop-blur-sm anim-fade-in-down">
+        <span class="w-2 h-2 rounded-full bg-cyan-500 animate-ping"></span>
         Hồ sơ năng lực học tập môn Công nghệ số & AI
       </div>
 
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+      <!-- Tiêu đề tạp chí đậm nét (anim-fade-in-up) -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight text-slate-900 anim-fade-in-up anim-delay-200">
         Hành trình làm chủ <br>
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600">
           Công nghệ số & AI
         </span>
       </h1>
 
-      <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mb-12 leading-relaxed">
-        Chào mừng đến với không gian học thuật của <strong class="text-slate-200">Nguyễn Thành Danh</strong> (MSSV: 25020058). <br>
-        <span class="text-cyan-400 font-medium">"Từ tư duy hệ thống đến sáng tạo vô hạn"</span> – Minh chứng cho nỗ lực nâng cao năng lực thích ứng và làm chủ công nghệ trong thời đại số.
-      </p>
+      <!-- Hiệu ứng chữ chạy động của UET (Typing Effect) -->
+      <div class="text-lg sm:text-2xl text-slate-500 font-semibold mb-8 font-mono anim-fade-in-up anim-delay-300">
+        Định hướng: <span id="dynamic-typing-text" class="text-gradient-accent typing-cursor"></span>
+      </div>
 
-      <div class="flex flex-col sm:flex-row items-center gap-4">
-        <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] transition-all duration-300">
+      <!-- Slogan trong khung viền mảnh tinh tế -->
+      <div class="inline-block px-6 py-3 rounded-2xl bg-white/40 border border-slate-200/60 max-w-2xl mb-12 shadow-sm backdrop-blur-md anim-fade-in-up anim-delay-500">
+        <p class="text-slate-600 font-medium text-sm sm:text-base leading-relaxed italic">
+          "Từ tư duy hệ thống đến sáng tạo vô hạn" <br>
+          <span class="text-slate-400 font-normal text-xs sm:text-sm not-italic block mt-1">Minh chứng cho nỗ lực nâng cao năng lực thích ứng và làm chủ công nghệ trong thời đại số.</span>
+        </p>
+      </div>
+
+      <!-- Các nút bấm CTA đẳng cấp (anim-fade-in-up anim-delay-700) -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 anim-fade-in-up anim-delay-700 w-full sm:w-auto">
+        <!-- Khám phá bài tập (Gradient Neon Glow hover) -->
+        <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-bold shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/25 hover:scale-105 transition-all duration-300 text-center">
           Khám phá Bài tập dự án
         </a>
-        <a href="#reflection" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white font-semibold transition-all duration-300">
+        <!-- Đọc Tổng kết (Slate Fill hover) -->
+        <a href="#reflection" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white border border-slate-300/80 hover:border-slate-800 text-slate-700 hover:text-white hover:bg-slate-900 font-bold shadow-sm transition-all duration-300 text-center">
           Đọc Tổng kết học tập
         </a>
       </div>
     </div>
 
-    <!-- Absolute bottom scroll indicator -->
-    <a href="#intro" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 hover:text-cyan-400 transition-colors duration-300 cursor-pointer z-10">
-      <span class="text-[10px] uppercase tracking-widest font-bold">Cuộn xuống</span>
-      <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <!-- Scroll indicator nhấp nhô bounce-slow ở đáy trang -->
+    <a href="#intro" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 hover:text-blue-600 transition-colors duration-300 cursor-pointer scroll-bounce-indicator z-10 anim-fade-in-up anim-delay-1000">
+      <span class="text-[10px] uppercase tracking-widest font-bold font-sans">Cuộn xuống</span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
       </svg>
     </a>
   </section>
 
-  <!-- ================= ABOUT ME & INTRODUCTION ================= -->
-  <section id="intro" class="py-24 border-t border-slate-900 relative bg-slate-950/40 reveal-on-scroll">
+  <!-- ================= ABOUT ME & INTRODUCTION (LIGHTMODE PRESTIGE) ================= -->
+  <section id="intro" class="py-24 border-t border-slate-200/60 relative bg-white reveal-on-scroll">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-bold tracking-widest uppercase text-cyan-400">Giới thiệu</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Giới Thiệu Bản Thân</h2>
+        <span class="text-xs font-bold tracking-widest uppercase text-blue-600">Giới thiệu</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Giới Thiệu Bản Thân</h2>
         <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mt-4 rounded-full"></div>
       </div>
 
       <!-- Responsive Grid System -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
 
-        <!-- Left Column: Stylized Avatar Container -->
+        <!-- Left Column: Stylized Avatar Container (Light Portrait frame) -->
         <div class="relative group flex justify-center">
-          <!-- Premium outer gradient glow border -->
-          <div class="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 animate-pulse-neon"></div>
+          <div class="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl blur opacity-15 group-hover:opacity-35 transition duration-1000 group-hover:duration-200 animate-pulse-neon"></div>
 
-          <!-- Portrait Aspect-Ratio Avatar Container (Hạn chế méo ảnh, tối ưu sắc nét) -->
-          <div class="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[3/4] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 flex items-center justify-center group/img shadow-2xl">
-            <!-- Fallback High-tech Background behind image -->
-            <div class="absolute inset-0 bg-gradient-to-tr from-purple-950/40 via-slate-950/90 to-cyan-950/40 flex flex-col items-center justify-center p-6 text-center z-0">
-              <span class="text-4xl font-black text-slate-800 tracking-widest uppercase mb-1">STUDENT</span>
-              <span class="text-xs text-slate-500 font-mono tracking-widest">MSSV: 25020058</span>
+          <!-- Portrait Frame (Hiển thị 3/4 ảnh gốc toàn thân không bị méo và crop) -->
+          <div class="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[3/4] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center group/img shadow-md">
+            <!-- Fallback Student Design Card -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-slate-100 via-slate-50 to-slate-200 flex flex-col items-center justify-center p-6 text-center z-0">
+              <span class="text-4xl font-black text-slate-200 tracking-widest uppercase mb-1">STUDENT</span>
+              <span class="text-xs text-slate-400 font-mono tracking-widest">MSSV: 25020058</span>
             </div>
 
-            <!-- Real Avatar Image (Optimized Object Contain to display complete photo without cropping) -->
+            <!-- Avatar Image (object-contain giữ trọn độ sắc nét và tỷ lệ ảnh gốc) -->
             <img src="1.jpg" alt="Nguyễn Thành Danh Profile Picture" 
               class="relative z-10 w-full h-full object-contain rounded-xl transition-all duration-500 group-hover/img:scale-[1.03]"
-              onerror="console.warn('Ảnh chân dung 1.jpg không tìm thấy. Sử dụng layout fallback.');">
+              onerror="console.warn('Không tải được 1.jpg, sử dụng layout fallback.');">
           </div>
         </div>
 
-        <!-- Center/Right Columns: Content Box & Info Grid (Spans 2 columns on desktop) -->
+        <!-- Center/Right Columns: Content Box & Info Grid (Light Premium Style) -->
         <div class="lg:col-span-2 space-y-8 flex flex-col justify-between">
           <div class="space-y-6">
-            <h3 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2.5">
-              <span class="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-extrabold">Nguyễn Thành Danh</span>
-              <span class="px-2.5 py-0.5 rounded bg-cyan-950/60 border border-cyan-800/80 text-[10px] font-bold text-cyan-300 uppercase tracking-widest">CNTT - UET</span>
+            <h3 class="text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2.5">
+              <span class="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent font-extrabold">Nguyễn Thành Danh</span>
+              <span class="px-2.5 py-0.5 rounded bg-blue-50 border border-blue-200 text-[10px] font-bold text-blue-600 uppercase tracking-widest">CNTT - UET</span>
             </h3>
 
-            <div class="space-y-4 text-slate-300 leading-relaxed text-sm sm:text-base">
+            <div class="space-y-4 text-slate-600 leading-relaxed text-sm sm:text-base">
               <p>
                 Tôi là một sinh viên chuyên ngành Công nghệ thông tin tại Trường Đại học Công nghệ (UET) - Đại học Quốc gia Hà Nội với định hướng phát triển chuyên sâu trong các lĩnh vực:
-                <strong class="text-cyan-300 font-semibold">Tích hợp Trí tuệ Nhân tạo (Artificial Intelligence Integration)</strong>, 
-                <strong class="text-cyan-300 font-semibold">Tối ưu hóa Hệ thống (System Optimization)</strong>, và 
-                <strong class="text-cyan-300 font-semibold">Nâng cao Năng lực Số (Digital Competencies)</strong>.
+                <strong class="text-slate-800 font-semibold">Tích hợp Trí tuệ Nhân tạo (Artificial Intelligence Integration)</strong>, 
+                <strong class="text-slate-800 font-semibold">Tối ưu hóa Hệ thống (System Optimization)</strong>, và 
+                <strong class="text-slate-800 font-semibold">Nâng cao Năng lực Số (Digital Competencies)</strong>.
               </p>
               <p>
-                Dự án Portfolio này là bức tranh tổng thể ghi nhận quá trình học tập và rèn luyện kỹ năng số của tôi. Mục tiêu của trang web không chỉ để hệ thống hóa kiến thức từ việc quản lý dữ liệu, khai thác thông tin khoa học, kỹ thuật Prompt Engineering, đến ứng dụng AI tạo sinh; mà còn là minh chứng rõ nét cho khả năng làm việc độc lập, phát triển tư duy phản biện sắc bén và cam kết sâu sắc trong việc sử dụng công nghệ trí tuệ nhân tạo một cách có đạo đức, liêm chính và trách nhiệm học thuật (<strong class="text-purple-400 font-semibold">Academic Integrity</strong>).
+                Dự án Portfolio này là bức tranh tổng thể ghi nhận quá trình học tập và rèn luyện kỹ năng số của tôi. Mục tiêu của trang web không chỉ để hệ thống hóa kiến thức từ việc quản lý dữ liệu, khai thác thông tin khoa học, kỹ thuật Prompt Engineering, đến ứng dụng AI tạo sinh; mà còn là minh chứng rõ nét cho khả năng làm việc độc lập, phát triển tư duy phản biện sắc bén và cam kết sâu sắc trong việc sử dụng công nghệ trí tuệ nhân tạo một cách có đạo đức, liêm chính và trách nhiệm học thuật (<strong class="text-blue-600 font-semibold">Academic Integrity</strong>).
               </p>
             </div>
           </div>
 
-          <!-- Contact Cards Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-900">
-            <!-- Email Card (Sửa Email & Thuộc tính mailto) -->
-            <a href="mailto:nthanhdanhtb@gmail.com" class="group flex items-center gap-3.5 p-4 rounded-xl bg-slate-950/60 border border-slate-900 hover:border-cyan-500/30 hover:bg-slate-900/40 transition-all duration-300 shadow-md">
-              <div class="w-10 h-10 rounded-lg bg-cyan-950/60 border border-cyan-800 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform duration-300">
+          <!-- Contact Cards Grid (Đồng bộ Lightmode & Email mới) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-200">
+            <!-- Email Card (mailto:nthanhdanhtb@gmail.com) -->
+            <a href="mailto:nthanhdanhtb@gmail.com" class="group flex items-center gap-3.5 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-blue-500/30 hover:bg-white hover:shadow-md transition-all duration-300">
+              <div class="w-10 h-10 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 group-hover:scale-105 transition-transform duration-300">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
               <div>
-                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500 block">Địa chỉ Email</span>
-                <span class="text-xs text-slate-300 font-mono group-hover:text-white transition-colors duration-200">nthanhdanhtb@gmail.com</span>
+                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">Địa chỉ Email</span>
+                <span class="text-xs text-slate-700 font-mono group-hover:text-blue-600 transition-colors duration-200">nthanhdanhtb@gmail.com</span>
               </div>
             </a>
 
             <!-- GitHub Root Link -->
-            <a href="https://github.com/nthanhdanhtb-pixel" target="_blank" class="group flex items-center gap-3.5 p-4 rounded-xl bg-slate-950/60 border border-slate-900 hover:border-purple-500/30 hover:bg-slate-900/40 transition-all duration-300 shadow-md">
-              <div class="w-10 h-10 rounded-lg bg-purple-950/60 border border-purple-800 flex items-center justify-center text-purple-400 group-hover:scale-105 transition-transform duration-300">
+            <a href="https://github.com/nthanhdanhtb-pixel" target="_blank" class="group flex items-center gap-3.5 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-purple-500/30 hover:bg-white hover:shadow-md transition-all duration-300">
+              <div class="w-10 h-10 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-600 group-hover:scale-105 transition-transform duration-300">
                 <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                   <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
                 </svg>
               </div>
               <div>
-                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500 block">Kênh Source Code</span>
-                <span class="text-xs text-slate-300 font-mono group-hover:text-white transition-colors duration-200">github.com/nthanhdanhtb-pixel</span>
+                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">Kênh Source Code</span>
+                <span class="text-xs text-slate-700 font-mono group-hover:text-purple-600 transition-colors duration-200">github.com/nthanhdanhtb-pixel</span>
               </div>
             </a>
           </div>
 
           <!-- Academic Info Badges -->
           <div class="flex flex-wrap gap-3 mt-4 text-xs font-semibold">
-            <div class="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400">
-              Mã số sinh viên: <strong class="text-white">25020058</strong>
+            <div class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500">
+              Mã số sinh viên: <strong class="text-slate-800">25020058</strong>
             </div>
-            <div class="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400">
-              Môn học: <strong class="text-white">Công nghệ số & Ứng dụng AI</strong>
+            <div class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500">
+              Môn học: <strong class="text-slate-800">Công nghệ số & Ứng dụng AI</strong>
             </div>
-            <div class="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400">
-              Trường học: <strong class="text-white">Đại học Công nghệ - ĐHQGHN</strong>
+            <div class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500">
+              Trường học: <strong class="text-slate-800">Đại học Công nghệ - ĐHQGHN</strong>
             </div>
           </div>
 
@@ -243,71 +253,71 @@
     </div>
   </section>
 
-  <!-- ================= LAB SHOWCASE SECTION ================= -->
-  <section id="projects" class="py-24 border-t border-slate-900 bg-slate-950/20 relative">
+  <!-- ================= LAB SHOWCASE SECTION (PREMIUM LIGHT SYSTEM) ================= -->
+  <section id="projects" class="py-24 border-t border-slate-200/60 bg-slate-50/50 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-20 reveal-on-scroll">
-        <span class="text-xs font-bold tracking-widest uppercase text-cyan-400">Bài tập Thực hành</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Chi tiết 6 Bài tập & Dự án Thực nghiệm</h2>
-        <p class="text-slate-400 mt-4 leading-relaxed">
+        <span class="text-xs font-bold tracking-widest uppercase text-blue-600">Bài tập Thực hành</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Chi tiết 6 Bài tập & Dự án Thực nghiệm</h2>
+        <p class="text-slate-500 mt-4 leading-relaxed">
           Ghi nhận lộ trình rèn luyện kỹ năng số một cách tuần tự, khoa học và thực chất trong học tập và hợp tác.
         </p>
         <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mt-6 rounded-full"></div>
       </div>
 
-      <!-- Labs Container (Alternating Layouts) -->
+      <!-- Labs Container (Alternating Layouts in Premium Lightmode) -->
       <div class="space-y-24">
 
-        <!-- BÀI 1 (Có chứa Interactive File Tree và Sửa Link Tải Báo Cáo) -->
+        <!-- BÀI 1 (Interactive File Tree & Metadata Panel) -->
         <article class="glass-card-cyber rounded-3xl p-6 sm:p-8 lg:p-12 reveal-on-scroll">
           <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
               <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/50 border border-cyan-800 text-xs font-bold text-cyan-300 mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-blue-600 mb-6">
                   Bài tập 01
                 </div>
-                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-white mb-4">Quản lý tệp tin và thư mục (Thao tác cơ bản)</h3>
+                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Quản lý tệp tin và thư mục (Thao tác cơ bản)</h3>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-2">Mục tiêu</h4>
-                  <p class="lab-objective text-sm text-slate-300 leading-relaxed">
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">Mục tiêu</h4>
+                  <p class="lab-objective text-sm text-slate-600 leading-relaxed">
                     Xây dựng cấu trúc lưu trữ dữ liệu khoa học, giúp dễ dàng truy xuất, đồng bộ hóa và tối ưu hiệu suất làm việc.
                   </p>
                 </div>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-2">Quá trình thực hiện</h4>
-                  <div class="lab-process-prompt font-mono text-xs text-cyan-300 bg-slate-900 border border-slate-800/60 rounded-xl p-4 overflow-x-auto leading-relaxed">
-                    <span class="text-slate-500">// Thiết lập cây thư mục logic theo từng module học tập</span><br>
-                    <span class="text-cyan-400">Quy tắc đặt tên tệp nhất quán:</span><br>
-                    <span class="text-purple-400">[Ngày tháng]_[Tên môn học]_[Nội dung chính]_v[Phiên bản]</span><br>
-                    Ví dụ: 20260528_CongNgheSo_BaiTap1_v1.0.pdf
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">Quá trình thực hiện</h4>
+                  <div class="lab-process-prompt font-mono text-xs text-blue-600 bg-slate-50 border border-slate-200 rounded-xl p-4 overflow-x-auto leading-relaxed shadow-sm">
+                    <span class="text-slate-400">// Thiết lập cây thư mục logic theo từng module học tập</span><br>
+                    <span class="text-slate-700 font-semibold">Quy tắc đặt tên tệp nhất quán:</span><br>
+                    <span class="text-purple-600 font-medium">[Ngày tháng]_[Tên môn học]_[Nội dung chính]_v[Phiên bản]</span><br>
+                    Ví dụ: 20260528_BT1.pdf
                   </div>
                 </div>
               </div>
 
               <!-- Lab Reflection -->
-              <div class="lab-reflection border-l-2 border-cyan-500 bg-cyan-950/10 rounded-r-xl p-4 mt-6">
-                <span class="text-xs font-bold text-cyan-400 block mb-1">Phản hồi & Bài học</span>
-                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed italic">
+              <div class="lab-reflection border-l-2 border-blue-500 bg-blue-50/50 rounded-r-xl p-4 mt-6">
+                <span class="text-xs font-bold text-blue-600 block mb-1">Phản hồi & Bài học</span>
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed italic">
                   "Tư duy tổ chức dữ liệu tốt giúp tôi tiết kiệm 80% thời gian tìm kiếm tài liệu và tránh rủi ro mất mát dữ liệu quan trọng trong quá trình làm việc nhóm trực tuyến."
                 </p>
               </div>
 
-              <!-- Report download panel (Sửa sang liên kết trực tiếp .docx local) -->
-              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_NguyenThanhDanh_25020058_Bai1.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
-              <div class="flex items-center justify-between p-3.5 bg-slate-900/60 rounded-xl border border-slate-800/80 mt-6 text-slate-300">
+              <!-- Report download panel -->
+              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_Bai1.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
+              <div class="flex items-center justify-between p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 mt-6 text-slate-600">
                 <div class="flex items-center gap-2.5">
                   <span class="text-2xl icon-docx">📘</span>
                   <div>
-                    <span class="text-xs font-bold text-white block">Báo cáo Bài tập 1</span>
+                    <span class="text-xs font-bold text-slate-800 block">Báo cáo Bài tập 1</span>
                     <span class="text-[10px] text-slate-400 block">Định dạng: Word (.docx) cục bộ</span>
                   </div>
                 </div>
-                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai1.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs shadow-md shadow-cyan-600/20 hover:shadow-cyan-500/35 transition-all duration-300 hover:scale-105 focus:outline-none">
+                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai1.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 hover:scale-105 transition-all duration-300 focus:outline-none">
                   <svg class="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
@@ -316,13 +326,13 @@
               </div>
             </div>
 
-            <!-- Visual Output Column (Nâng cấp thành Interactive File Tree cao cấp) -->
+            <!-- Visual Output Column (Interactive File Tree) -->
             <div class="lg:w-1/2 flex flex-col justify-center">
-              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3">Kết quả Minh họa (Cây thư mục tương tác)</h4>
+              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3">Kết quả Minh họa (Cây thư mục tương tác)</h4>
               
-              <!-- Khối chính chia thành 2 cột: Cây thư mục bên trái, Panel Metadata bên phải trên màn hình lớn -->
+              <!-- 2 columns inside layout -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
-                <!-- Cây thư mục -->
+                <!-- File Tree Left Column -->
                 <div class="file-tree-container text-xs">
                   <div class="tree-node-parent" id="tree-root-node">
                     <div class="tree-item active" data-tree-key="root-portfolio">
@@ -434,38 +444,38 @@
                   </div>
                 </div>
 
-                <!-- Bảng Metadata hiển thị thông tin nhanh của folder/file đang chọn/hover -->
+                <!-- Metadata Panel Right Column (Light Glassmorphic) -->
                 <div class="metadata-panel flex flex-col justify-between text-xs font-mono">
                   <div>
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
                       <span class="text-slate-400 font-sans font-bold">Metadata Panel</span>
-                      <span id="meta-type" class="bg-cyan-950/60 text-cyan-400 border border-cyan-800/50 text-[9px] font-bold px-2 py-0.5 rounded uppercase">THƯ MỤC GỐC</span>
+                      <span id="meta-type" class="bg-blue-50 text-blue-600 border border-blue-200 text-[9px] font-bold px-2 py-0.5 rounded uppercase">THƯ MỤC GỐC</span>
                     </div>
                     <div class="space-y-1.5">
-                      <div class="flex justify-between py-0.5 border-b border-slate-900/60">
-                        <span class="text-slate-500">Tên:</span>
-                        <span id="meta-name" class="text-white font-semibold font-sans">root-portfolio/</span>
+                      <div class="flex justify-between py-0.5 border-b border-slate-100">
+                        <span class="text-slate-400">Tên:</span>
+                        <span id="meta-name" class="text-slate-900 font-semibold font-sans">root-portfolio/</span>
                       </div>
-                      <div class="flex justify-between py-0.5 border-b border-slate-900/60">
-                        <span class="text-slate-500">Đường dẫn:</span>
-                        <span id="meta-path" class="text-slate-300 truncate max-w-[130px] font-sans">./root-portfolio</span>
+                      <div class="flex justify-between py-0.5 border-b border-slate-100">
+                        <span class="text-slate-400">Đường dẫn:</span>
+                        <span id="meta-path" class="text-slate-600 truncate max-w-[130px] font-sans">./root-portfolio</span>
                       </div>
-                      <div class="flex justify-between py-0.5 border-b border-slate-900/60">
-                        <span class="text-slate-500">Dung lượng:</span>
-                        <span id="meta-size" class="text-cyan-400">12.0 MB</span>
+                      <div class="flex justify-between py-0.5 border-b border-slate-100">
+                        <span class="text-slate-400">Dung lượng:</span>
+                        <span id="meta-size" class="text-blue-600 font-semibold">12.0 MB</span>
                       </div>
-                      <div class="flex justify-between py-0.5 border-b border-slate-900/60" id="meta-items-row">
-                        <span class="text-slate-500">Bên trong:</span>
-                        <span id="meta-items" class="text-slate-300">6 thư mục con</span>
+                      <div class="flex justify-between py-0.5 border-b border-slate-100" id="meta-items-row">
+                        <span class="text-slate-400">Bên trong:</span>
+                        <span id="meta-items" class="text-slate-600">6 thư mục con</span>
                       </div>
-                      <div class="flex justify-between py-0.5 border-b border-slate-900/60">
-                        <span class="text-slate-500">Cập nhật:</span>
-                        <span id="meta-date" class="text-slate-300">29/05/2026</span>
+                      <div class="flex justify-between py-0.5 border-b border-slate-100">
+                        <span class="text-slate-400">Cập nhật:</span>
+                        <span id="meta-date" class="text-slate-600">29/05/2026</span>
                       </div>
                     </div>
                   </div>
-                  <div class="mt-3 p-2 rounded bg-slate-900/80 border border-slate-850/60 text-[10px] text-slate-400 font-sans leading-normal">
-                    <strong class="text-slate-300 block mb-0.5">Mô tả nhanh:</strong>
+                  <div class="mt-3 p-2 rounded bg-slate-50 border border-slate-200/60 text-[10px] text-slate-500 font-sans leading-normal">
+                    <strong class="text-slate-700 block mb-0.5">Mô tả nhanh:</strong>
                     <p id="meta-desc">Thư mục quản lý toàn bộ các bài tập thực hành môn học Công nghệ số & Ứng dụng AI.</p>
                   </div>
                 </div>
@@ -481,47 +491,47 @@
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
               <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/50 border border-purple-800 text-xs font-bold text-purple-300 mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-600 mb-6">
                   Bài tập 02
                 </div>
-                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-white mb-4">Khai thác dữ liệu và thông tin học thuật</h3>
+                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Khai thác dữ liệu và thông tin học thuật</h3>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-2">Mục tiêu</h4>
-                  <p class="lab-objective text-sm text-slate-300 leading-relaxed">
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">Mục tiêu</h4>
+                  <p class="lab-objective text-sm text-slate-600 leading-relaxed">
                     Nâng cao kỹ năng tra cứu, chọn lọc nguồn tin khoa học chất lượng cao và đánh giá độ tin cậy của thông tin trong thời đại bùng nổ dữ liệu.
                   </p>
                 </div>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-2">Quá trình thực hiện</h4>
-                  <div class="lab-process-prompt font-mono text-xs text-purple-300 bg-slate-900 border border-slate-800/60 rounded-xl p-4 overflow-x-auto leading-relaxed">
-                    <span class="text-slate-500">// Sử dụng các toán tử tìm kiếm học thuật nâng cao</span><br>
-                    <span class="text-cyan-400">Từ khóa tìm kiếm:</span><br>
-                    "Generative AI in Education" <span class="text-purple-400">site:edu</span> <span class="text-purple-400">filetype:pdf</span> <span class="text-purple-400">intitle:"academic"</span>
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">Quá trình thực hiện</h4>
+                  <div class="lab-process-prompt font-mono text-xs text-blue-600 bg-slate-50 border border-slate-200 rounded-xl p-4 overflow-x-auto leading-relaxed shadow-sm">
+                    <span class="text-slate-400">// Sử dụng các toán tử tìm kiếm học thuật nâng cao</span><br>
+                    <span class="text-slate-700 font-semibold">Từ khóa tìm kiếm:</span><br>
+                    "Generative AI in Education" <span class="text-purple-600">site:edu</span> <span class="text-purple-600">filetype:pdf</span> <span class="text-purple-600">intitle:"academic"</span>
                   </div>
                 </div>
               </div>
 
               <!-- Lab Reflection -->
-              <div class="lab-reflection border-l-2 border-purple-500 bg-purple-950/10 rounded-r-xl p-4 mt-6">
-                <span class="text-xs font-bold text-purple-400 block mb-1">Phản hồi & Bài học</span>
-                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed italic">
+              <div class="lab-reflection border-l-2 border-purple-500 bg-purple-50/50 rounded-r-xl p-4 mt-6">
+                <span class="text-xs font-bold text-purple-600 block mb-1">Phản hồi & Bài học</span>
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed italic">
                   "Không phải thông tin nào trên Internet cũng chính xác. Kỹ năng này giúp tôi rèn luyện tư duy phản biện (critical thinking) trước mọi dữ liệu tiếp nhận từ các nguồn trực tuyến."
                 </p>
               </div>
 
               <!-- Report download panel -->
-              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_NguyenThanhDanh_25020058_Bai2.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
-              <div class="flex items-center justify-between p-3.5 bg-slate-900/60 rounded-xl border border-slate-800/80 mt-6 text-slate-300">
+              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_Bai2.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
+              <div class="flex items-center justify-between p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 mt-6 text-slate-600">
                 <div class="flex items-center gap-2.5">
                   <span class="text-2xl icon-docx">📘</span>
                   <div>
-                    <span class="text-xs font-bold text-white block">Báo cáo Bài tập 2</span>
+                    <span class="text-xs font-bold text-slate-800 block">Báo cáo Bài tập 2</span>
                     <span class="text-[10px] text-slate-400 block">Định dạng: Word (.docx) cục bộ</span>
                   </div>
                 </div>
-                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai2.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs shadow-md shadow-cyan-600/20 hover:shadow-cyan-500/35 transition-all duration-300 hover:scale-105 focus:outline-none">
+                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai2.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 hover:scale-105 transition-all duration-300 focus:outline-none">
                   <svg class="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
@@ -532,16 +542,16 @@
 
             <!-- Visual Output Column -->
             <div class="lg:w-1/2 flex flex-col justify-center">
-              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3">Nguồn Học thuật Minh họa</h4>
-              <div class="lab-outputs bg-slate-900/60 border border-slate-800/50 rounded-2xl p-6 flex flex-col gap-4">
-                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                  <span class="text-xs font-bold text-slate-400">Nguồn tin được xác thực (Stanford University)</span>
-                  <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800/50 text-emerald-400 text-[10px] font-bold uppercase tracking-wider">Verified PDF</span>
+              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3">Nguồn Học thuật Minh họa</h4>
+              <div class="lab-outputs bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
+                <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                  <span class="text-xs font-bold text-slate-500 font-mono">Nguồn tin được xác thực (Stanford University)</span>
+                  <span class="px-2 py-0.5 rounded bg-emerald-50 border border-emerald-200 text-emerald-600 text-[9px] font-bold font-mono uppercase tracking-wider">Verified PDF</span>
                 </div>
-                <div class="space-y-3 text-xs sm:text-sm text-slate-300">
-                  <div class="p-3 bg-slate-950 rounded-lg border border-slate-850">
-                    <span class="text-cyan-400 font-bold block mb-1">Mô hình đánh giá học thuật tiêu chuẩn:</span>
-                    <p class="text-slate-400 leading-relaxed">
+                <div class="space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <div class="p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-blue-600 font-bold block mb-1">Mô hình đánh giá học thuật tiêu chuẩn:</span>
+                    <p class="text-slate-500">
                       Đánh giá tính chính xác của dữ liệu khoa học thông qua uy tín nhà xuất bản (Stanford Press), mức độ chuyên sâu của tác giả nghiên cứu, thời điểm công bố số liệu và tính liên hệ chặt chẽ với luận điểm nghiên cứu.
                     </p>
                   </div>
@@ -557,27 +567,27 @@
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
               <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/50 border border-cyan-800 text-xs font-bold text-cyan-300 mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-blue-600 mb-6">
                   Bài tập 03
                 </div>
-                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-white mb-4">Kỹ thuật viết Prompt hiệu quả (Prompt Engineering)</h3>
+                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Kỹ thuật viết Prompt hiệu quả (Prompt Engineering)</h3>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-555 mb-2">Mục tiêu</h4>
-                  <p class="lab-objective text-sm text-slate-300 leading-relaxed">
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">Mục tiêu</h4>
+                  <p class="lab-objective text-sm text-slate-600 leading-relaxed">
                     Tối ưu hóa câu lệnh để giao tiếp hiệu quả và khai thác tối đa tiềm năng hỗ trợ học thuật của các mô hình ngôn ngữ lớn (LLMs).
                   </p>
                 </div>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-2">So sánh Prompt tiêu biểu</h4>
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">So sánh Prompt tiêu biểu</h4>
                   <div class="space-y-3 font-mono text-xs">
-                    <div class="lab-process-prompt text-red-400 bg-slate-900 border border-red-950/30 rounded-xl p-3.5 leading-relaxed">
-                      <span class="text-slate-500 block mb-1">// Bản gốc (Chưa tối ưu):</span>
+                    <div class="lab-process-prompt text-red-600 bg-red-50/50 border border-red-200 rounded-xl p-3.5 leading-relaxed">
+                      <span class="text-slate-400 block mb-1 font-sans font-semibold">// Bản gốc (Chưa tối ưu):</span>
                       "Viết cho tôi một bài giới thiệu về AI."
                     </div>
-                    <div class="lab-process-prompt text-emerald-400 bg-slate-900 border border-emerald-950/30 rounded-xl p-3.5 leading-relaxed">
-                      <span class="text-slate-500 block mb-1">// Bản cải tiến (Tối ưu hóa ngữ cảnh & định dạng):</span>
+                    <div class="lab-process-prompt text-emerald-600 bg-emerald-50/50 border border-emerald-200 rounded-xl p-3.5 leading-relaxed">
+                      <span class="text-slate-400 block mb-1 font-sans font-semibold">// Bản cải tiến (Tối ưu hóa ngữ cảnh & định dạng):</span>
                       "Đóng vai một chuyên gia công nghệ, hãy viết một bài phân tích ngắn (khoảng 300 chữ) về tác động của Generative AI đến giáo dục đại học. Giọng văn học thuật, khách quan và sử dụng bullet points để liệt kê."
                     </div>
                   </div>
@@ -585,24 +595,24 @@
               </div>
 
               <!-- Lab Reflection -->
-              <div class="lab-reflection border-l-2 border-cyan-500 bg-cyan-950/10 rounded-r-xl p-4 mt-6">
-                <span class="text-xs font-bold text-cyan-400 block mb-1">Phản hồi & Bài học</span>
-                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed italic">
+              <div class="lab-reflection border-l-2 border-blue-500 bg-blue-50/50 rounded-r-xl p-4 mt-6">
+                <span class="text-xs font-bold text-blue-600 block mb-1">Phản hồi & Bài học</span>
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed italic">
                   "AI chỉ thực sự thông minh và cung cấp giải pháp giá trị khi người dùng biết cách cung cấp bối cảnh (context), vai trò rõ ràng (role) và yêu cầu định dạng đầu ra (format) chi tiết."
                 </p>
               </div>
 
               <!-- Report download panel -->
-              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_NguyenThanhDanh_25020058_Bai3.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
-              <div class="flex items-center justify-between p-3.5 bg-slate-900/60 rounded-xl border border-slate-800/80 mt-6 text-slate-300">
+              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_Bai3.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
+              <div class="flex items-center justify-between p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 mt-6 text-slate-600">
                 <div class="flex items-center gap-2.5">
                   <span class="text-2xl icon-docx">📘</span>
                   <div>
-                    <span class="text-xs font-bold text-white block">Báo cáo Bài tập 3</span>
+                    <span class="text-xs font-bold text-slate-800 block">Báo cáo Bài tập 3</span>
                     <span class="text-[10px] text-slate-400 block">Định dạng: Word (.docx) cục bộ</span>
                   </div>
                 </div>
-                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai3.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs shadow-md shadow-cyan-600/20 hover:shadow-cyan-500/35 transition-all duration-300 hover:scale-105 focus:outline-none">
+                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai3.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 hover:scale-105 transition-all duration-300 focus:outline-none">
                   <svg class="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
@@ -613,15 +623,15 @@
 
             <!-- Visual Output Column -->
             <div class="lg:w-1/2 flex flex-col justify-center">
-              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3">Kết quả đầu ra AI từ Prompt Cải tiến</h4>
-              <div class="lab-outputs bg-slate-900/60 border border-slate-800/50 rounded-2xl p-6 flex flex-col gap-4">
-                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                  <span class="text-xs font-bold text-slate-400">Structured Response (GPT-4o)</span>
-                  <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800/50 text-emerald-400 text-[10px] font-bold uppercase tracking-wider">Optimized</span>
+              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3">Kết quả đầu ra AI từ Prompt Cải tiến</h4>
+              <div class="lab-outputs bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
+                <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                  <span class="text-xs font-bold text-slate-500 font-mono">Structured Response (GPT-4o)</span>
+                  <span class="px-2 py-0.5 rounded bg-emerald-50 border border-emerald-200 text-emerald-600 text-[9px] font-bold font-mono uppercase tracking-wider">Optimized</span>
                 </div>
-                <div class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  <p class="font-semibold text-white">Tác động của Generative AI trong Giáo dục Đại học:</p>
-                  <ul class="list-disc list-inside space-y-2 text-slate-400">
+                <div class="space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p class="font-bold text-slate-800 text-sm">Tác động của Generative AI trong Giáo dục Đại học:</p>
+                  <ul class="list-disc list-inside space-y-2 text-slate-500">
                     <li><strong>Cá nhân hóa lộ trình:</strong> Tự động điều chỉnh giáo trình phù hợp năng lực từng sinh viên.</li>
                     <li><strong>Hỗ trợ giảng dạy:</strong> Giảm tải 40% công việc soạn thảo và chấm bài hành chính.</li>
                     <li><strong>Kích thích sáng tạo:</strong> Đóng vai trò là trợ lý đắc lực gợi mở các ý tưởng nghiên cứu đột phá.</li>
@@ -638,48 +648,48 @@
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
               <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/50 border border-purple-800 text-xs font-bold text-purple-300 mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-600 mb-6">
                   Bài tập 04
                 </div>
-                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-white mb-4">Giao tiếp và hợp tác trực tuyến</h3>
+                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Giao tiếp và hợp tác trực tuyến</h3>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-2">Mục tiêu</h4>
-                  <p class="lab-objective text-sm text-slate-300 leading-relaxed">
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">Mục tiêu</h4>
+                  <p class="lab-objective text-sm text-slate-600 leading-relaxed">
                     Ứng dụng các nền tảng số hiện đại để quản lý dự án hiệu quả, phân công trách nhiệm rõ ràng và theo dõi tiến độ hoạt động của nhóm.
                   </p>
                 </div>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-2">Quy trình thực hiện</h4>
-                  <div class="lab-process-prompt font-mono text-xs text-cyan-300 bg-slate-900 border border-slate-800/60 rounded-xl p-4 overflow-x-auto leading-relaxed">
-                    <span class="text-slate-500">// Thiết lập không gian làm việc số và quản lý tác vụ trực quan</span><br>
-                    <span class="text-cyan-400">1. Không gian làm việc:</span> Notion & Trello Workspaces.<br>
-                    <span class="text-cyan-400">2. Phương pháp quản lý:</span> Lập bảng Kanban theo dõi luồng (To-do, Doing, Done).<br>
-                    <span class="text-cyan-400">3. Đồng bộ tài liệu:</span> Sử dụng Google Workspace thời gian thực.
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">Quy trình thực hiện</h4>
+                  <div class="lab-process-prompt font-mono text-xs text-blue-600 bg-slate-50 border border-slate-200 rounded-xl p-4 overflow-x-auto leading-relaxed shadow-sm">
+                    <span class="text-slate-400">// Thiết lập không gian làm việc số và quản lý tác vụ trực quan</span><br>
+                    <span class="text-slate-700 font-semibold">1. Không gian làm việc:</span> Notion & Trello Workspaces.<br>
+                    <span class="text-slate-700 font-semibold">2. Phương pháp quản lý:</span> Lập bảng Kanban theo dõi luồng (To-do, Doing, Done).<br>
+                    <span class="text-slate-700 font-semibold">3. Đồng bộ tài liệu:</span> Sử dụng Google Workspace thời gian thực.
                   </div>
                 </div>
               </div>
 
               <!-- Lab Reflection -->
-              <div class="lab-reflection border-l-2 border-purple-500 bg-purple-950/10 rounded-r-xl p-4 mt-6">
+              <div class="lab-reflection border-l-2 border-purple-500 bg-purple-50/50 rounded-r-xl p-4 mt-6">
                 <span class="text-xs font-bold text-purple-400 block mb-1">Phản hồi & Bài học</span>
-                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed italic">
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed italic">
                   "Hiệu suất làm việc nhóm từ xa phụ thuộc rất lớn vào tính minh bạch trong phân công nhiệm vụ và sự đồng bộ, thống nhất về bộ công cụ quản lý dự án được sử dụng."
                 </p>
               </div>
 
               <!-- Report download panel -->
-              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_NguyenThanhDanh_25020058_Bai4.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
-              <div class="flex items-center justify-between p-3.5 bg-slate-900/60 rounded-xl border border-slate-800/80 mt-6 text-slate-300">
+              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_Bai4.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
+              <div class="flex items-center justify-between p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 mt-6 text-slate-600">
                 <div class="flex items-center gap-2.5">
                   <span class="text-2xl icon-docx">📘</span>
                   <div>
-                    <span class="text-xs font-bold text-white block">Báo cáo Bài tập 4</span>
+                    <span class="text-xs font-bold text-slate-800 block">Báo cáo Bài tập 4</span>
                     <span class="text-[10px] text-slate-400 block">Định dạng: Word (.docx) cục bộ</span>
                   </div>
                 </div>
-                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai4.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs shadow-md shadow-cyan-600/20 hover:shadow-cyan-500/35 transition-all duration-300 hover:scale-105 focus:outline-none">
+                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai4.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 hover:scale-105 transition-all duration-300 focus:outline-none">
                   <svg class="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
@@ -690,21 +700,21 @@
 
             <!-- Visual Output Column -->
             <div class="lg:w-1/2 flex flex-col justify-center">
-              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3">Kết quả Minh họa</h4>
-              <div class="lab-outputs bg-slate-900/60 border border-slate-800/50 rounded-2xl p-4 flex flex-col gap-4">
-                <!-- Mock Kanban Interface -->
+              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3">Kết quả Minh họa (Light Kanban board)</h4>
+              <div class="lab-outputs bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col gap-4 shadow-sm">
+                <!-- Mock Kanban Interface (Light theme) -->
                 <div class="grid grid-cols-3 gap-3">
-                  <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-850">
-                    <span class="text-[10px] font-bold text-purple-400 block mb-2 uppercase tracking-wide">CẦN LÀM</span>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-800 text-[10px] text-slate-400 shadow">Soạn thảo tài liệu</div>
+                  <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
+                    <span class="text-[9px] font-bold text-purple-600 block mb-2 uppercase tracking-wide font-mono">CẦN LÀM</span>
+                    <div class="bg-slate-50 p-2 rounded border border-slate-100 text-[10px] text-slate-500 font-medium">Soạn thảo tài liệu</div>
                   </div>
-                  <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-850">
-                    <span class="text-[10px] font-bold text-cyan-400 block mb-2 uppercase tracking-wide">ĐANG LÀM</span>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-800 text-[10px] text-slate-200 shadow">Tối ưu Prompt bài tập 3</div>
+                  <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
+                    <span class="text-[9px] font-bold text-blue-600 block mb-2 uppercase tracking-wide font-mono">ĐANG LÀM</span>
+                    <div class="bg-blue-50/40 p-2 rounded border border-blue-100 text-[10px] text-blue-700 font-semibold shadow-sm">Tối ưu hóa Prompt</div>
                   </div>
-                  <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-850">
-                    <span class="text-[10px] font-bold text-emerald-400 block mb-2 uppercase tracking-wide">HOÀN THÀNH</span>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-800 text-[10px] text-slate-500 line-through">Thiết lập cấu trúc lưu trữ</div>
+                  <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
+                    <span class="text-[9px] font-bold text-emerald-600 block mb-2 uppercase tracking-wide font-mono">HOÀN THÀNH</span>
+                    <div class="bg-slate-50 p-2 rounded border border-slate-100 text-[10px] text-slate-400 line-through">Thiết lập cấu trúc</div>
                   </div>
                 </div>
               </div>
@@ -712,53 +722,53 @@
           </div>
         </article>
 
-        <!-- BÀI 5 (Hiển thị ảnh cá nhân trong khung AI thiết kế nghệ thuật) -->
+        <!-- BÀI 5 (AI Assisted Art Conception featuring Portrait Image 1.jpg) -->
         <article class="glass-card-cyber rounded-3xl p-6 sm:p-8 lg:p-12 reveal-on-scroll">
           <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
               <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/50 border border-cyan-800 text-xs font-bold text-cyan-300 mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-blue-600 mb-6">
                   Bài tập 05
                 </div>
-                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-white mb-4">Sáng tạo nội dung số với AI</h3>
+                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Sáng tạo nội dung số với AI</h3>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-2">Mục tiêu</h4>
-                  <p class="lab-objective text-sm text-slate-300 leading-relaxed">
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">Mục tiêu</h4>
+                  <p class="lab-objective text-sm text-slate-600 leading-relaxed">
                     Ứng dụng sức mạnh của AI tạo sinh (Text-to-Image, Text-to-Text) để sản xuất nội dung truyền thông đa phương tiện chất lượng cao.
                   </p>
                 </div>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-2">Quá trình thực hiện</h4>
-                  <div class="lab-process-prompt font-mono text-xs text-cyan-300 bg-slate-900 border border-slate-800/60 rounded-xl p-4 overflow-x-auto leading-relaxed">
-                    <span class="text-slate-500">// Kết hợp trí lực cá nhân và công nghệ tạo ảnh</span><br>
-                    <span class="text-cyan-400">1. Kịch bản:</span> Sử dụng AI hỗ trợ lên dàn ý kịch bản sơ bộ, sau đó tự tay tinh chỉnh chi tiết sâu.<br>
-                    <span class="text-cyan-400">2. Thiết kế:</span> Sử dụng Midjourney & Bing Image Creator để sản xuất hình ảnh minh họa bám sát ý tưởng.
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">Quá trình thực hiện</h4>
+                  <div class="lab-process-prompt font-mono text-xs text-blue-600 bg-slate-50 border border-slate-200 rounded-xl p-4 overflow-x-auto leading-relaxed shadow-sm">
+                    <span class="text-slate-400">// Kết hợp trí lực cá nhân và công nghệ tạo ảnh</span><br>
+                    <span class="text-slate-700 font-semibold">1. Kịch bản:</span> Sử dụng AI hỗ trợ lên dàn ý kịch bản sơ bộ, sau đó tự tay tinh chỉnh chi tiết sâu.<br>
+                    <span class="text-slate-700 font-semibold">2. Thiết kế:</span> Sử dụng Midjourney & Bing Image Creator để sản xuất hình ảnh minh họa bám sát ý tưởng.
                   </div>
                 </div>
               </div>
 
               <!-- Lab Reflection -->
-              <div class="lab-reflection border-l-2 border-cyan-500 bg-cyan-950/10 rounded-r-xl p-4 mt-6">
-                <span class="text-xs font-bold text-cyan-400 block mb-1">Phản hồi & Bài học</span>
-                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed italic">
+              <div class="lab-reflection border-l-2 border-blue-500 bg-blue-50/50 rounded-r-xl p-4 mt-6">
+                <span class="text-xs font-bold text-blue-600 block mb-1">Phản hồi & Bài học</span>
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed italic">
                   "AI là trợ lý tuyệt vời giúp xóa bỏ rào cản ý tưởng ban đầu (blank page syndrome). Tuy nhiên, yếu tố cảm xúc sâu lắng và độ tinh tế nghệ thuật bắt buộc phải có bàn tay con người biên tập."
                 </p>
               </div>
 
               <!-- Report download panel -->
-              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_NguyenThanhDanh_25020058_Bai5.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
-              <div class="flex items-center justify-between p-3.5 bg-slate-900/60 rounded-xl border border-slate-800/80 mt-6 text-slate-300">
+              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_Bai5.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
+              <div class="flex items-center justify-between p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 mt-6 text-slate-600">
                 <div class="flex items-center gap-2.5">
                   <span class="text-2xl icon-docx">📘</span>
                   <div>
-                    <span class="text-xs font-bold text-white block">Báo cáo Bài tập 5</span>
+                    <span class="text-xs font-bold text-slate-800 block">Báo cáo Bài tập 5</span>
                     <span class="text-[10px] text-slate-400 block">Định dạng: Word (.docx) cục bộ</span>
                   </div>
                 </div>
-                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai5.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs shadow-md shadow-cyan-600/20 hover:shadow-cyan-500/35 transition-all duration-300 hover:scale-105 focus:outline-none">
+                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai5.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 hover:scale-105 transition-all duration-300 focus:outline-none">
                   <svg class="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
@@ -767,35 +777,35 @@
               </div>
             </div>
 
-            <!-- Visual Output Column (Lồng ghép ảnh 1.jpg vào khu vực này làm điểm nhấn thiết kế xuất sắc) -->
+            <!-- Visual Output Column (Lồng ghép ảnh chân dung 1.jpg làm tác phẩm thiết kế nghệ thuật) -->
             <div class="lg:w-1/2 flex flex-col justify-center">
-              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3">Ấn phẩm Thiết kế minh họa (AI Assisted Art)</h4>
-              <div class="lab-outputs bg-slate-900/60 border border-slate-800/50 rounded-2xl p-4 flex flex-col gap-4">
+              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3">Ấn phẩm Thiết kế minh họa (AI Assisted Art)</h4>
+              <div class="lab-outputs bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col gap-4 shadow-sm animate-float-slow">
                 
-                <!-- Mockup Art Frame featuring the 1.jpg image styled as an AI Generation process -->
-                <div class="relative group overflow-hidden rounded-xl border border-slate-800 bg-slate-950 aspect-video flex items-center justify-center shadow-lg">
-                  <!-- Real Avatar Image inside AI art mockup (object-contain so the full photo shows) -->
+                <!-- Mockup Art Frame (Tông màu sáng cao cấp với bóng mờ) -->
+                <div class="relative group overflow-hidden rounded-xl border border-slate-200 bg-white aspect-video flex items-center justify-center shadow-md">
+                  <!-- Real Portrait 1.jpg as art display (object-contain so the full photo shows) -->
                   <img src="1.jpg" alt="AI Assisted Art Conception" 
-                    class="absolute inset-0 w-full h-full object-contain opacity-40 group-hover:opacity-60 transition-all duration-700 blur-[2px] group-hover:blur-0 scale-105 group-hover:scale-100 z-0"
+                    class="absolute inset-0 w-full h-full object-contain opacity-55 group-hover:opacity-85 transition-all duration-700 blur-[1px] group-hover:blur-0 scale-102 group-hover:scale-100 z-0"
                     onerror="this.style.display='none';">
 
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent opacity-80 z-10"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent opacity-90 z-10"></div>
 
-                  <!-- High-tech interface overlays -->
-                  <div class="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-800 text-[9px] text-cyan-400 font-mono">
-                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                  <!-- High-tech interface overlays in Lightmode -->
+                  <div class="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[9px] text-blue-600 font-mono font-bold shadow-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse"></span>
                     GENERATIVE RENDER
                   </div>
-                  <div class="absolute bottom-3 right-3 z-20 text-[9px] text-slate-500 font-mono">
+                  <div class="absolute bottom-3 right-3 z-20 text-[9px] text-slate-400 font-mono font-medium">
                     MODEL: MIDJOURNEY v6.0
                   </div>
 
                   <div class="text-center p-6 z-20 flex flex-col items-center">
-                    <svg class="w-10 h-10 text-cyan-400/80 mb-2 animate-pulse-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-9 h-9 text-blue-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    <span class="text-xs text-slate-400 block font-semibold">Bản phác thảo chân dung truyền thông</span>
-                    <span class="text-[10px] text-cyan-300 font-mono mt-1">Prompt: "student studying in futuristic AI laboratory..."</span>
+                    <span class="text-xs text-slate-700 block font-bold">Bản phác thảo chân dung truyền thông</span>
+                    <span class="text-[10px] text-blue-600 font-mono font-medium mt-1">Prompt: "student studying in futuristic AI laboratory..."</span>
                   </div>
                 </div>
 
@@ -810,48 +820,48 @@
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
               <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/50 border border-purple-800 text-xs font-bold text-purple-300 mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-600 mb-6">
                   Bài tập 06
                 </div>
-                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-white mb-4">An toàn & Liêm chính học thuật số</h3>
+                <h3 class="lab-title text-2xl sm:text-3xl font-bold text-slate-900 mb-4">An toàn & Liêm chính học thuật số</h3>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-2">Mục tiêu</h4>
-                  <p class="lab-objective text-sm text-slate-300 leading-relaxed">
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">Mục tiêu</h4>
+                  <p class="lab-objective text-sm text-slate-600 leading-relaxed">
                     Xây dựng khung đạo đức, quy tắc làm việc văn minh và giữ vững tinh thần trung thực trong nghiên cứu khoa học dưới sự trợ giúp của AI.
                   </p>
                 </div>
 
                 <div class="mb-6">
-                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-2">Bộ quy tắc 4 điểm đề xuất</h4>
-                  <div class="lab-process-prompt font-mono text-xs text-cyan-300 bg-slate-900 border border-slate-800/60 rounded-xl p-4 overflow-x-auto leading-relaxed">
-                    1. <strong class="text-emerald-400">Minh bạch:</strong> Công khai sử dụng AI hỗ trợ.<br>
-                    2. <strong class="text-emerald-400">Fact-check:</strong> Trực tiếp kiểm chứng số liệu AI cung cấp.<br>
-                    3. <strong class="text-emerald-400">Bảo mật:</strong> Không chia sẻ dữ liệu nhạy cảm vào prompt.<br>
-                    4. <strong class="text-emerald-400">Chính trực:</strong> Tuyệt đối không dùng AI để đạo văn.
+                  <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-2">Bộ quy tắc 4 điểm đề xuất</h4>
+                  <div class="lab-process-prompt font-mono text-xs text-blue-600 bg-slate-50 border border-slate-200 rounded-xl p-4 overflow-x-auto leading-relaxed shadow-sm">
+                    1. <strong class="text-emerald-600">Minh bạch:</strong> Công khai sử dụng AI hỗ trợ.<br>
+                    2. <strong class="text-emerald-600">Fact-check:</strong> Trực tiếp kiểm chứng số liệu AI cung cấp.<br>
+                    3. <strong class="text-emerald-600">Bảo mật:</strong> Không chia sẻ dữ liệu nhạy cảm vào prompt.<br>
+                    4. <strong class="text-emerald-600">Chính trực:</strong> Tuyệt đối không dùng AI để đạo văn.
                   </div>
                 </div>
               </div>
 
               <!-- Lab Reflection -->
-              <div class="lab-reflection border-l-2 border-purple-500 bg-purple-950/10 rounded-r-xl p-4 mt-6">
+              <div class="lab-reflection border-l-2 border-purple-500 bg-purple-50/50 rounded-r-xl p-4 mt-6">
                 <span class="text-xs font-bold text-purple-400 block mb-1">Phản hồi & Bài học</span>
-                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed italic">
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed italic">
                   "Sự phát triển vượt trội của công nghệ số và AI phải luôn luôn song hành chặt chẽ cùng tinh thần trách nhiệm xã hội và đạo đức nghề nghiệp sâu sắc."
                 </p>
               </div>
 
               <!-- Report download panel -->
-              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_NguyenThanhDanh_25020058_Bai6.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
-              <div class="flex items-center justify-between p-3.5 bg-slate-900/60 rounded-xl border border-slate-800/80 mt-6 text-slate-300">
+              <!-- LƯU Ý: Vui lòng lưu tệp Bao_cao_Bai6.docx vào thư mục ./assets/docs/ để tính năng tải xuống hoạt động chính xác -->
+              <div class="flex items-center justify-between p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 mt-6 text-slate-600">
                 <div class="flex items-center gap-2.5">
                   <span class="text-2xl icon-docx">📘</span>
                   <div>
-                    <span class="text-xs font-bold text-white block">Báo cáo Bài tập 6</span>
+                    <span class="text-xs font-bold text-slate-800 block">Báo cáo Bài tập 6</span>
                     <span class="text-[10px] text-slate-400 block">Định dạng: Word (.docx) cục bộ</span>
                   </div>
                 </div>
-                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai6.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs shadow-md shadow-cyan-600/20 hover:shadow-cyan-500/35 transition-all duration-300 hover:scale-105 focus:outline-none">
+                <a href="./assets/docs/Bao_cao_NguyenThanhDanh_25020058_Bai6.docx" download class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 hover:scale-105 transition-all duration-300 focus:outline-none">
                   <svg class="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
@@ -862,17 +872,17 @@
 
             <!-- Visual Output Column -->
             <div class="lg:w-1/2 flex flex-col justify-center">
-              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-550 mb-3">Tuyên bố Cam kết An toàn</h4>
-              <div class="lab-outputs bg-slate-900/60 border border-slate-800/50 rounded-2xl p-6 flex flex-col gap-4">
-                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                  <span class="text-xs font-bold text-slate-400">Quy tắc liêm chính khoa học</span>
-                  <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800/50 text-emerald-400 text-[10px] font-bold uppercase tracking-wider">Committed</span>
+              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3">Tuyên bố Cam kết An toàn</h4>
+              <div class="lab-outputs bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
+                <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                  <span class="text-xs font-bold text-slate-500 font-mono">Quy tắc liêm chính khoa học</span>
+                  <span class="px-2 py-0.5 rounded bg-emerald-50 border border-emerald-200 text-emerald-600 text-[10px] font-bold font-mono uppercase tracking-wider">Committed</span>
                 </div>
 
                 <div class="space-y-3 text-xs sm:text-sm">
-                  <div class="p-3.5 bg-emerald-950/10 border border-emerald-900/40 rounded-lg">
-                    <span class="text-emerald-400 font-bold block mb-1">Tiêu chuẩn thực hành:</span>
-                    <p class="text-slate-400 leading-relaxed">
+                  <div class="p-4 bg-emerald-50/30 border border-emerald-200/60 rounded-xl shadow-sm">
+                    <span class="text-emerald-700 font-bold block mb-1">Tiêu chuẩn thực hành:</span>
+                    <p class="text-slate-500">
                       Áp dụng quy trình kiểm chứng chéo thông tin (Fact-check) qua các cổng xuất bản khoa học đáng tin cậy để loại bỏ hoàn toàn hiện tượng "ảo giác AI" trước khi đưa kết quả vào báo cáo.
                     </p>
                   </div>
@@ -886,54 +896,54 @@
     </div>
   </section>
 
-  <!-- ================= FINAL REFLECTION SECTION ================= -->
-  <section id="reflection" class="py-24 border-t border-slate-900 relative reveal-on-scroll">
+  <!-- ================= FINAL REFLECTION SECTION (LIGHTMODE GLASSMOPHISM) ================= -->
+  <section id="reflection" class="py-24 border-t border-slate-200/60 relative reveal-on-scroll">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-16">
-        <span class="text-xs font-bold tracking-widest uppercase text-cyan-400">Phản tư học thuật</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Tổng kết & Đánh giá Toàn diện</h2>
+        <span class="text-xs font-bold tracking-widest uppercase text-blue-600">Phản tư học thuật</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Tổng kết & Đánh giá Toàn diện</h2>
         <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mt-4 rounded-full"></div>
       </div>
 
-      <!-- Styled deep-dive document block (Nâng cấp kính mờ Glassmorphism mượt mà) -->
-      <article class="glass-panel rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8 relative overflow-hidden">
-        <!-- Abstract gradient pulse background inside card -->
-        <div class="absolute -top-24 -right-24 w-48 h-48 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      <!-- Styled deep-dive document block (Nâng cấp kính mờ Light Glassmorphism mượt mà) -->
+      <article class="glass-panel rounded-3xl p-8 sm:p-12 shadow-md space-y-8 relative overflow-hidden bg-white/70">
+        <!-- Abstract glowing blob inside card -->
+        <div class="absolute -top-24 -right-24 w-48 h-48 bg-blue-100/30 rounded-full blur-3xl pointer-events-none"></div>
         
-        <div class="border-b border-slate-800/60 pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-slate-500 font-mono">
+        <div class="border-b border-slate-200 pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-slate-400 font-mono">
           <div>
-            <span>Tác giả: <strong class="text-slate-300">Nguyễn Thành Danh</strong></span>
+            <span>Tác giả: <strong class="text-slate-700">Nguyễn Thành Danh</strong></span>
             <span class="mx-2">•</span>
             <span>Mã số sinh viên: 25020058</span>
           </div>
           <span>Năm học: 2025 - 2026</span>
         </div>
 
-        <div class="space-y-8 text-slate-300 leading-relaxed text-sm sm:text-base">
+        <div class="space-y-8 text-slate-600 leading-relaxed text-sm sm:text-base">
           <div class="space-y-4">
-            <h3 class="text-lg font-bold text-white flex items-center gap-2">
-              <span class="text-cyan-400">1.</span> Trải nghiệm Học tập Tổng thể
+            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="text-blue-600">1.</span> Trải nghiệm Học tập Tổng thể
             </h3>
-            <p class="pl-0 sm:pl-6 text-slate-400">
+            <p class="pl-0 sm:pl-6 text-slate-500">
               Việc thực hiện dự án Portfolio này là cơ hội đặc biệt để tôi chủ động nhìn nhận lại toàn bộ chặng đường học tập môn học. Từ những bỡ ngỡ ban đầu trước hàng loạt khái niệm, thuật ngữ kỹ thuật trừu tượng, tôi đã dần rèn luyện thành thạo và làm chủ hoàn toàn các bộ công cụ số hữu ích phục vụ trực tiếp cho chuyên ngành và nghiên cứu của mình.
             </p>
           </div>
 
           <div class="space-y-4">
-            <h3 class="text-lg font-bold text-white flex items-center gap-2">
-              <span class="text-cyan-400">2.</span> Điểm Tâm Đắc Nhất - Kỹ năng Prompt Engineering
+            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="text-blue-600">2.</span> Điểm Tâm Đắc Nhất - Kỹ năng Prompt Engineering
             </h3>
-            <p class="pl-0 sm:pl-6 text-slate-400">
+            <p class="pl-0 sm:pl-6 text-slate-500">
               Đối với tôi, điểm tâm đắc nhất thu nhận được chính là kỹ năng thiết lập chỉ thị prompt (Prompt Engineering). Đây không đơn thuần chỉ là phương pháp giao tiếp kỹ thuật với máy móc, hệ thống; nó còn là một bài tập rèn luyện sâu sắc về mặt tư duy logic, giúp cấu trúc mọi vấn đề cần giải quyết một cách khoa học, rành mạch và trực quan trong não bộ trước khi đặt bất kỳ câu hỏi nào.
             </p>
           </div>
 
           <div class="space-y-4">
-            <h3 class="text-lg font-bold text-white flex items-center gap-2">
-              <span class="text-cyan-400">3.</span> Thách thức & Định hướng Phát triển Tương lai
+            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="text-blue-600">3.</span> Thách thức & Định hướng Phát triển Tương lai
             </h3>
-            <div class="pl-0 sm:pl-6 space-y-4 text-slate-400">
+            <div class="pl-0 sm:pl-6 space-y-4 text-slate-500">
               <p>
                 Thách thức lớn nhất hiện nay là kỹ năng chọn lọc, đánh giá chất lượng nguồn tin giữa một "biển" thông tin khổng lồ do các mô hình trí tuệ nhân tạo tạo ra hàng ngày.
               </p>
@@ -944,44 +954,44 @@
           </div>
         </div>
 
-        <div class="pt-8 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2 font-mono">
+        <div class="pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2 font-mono">
           <span>Học phần: Công nghệ số và Ứng dụng Trí tuệ Nhân tạo</span>
-          <span class="text-cyan-500/80">Báo cáo Tổng kết Học thuật</span>
+          <span class="text-blue-600 font-semibold">Báo cáo Tổng kết Học thuật</span>
         </div>
       </article>
 
     </div>
   </section>
 
-  <!-- ================= RESPONSIBLE AI REPORT SECTION ================= -->
-  <section id="ethics" class="py-24 border-t border-slate-900 bg-slate-950/40 relative reveal-on-scroll">
+  <!-- ================= RESPONSIBLE AI REPORT SECTION (ĐỔI SANG LIÊM CHÍNH HỌC THUẬT) ================= -->
+  <section id="ethics" class="py-24 border-t border-slate-200/60 bg-slate-50/40 relative reveal-on-scroll">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-16">
-        <span class="text-xs font-bold tracking-widest uppercase text-purple-400">Đạo đức AI</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Báo cáo Đạo đức & Liêm chính Học thuật</h2>
+        <span class="text-xs font-bold tracking-widest uppercase text-purple-600">Liêm chính học thuật</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Báo cáo Đạo đức & Liêm chính Học thuật</h2>
         <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mt-4 rounded-full"></div>
       </div>
 
-      <!-- High-End Report card with Glowing Cyber Tech Effect -->
-      <article class="glass-panel rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
-        <!-- Cyber grid border highlights -->
-        <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      <!-- High-End Report card with Light Premium Effect -->
+      <article class="glass-panel rounded-3xl p-8 sm:p-12 shadow-md relative overflow-hidden bg-white/80">
+        <!-- Subtle background glow -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-100/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="space-y-6 text-slate-300 leading-relaxed text-sm sm:text-base">
-          <div class="p-5 bg-cyan-950/15 border border-cyan-500/20 rounded-2xl flex items-start gap-4 shadow-sm">
-            <svg class="w-7 h-7 text-cyan-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="space-y-6 text-slate-600 leading-relaxed text-sm sm:text-base">
+          <div class="p-5 bg-blue-50/50 border border-blue-200/80 rounded-2xl flex items-start gap-4 shadow-sm">
+            <svg class="w-7 h-7 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
             <div>
-              <h4 class="text-base font-bold text-white">Cam kết Hành động Liêm chính trong Môi trường Số</h4>
-              <p class="text-xs sm:text-sm text-slate-400 mt-1">
+              <h4 class="text-base font-bold text-slate-900">Cam kết Hành động Liêm chính trong Môi trường Số</h4>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1">
                 Nguyên tắc ứng xử chuẩn mực của sinh viên Nguyễn Thanh Danh trong học tập, nghiên cứu khoa học trực tuyến dưới sự phát triển của công cụ Generative AI.
               </p>
             </div>
           </div>
 
-          <div class="space-y-4 text-slate-400">
+          <div class="space-y-4 text-slate-500">
             <p>
               Với tư cách là một sinh viên ngành Công nghệ thông tin tại UET, tôi tin rằng liêm chính khoa học là kim chỉ nam tối thượng của mọi lập trình viên và nhà nghiên cứu giỏi.
             </p>
@@ -995,27 +1005,27 @@
     </div>
   </section>
 
-  <!-- ================= CONTACT & FOOTER SECTION ================= -->
-  <footer id="contact" class="py-16 border-t border-slate-900 bg-slate-950 relative">
-    <!-- Inner soft glow -->
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[150px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+  <!-- ================= CONTACT & FOOTER SECTION (LIGHTMODE PREMIUM) ================= -->
+  <footer id="contact" class="py-16 border-t border-slate-200/80 bg-white relative">
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[150px] bg-blue-100/20 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-12">
         <div>
-          <h3 class="text-2xl font-bold text-white mb-4">Kết nối với Tôi</h3>
-          <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-6">
+          <h3 class="text-2xl font-bold text-slate-900 mb-4 font-sans">Kết nối với Tôi</h3>
+          <p class="text-slate-500 text-sm sm:text-base leading-relaxed mb-6">
             Mọi thắc mắc, đề xuất hợp tác hoặc trao đổi kinh nghiệm học tập, quý Thầy Cô và các bạn có thể liên hệ trực tiếp với tôi qua địa chỉ email chính thức bên dưới.
           </p>
           <div class="flex items-center gap-4 flex-wrap">
-            <a href="mailto:nthanhdanhtb@gmail.com" class="px-5 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white font-semibold text-sm hover:border-cyan-500/50 hover:bg-slate-800/60 shadow hover:shadow-cyan-500/10 transition-all duration-300 flex items-center gap-2">
+            <!-- Email send button -->
+            <a href="mailto:nthanhdanhtb@gmail.com" class="px-5 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white font-semibold text-sm hover:bg-slate-800 hover:shadow-md hover:shadow-slate-200/80 transition-all duration-300 flex items-center gap-2 shadow-sm">
               <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
               Gửi Email: nthanhdanhtb@gmail.com
             </a>
             
-            <a href="https://github.com/nthanhdanhtb-pixel" target="_blank" class="px-5 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white font-semibold text-sm hover:border-purple-500/50 hover:bg-slate-800/60 transition-all duration-300 flex items-center gap-2">
+            <a href="https://github.com/nthanhdanhtb-pixel" target="_blank" class="px-5 py-3 rounded-xl bg-white border border-slate-300 text-slate-700 hover:text-slate-900 font-semibold text-sm hover:border-slate-800 hover:bg-slate-50 transition-all duration-300 flex items-center gap-2 shadow-sm">
               <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
               </svg>
@@ -1025,23 +1035,23 @@
         </div>
 
         <!-- Quick links -->
-        <div class="flex flex-col md:items-end">
-          <div class="flex flex-col gap-3 text-sm text-slate-400 font-medium md:text-right font-mono">
-            <span class="text-xs uppercase tracking-widest font-bold text-slate-500 mb-2 font-sans">Thông tin Sinh viên</span>
-            <span>Họ và tên: <strong class="text-white font-sans">Nguyễn Thành Danh</strong></span>
-            <span>Mã số sinh viên: <strong class="text-white">25020058</strong></span>
-            <span>Khóa học: <strong class="text-slate-200 font-sans">Công nghệ số và Ứng dụng AI</strong></span>
+        <div class="flex flex-col md:items-end font-mono">
+          <div class="flex flex-col gap-3 text-sm text-slate-500 font-semibold md:text-right">
+            <span class="text-xs uppercase tracking-widest font-bold text-slate-400 mb-2 font-sans">Thông tin Sinh viên</span>
+            <span>Họ và tên: <strong class="text-slate-800 font-sans">Nguyễn Thành Danh</strong></span>
+            <span>Mã số sinh viên: <strong class="text-slate-800 font-mono">25020058</strong></span>
+            <span>Khóa học: <strong class="text-slate-700 font-sans">Công nghệ số và Ứng dụng AI</strong></span>
           </div>
         </div>
       </div>
 
       <!-- Border line divider -->
-      <div class="border-t border-slate-900 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4 font-mono">
+      <div class="border-t border-slate-200/80 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4 font-mono">
         <p>&copy; 2026 Nguyễn Thành Danh. Bản quyền đã được bảo lưu.</p>
-        <div class="flex items-center gap-6 font-sans">
-          <a href="#home" class="hover:text-white transition-colors duration-200">Trang chủ</a>
-          <a href="#projects" class="hover:text-white transition-colors duration-200">Bài tập</a>
-          <a href="#reflection" class="hover:text-white transition-colors duration-200">Tổng kết</a>
+        <div class="flex items-center gap-6 font-sans font-semibold">
+          <a href="#home" class="hover:text-blue-600 transition-colors duration-200">Trang chủ</a>
+          <a href="#projects" class="hover:text-blue-600 transition-colors duration-200">Bài tập</a>
+          <a href="#reflection" class="hover:text-blue-600 transition-colors duration-200">Tổng kết</a>
         </div>
       </div>
     </div>
