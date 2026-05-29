@@ -360,8 +360,160 @@ document.addEventListener('DOMContentLoaded', () => {
       updateMetadataPanel(key);
     });
 
-    item.addEventListener('mouseleave', () => {
-      updateMetadataPanel(activeSelectedKey);
-    });
   });
 });
+
+// ==========================================================================
+// OPTION 1: INTERACTIVE DIGITAL GRID & PARTICLES CANVAS ENGINE
+// ==========================================================================
+(function() {
+  const canvas = document.getElementById('interactive-grid-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  
+  // --- THÔNG SỐ TÙY CHỈNH DỄ DÀNG ---
+  const CONFIG = {
+    particleCount: 80,       // Số lượng hạt phân tử (tối ưu: 60 - 100)
+    maxDistance: 120,        // Bán kính kết nối giữa các hạt (pixels)
+    mouseRadius: 150,        // Bán kính tương tác với con trỏ chuột (pixels)
+    mouseForce: 0.15,        // Lực tác động của chuột (độ nhạy né/hút)
+    gridSize: 50,            // Kích thước các ô lưới nền (pixels)
+    repulsion: true,         // true: Né tránh chuột; false: Bị hút về chuột
+    particleSpeed: 0.6       // Tốc độ di chuyển ngẫu nhiên tối đa của các hạt
+  };
+
+  let particles = [];
+  let mouse = { x: null, y: null };
+
+  // Theo dõi kích thước màn hình
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initParticles();
+  }
+
+  // Khởi tạo các hạt với vị trí và vận tốc ngẫu nhiên
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < CONFIG.particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * CONFIG.particleSpeed,
+        vy: (Math.random() - 0.5) * CONFIG.particleSpeed,
+        radius: Math.random() * 2.5 + 1, // Kích thước hạt 1px - 3.5px
+        // Phối màu hạt: Xanh cyan, xanh dương và tím nhạt tiệp với tone trang web
+        color: `rgba(${i % 3 === 0 ? '6,182,212' : i % 3 === 1 ? '59,130,246' : '139,92,246'}, ${Math.random() * 0.15 + 0.08})`
+      });
+    }
+  }
+
+  // Lắng nghe sự kiện di chuột
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  window.addEventListener('mouseleave', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  window.addEventListener('resize', resizeCanvas);
+
+  // Vòng lặp vẽ và hoạt ảnh
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // 1. VẼ ĐƯỜNG LƯỚI TỌA ĐỘ MỜ (GRID)
+    ctx.strokeStyle = 'rgba(148, 163, 184, 0.025)'; // Rất mờ để không đè chữ
+    ctx.lineWidth = 0.5;
+    
+    for (let x = 0; x < canvas.width; x += CONFIG.gridSize) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, canvas.height);
+      ctx.stroke();
+    }
+    for (let y = 0; y < canvas.height; y += CONFIG.gridSize) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(canvas.width, y);
+      ctx.stroke();
+    }
+
+    // 2. VẼ VÀ CẬP NHẬT CÁC HẠT (PARTICLES)
+    particles.forEach(p => {
+      // Di chuyển hạt tự do
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Va chạm biên (Bouncing biên mượt mà)
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+      // Tương tác vật lý với Chuột (Né tránh hoặc Hút về)
+      if (mouse.x !== null && mouse.y !== null) {
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        
+        // Tối ưu hiệu năng: Sử dụng khoảng cách bình phương (Không dùng Math.sqrt)
+        const distSq = dx * dx + dy * dy;
+        const mouseRadiusSq = CONFIG.mouseRadius * CONFIG.mouseRadius;
+
+        if (distSq < mouseRadiusSq) {
+          const dist = Math.sqrt(distSq) || 1;
+          const force = (CONFIG.mouseRadius - dist) / CONFIG.mouseRadius;
+          const forceDirX = dx / dist;
+          const forceDirY = dy / dist;
+
+          if (CONFIG.repulsion) {
+            // Hạt né tránh xa con trỏ chuột
+            p.x += forceDirX * force * CONFIG.mouseForce * 20;
+            p.y += forceDirY * force * CONFIG.mouseForce * 20;
+          } else {
+            // Hạt bị hút nhẹ vào tâm con trỏ chuột
+            p.x -= forceDirX * force * CONFIG.mouseForce * 15;
+            p.y -= forceDirY * force * CONFIG.mouseForce * 15;
+          }
+        }
+      }
+
+      // Vẽ hạt lên Canvas
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // 3. VẼ CÁC ĐƯỜNG KẾT NỐI TƠ NHỆN (SPIDER WEB LINES)
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const p1 = particles[i];
+        const p2 = particles[j];
+        
+        const dx = p1.x - p2.x;
+        const dy = p1.y - p2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < CONFIG.maxDistance) {
+          // Đường kết nối mảnh và mờ dần theo khoảng cách
+          const alpha = (1 - (dist / CONFIG.maxDistance)) * 0.06;
+          ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  // Khởi động
+  resizeCanvas();
+  animate();
+})();
