@@ -364,144 +364,226 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
-// OPTION 1: INTERACTIVE DIGITAL GRID & PARTICLES CANVAS ENGINE
+// CONCEPT A: NEURAL NETWORK / WEB MESH — CANVAS PARTICLE ENGINE
+// ==========================================================================
+// Particles are biased toward the LEFT and RIGHT 25% of the screen
+// to fill the empty white space flanking the hero's centered content.
+// On mobile (≤768px), particle count drops to 20 and opacity to 5%.
+// Colors: Teal (#00C6FF), Blue (#0072FF), Purple (#8A2387)
 // ==========================================================================
 (function() {
   const canvas = document.getElementById('interactive-grid-canvas');
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
-  
-  // --- THÔNG SỐ TÙY CHỈNH DỄ DÀNG ---
+  let dpr = window.devicePixelRatio || 1;
+  let isMobile = window.innerWidth <= 768;
+
+  // --- CONFIGURATION ---
   const CONFIG = {
-    particleCount: 80,       // Số lượng hạt phân tử (tối ưu: 60 - 100)
-    maxDistance: 120,        // Bán kính kết nối giữa các hạt (pixels)
-    mouseRadius: 150,        // Bán kính tương tác với con trỏ chuột (pixels)
-    mouseForce: 0.15,        // Lực tác động của chuột (độ nhạy né/hút)
-    gridSize: 50,            // Kích thước các ô lưới nền (pixels)
-    repulsion: true,         // true: Né tránh chuột; false: Bị hút về chuột
-    particleSpeed: 0.6       // Tốc độ di chuyển ngẫu nhiên tối đa của các hạt
+    // Particle count scales for performance
+    get particleCount() { return isMobile ? 20 : 90; },
+    maxDistance: 140,          // Max distance (px) to draw connection lines
+    mouseRadius: 180,         // Mouse interaction radius
+    mouseForce: 0.12,         // Repulsion strength
+    particleSpeed: 0.4,       // Base drift speed
+    edgeBias: 0.70,           // 70% of particles spawn on left/right edges
+    edgeZoneWidth: 0.25,      // Left/right 25% of viewport width
+    // Color palette (matching the hero gradient)
+    colors: {
+      teal:   { r: 0,   g: 198, b: 255 },  // #00C6FF
+      blue:   { r: 0,   g: 114, b: 255 },  // #0072FF
+      purple: { r: 138, g: 35,  b: 135 },  // #8A2387
+    },
+    // Opacity range (lower on mobile for subtlety)
+    get nodeOpacityMax()  { return isMobile ? 0.05 : 0.22; },
+    get nodeOpacityMin()  { return isMobile ? 0.02 : 0.06; },
+    get lineOpacityMax()  { return isMobile ? 0.03 : 0.10; },
+    gridSize: 50,
+    gridOpacity: 0.02,
   };
 
   let particles = [];
   let mouse = { x: null, y: null };
+  let animFrameId = null;
 
-  // Theo dõi kích thước màn hình
+  // --- Pick a random palette color ---
+  function randomColor() {
+    const palette = [CONFIG.colors.teal, CONFIG.colors.blue, CONFIG.colors.purple];
+    return palette[Math.floor(Math.random() * palette.length)];
+  }
+
+  // --- Resize & DPI-aware canvas ---
   function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    dpr = window.devicePixelRatio || 1;
+    isMobile = window.innerWidth <= 768;
+
+    canvas.width  = window.innerWidth  * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width  = window.innerWidth  + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // Adjust canvas opacity for mobile
+    canvas.style.opacity = isMobile ? '0.35' : '0.85';
+
     initParticles();
   }
 
-  // Khởi tạo các hạt với vị trí và vận tốc ngẫu nhiên
+  // --- Spawn particles biased toward left/right edges ---
+  function spawnX() {
+    const w = window.innerWidth;
+    const edgeW = w * CONFIG.edgeZoneWidth; // left/right zone width
+
+    if (Math.random() < CONFIG.edgeBias) {
+      // Spawn in left or right edge zone
+      if (Math.random() < 0.5) {
+        return Math.random() * edgeW;            // Left zone
+      } else {
+        return w - Math.random() * edgeW;        // Right zone
+      }
+    }
+    // Remaining particles scatter across full width (sparse center)
+    return Math.random() * w;
+  }
+
   function initParticles() {
     particles = [];
-    for (let i = 0; i < CONFIG.particleCount; i++) {
+    const count = CONFIG.particleCount;
+    const h = window.innerHeight;
+
+    for (let i = 0; i < count; i++) {
+      const col = randomColor();
+      const isNode = Math.random() < 0.25; // 25% chance: larger "neural node"
+      const opacity = CONFIG.nodeOpacityMin + Math.random() * (CONFIG.nodeOpacityMax - CONFIG.nodeOpacityMin);
+
       particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: spawnX(),
+        y: Math.random() * h,
         vx: (Math.random() - 0.5) * CONFIG.particleSpeed,
         vy: (Math.random() - 0.5) * CONFIG.particleSpeed,
-        radius: Math.random() * 2.5 + 1, // Kích thước hạt 1px - 3.5px
-        // Phối màu hạt: Xanh cyan, xanh dương và tím nhạt tiệp với tone trang web
-        color: `rgba(${i % 3 === 0 ? '6,182,212' : i % 3 === 1 ? '59,130,246' : '139,92,246'}, ${Math.random() * 0.15 + 0.08})`
+        radius: isNode ? (Math.random() * 2.5 + 2) : (Math.random() * 1.5 + 0.5),
+        color: col,
+        opacity: opacity,
+        isNode: isNode,
+        // Gentle pulse for nodes
+        pulsePhase: Math.random() * Math.PI * 2,
+        pulseSpeed: 0.01 + Math.random() * 0.02,
       });
     }
   }
 
-  // Lắng nghe sự kiện di chuột
+  // --- Mouse tracking ---
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
   });
-
   window.addEventListener('mouseleave', () => {
     mouse.x = null;
     mouse.y = null;
   });
 
-  window.addEventListener('resize', resizeCanvas);
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(resizeCanvas, 150);
+  });
 
-  // Vòng lặp vẽ và hoạt ảnh
+  // --- Main animation loop ---
   function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // 1. VẼ ĐƯỜNG LƯỚI TỌA ĐỘ MỜ (GRID)
-    ctx.strokeStyle = 'rgba(148, 163, 184, 0.025)'; // Rất mờ để không đè chữ
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    ctx.clearRect(0, 0, W, H);
+
+    // 1. SUBTLE BACKGROUND GRID (very faint coordinate lines)
+    ctx.strokeStyle = `rgba(148, 163, 184, ${CONFIG.gridOpacity})`;
     ctx.lineWidth = 0.5;
-    
-    for (let x = 0; x < canvas.width; x += CONFIG.gridSize) {
+    for (let x = 0; x < W; x += CONFIG.gridSize) {
       ctx.beginPath();
       ctx.moveTo(x, 0);
-      ctx.lineTo(x, canvas.height);
+      ctx.lineTo(x, H);
       ctx.stroke();
     }
-    for (let y = 0; y < canvas.height; y += CONFIG.gridSize) {
+    for (let y = 0; y < H; y += CONFIG.gridSize) {
       ctx.beginPath();
       ctx.moveTo(0, y);
-      ctx.lineTo(canvas.width, y);
+      ctx.lineTo(W, y);
       ctx.stroke();
     }
 
-    // 2. VẼ VÀ CẬP NHẬT CÁC HẠT (PARTICLES)
+    // 2. UPDATE PARTICLES
     particles.forEach(p => {
-      // Di chuyển hạt tự do
+      // Drift motion
       p.x += p.vx;
       p.y += p.vy;
 
-      // Va chạm biên (Bouncing biên mượt mà)
-      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      // Soft bounce off edges
+      if (p.x < -20)  p.vx = Math.abs(p.vx);
+      if (p.x > W + 20) p.vx = -Math.abs(p.vx);
+      if (p.y < -20)  p.vy = Math.abs(p.vy);
+      if (p.y > H + 20) p.vy = -Math.abs(p.vy);
 
-      // Tương tác vật lý với Chuột (Né tránh hoặc Hút về)
+      // Mouse repulsion
       if (mouse.x !== null && mouse.y !== null) {
         const dx = p.x - mouse.x;
         const dy = p.y - mouse.y;
-        
-        // Tối ưu hiệu năng: Sử dụng khoảng cách bình phương (Không dùng Math.sqrt)
         const distSq = dx * dx + dy * dy;
-        const mouseRadiusSq = CONFIG.mouseRadius * CONFIG.mouseRadius;
+        const radiusSq = CONFIG.mouseRadius * CONFIG.mouseRadius;
 
-        if (distSq < mouseRadiusSq) {
+        if (distSq < radiusSq) {
           const dist = Math.sqrt(distSq) || 1;
           const force = (CONFIG.mouseRadius - dist) / CONFIG.mouseRadius;
-          const forceDirX = dx / dist;
-          const forceDirY = dy / dist;
-
-          if (CONFIG.repulsion) {
-            // Hạt né tránh xa con trỏ chuột
-            p.x += forceDirX * force * CONFIG.mouseForce * 20;
-            p.y += forceDirY * force * CONFIG.mouseForce * 20;
-          } else {
-            // Hạt bị hút nhẹ vào tâm con trỏ chuột
-            p.x -= forceDirX * force * CONFIG.mouseForce * 15;
-            p.y -= forceDirY * force * CONFIG.mouseForce * 15;
-          }
+          p.x += (dx / dist) * force * CONFIG.mouseForce * 18;
+          p.y += (dy / dist) * force * CONFIG.mouseForce * 18;
         }
       }
 
-      // Vẽ hạt lên Canvas
-      ctx.fillStyle = p.color;
+      // Pulse effect for node-type particles
+      if (p.isNode) {
+        p.pulsePhase += p.pulseSpeed;
+        const pulseFactor = 1 + Math.sin(p.pulsePhase) * 0.3;
+        var drawRadius = p.radius * pulseFactor;
+      } else {
+        var drawRadius = p.radius;
+      }
+
+      // Draw particle
+      const { r, g, b } = p.color;
+      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity})`;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, drawRadius, 0, Math.PI * 2);
       ctx.fill();
+
+      // Soft glow ring around nodes
+      if (p.isNode) {
+        ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.3})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, drawRadius + 4, 0, Math.PI * 2);
+        ctx.stroke();
+      }
     });
 
-    // 3. VẼ CÁC ĐƯỜNG KẾT NỐI TƠ NHỆN (SPIDER WEB LINES)
+    // 3. DRAW NEURAL CONNECTIONS (lines between nearby particles)
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const p1 = particles[i];
         const p2 = particles[j];
-        
+
         const dx = p1.x - p2.x;
         const dy = p1.y - p2.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < CONFIG.maxDistance) {
-          // Đường kết nối mảnh và mờ dần theo khoảng cách
-          const alpha = (1 - (dist / CONFIG.maxDistance)) * 0.06;
-          ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
-          ctx.lineWidth = 0.5;
+          const alpha = (1 - (dist / CONFIG.maxDistance)) * CONFIG.lineOpacityMax;
+
+          // Gradient line between two particles (color blends their palette)
+          const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
+          gradient.addColorStop(0, `rgba(${p1.color.r}, ${p1.color.g}, ${p1.color.b}, ${alpha})`);
+          gradient.addColorStop(1, `rgba(${p2.color.r}, ${p2.color.g}, ${p2.color.b}, ${alpha})`);
+
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = 0.6;
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);
@@ -510,10 +592,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    requestAnimationFrame(animate);
+    // 4. MOUSE SYNAPTIC CONNECTIONS (draw lines from cursor to nearby particles)
+    if (mouse.x !== null && mouse.y !== null && !isMobile) {
+      particles.forEach(p => {
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < CONFIG.mouseRadius) {
+          const alpha = (1 - (dist / CONFIG.mouseRadius)) * 0.08;
+          const { r, g, b } = p.color;
+
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+          ctx.lineWidth = 0.4;
+          ctx.beginPath();
+          ctx.moveTo(mouse.x, mouse.y);
+          ctx.lineTo(p.x, p.y);
+          ctx.stroke();
+        }
+      });
+    }
+
+    animFrameId = requestAnimationFrame(animate);
   }
 
-  // Khởi động
+  // --- Start ---
   resizeCanvas();
   animate();
+
+  // --- Cleanup on page unload ---
+  window.addEventListener('beforeunload', () => {
+    if (animFrameId) cancelAnimationFrame(animFrameId);
+  });
 })();
+

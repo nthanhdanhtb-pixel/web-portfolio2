@@ -183,6 +183,131 @@ h1, h2, h3, h4, .heading-font {
   50% { transform: translateY(-8px) translateX(-50%); }
 }
 
+/* ============================================================
+   CONCEPT B: AURORA GRADIENT BLOBS (CSS-only floating orbs)
+   Soft, blurred, morphing gradient blobs on left & right sides
+   ============================================================ */
+
+/* Container: sits behind all hero content */
+.aurora-blob-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Individual blob base style */
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.2;
+  will-change: transform, border-radius;
+  pointer-events: none;
+}
+
+/* === LEFT SIDE BLOBS === */
+.aurora-blob--left-1 {
+  width: 320px;
+  height: 320px;
+  top: 10%;
+  left: -5%;
+  background: radial-gradient(circle, #00C6FF 0%, #0072FF 60%, transparent 100%);
+  animation: auroraFloat1 12s ease-in-out infinite, auroraMorph1 18s ease-in-out infinite;
+}
+
+.aurora-blob--left-2 {
+  width: 250px;
+  height: 250px;
+  top: 55%;
+  left: 2%;
+  background: radial-gradient(circle, #8A2387 0%, #0072FF 70%, transparent 100%);
+  animation: auroraFloat2 15s ease-in-out infinite, auroraMorph2 20s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.aurora-blob--left-3 {
+  width: 180px;
+  height: 180px;
+  top: 30%;
+  left: 8%;
+  background: radial-gradient(circle, #00C6FF 0%, #8A2387 80%, transparent 100%);
+  animation: auroraFloat3 10s ease-in-out infinite, auroraMorph1 14s ease-in-out infinite;
+  animation-delay: -6s;
+  opacity: 0.15;
+}
+
+/* === RIGHT SIDE BLOBS === */
+.aurora-blob--right-1 {
+  width: 350px;
+  height: 350px;
+  top: 15%;
+  right: -6%;
+  background: radial-gradient(circle, #8A2387 0%, #0072FF 55%, transparent 100%);
+  animation: auroraFloat2 14s ease-in-out infinite, auroraMorph2 16s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.aurora-blob--right-2 {
+  width: 280px;
+  height: 280px;
+  top: 60%;
+  right: 1%;
+  background: radial-gradient(circle, #0072FF 0%, #00C6FF 65%, transparent 100%);
+  animation: auroraFloat1 13s ease-in-out infinite, auroraMorph1 22s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+.aurora-blob--right-3 {
+  width: 200px;
+  height: 200px;
+  top: 35%;
+  right: 10%;
+  background: radial-gradient(circle, #00C6FF 0%, #8A2387 70%, transparent 100%);
+  animation: auroraFloat3 11s ease-in-out infinite, auroraMorph2 15s ease-in-out infinite;
+  animation-delay: -8s;
+  opacity: 0.15;
+}
+
+/* Floating motion keyframes — gentle drifting paths */
+@keyframes auroraFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25%      { transform: translate(30px, -40px) scale(1.05); }
+  50%      { transform: translate(-20px, 20px) scale(0.95); }
+  75%      { transform: translate(15px, 35px) scale(1.08); }
+}
+
+@keyframes auroraFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(-35px, 25px) scale(1.1); }
+  66%      { transform: translate(25px, -30px) scale(0.92); }
+}
+
+@keyframes auroraFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  20%      { transform: translate(20px, 30px) scale(1.06); }
+  40%      { transform: translate(-30px, -15px) scale(0.94); }
+  60%      { transform: translate(10px, -35px) scale(1.12); }
+  80%      { transform: translate(-15px, 20px) scale(0.98); }
+}
+
+/* Morphing shape keyframes — organic blob deformation */
+@keyframes auroraMorph1 {
+  0%, 100% { border-radius: 50% 50% 50% 50%; }
+  25%      { border-radius: 60% 40% 55% 45%; }
+  50%      { border-radius: 45% 55% 40% 60%; }
+  75%      { border-radius: 55% 45% 60% 40%; }
+}
+
+@keyframes auroraMorph2 {
+  0%, 100% { border-radius: 50% 50% 50% 50%; }
+  20%      { border-radius: 40% 60% 50% 50%; }
+  40%      { border-radius: 50% 50% 60% 40%; }
+  60%      { border-radius: 60% 40% 40% 60%; }
+  80%      { border-radius: 45% 55% 55% 45%; }
+}
+
 /* Animation trigger classes */
 .anim-fade-in-down {
   opacity: 0;
@@ -390,4 +515,11 @@ h1, h2, h3, h4, .heading-font {
   .tree-node {
     margin-left: 8px;
   }
+
+  /* === CONCEPT B: Hide aurora blobs on mobile for performance === */
+  .aurora-blob-container {
+    display: none;
+  }
+
+  /* === CONCEPT A: Canvas is handled in JS (reduces particle count) === */
 }

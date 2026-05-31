@@ -102,6 +102,24 @@
     <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-cyan-200/20 rounded-full blur-3xl animate-pulse-neon"></div>
     <div class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-purple-200/20 rounded-full blur-3xl animate-pulse-neon" style="animation-delay: 2s"></div>
 
+    <!-- ============================================================
+         CONCEPT B: AURORA GRADIENT BLOBS (Floating morphing orbs)
+         6 blobs positioned on left & right sides to fill empty space.
+         Layered behind content (z-index: 0), pointer-events: none.
+         Colors: Teal (#00C6FF), Blue (#0072FF), Purple (#8A2387).
+         Hidden on mobile (<768px) via CSS media query.
+         ============================================================ -->
+    <div class="aurora-blob-container" aria-hidden="true">
+      <!-- Left side blobs -->
+      <div class="aurora-blob aurora-blob--left-1"></div>
+      <div class="aurora-blob aurora-blob--left-2"></div>
+      <div class="aurora-blob aurora-blob--left-3"></div>
+      <!-- Right side blobs -->
+      <div class="aurora-blob aurora-blob--right-1"></div>
+      <div class="aurora-blob aurora-blob--right-2"></div>
+      <div class="aurora-blob aurora-blob--right-3"></div>
+    </div>
+
     <!-- Content Container -->
     <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
       
