@@ -96,28 +96,29 @@
     </div>
   </header>
 
-  <!-- ================= HERO SECTION (LIGHTMODE DYNAMIC & STAGGERED) ================= -->
+  <!-- ================= HERO SECTION (AI PREMIUM SYSTEM) ================= -->
   <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-gradient-to-br from-slate-50 via-slate-50/50 to-slate-100/80">
-    <!-- Ambient soft light glowing backgrounds -->
+
+    <!-- ═══ LAYER 1: AURORA GRADIENT BASE (CSS animated wash) ═══ -->
+    <div class="aurora-base-layer parallax-layer" aria-hidden="true"></div>
+
+    <!-- Ambient soft glow accents -->
     <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-cyan-200/20 rounded-full blur-3xl animate-pulse-neon"></div>
     <div class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-purple-200/20 rounded-full blur-3xl animate-pulse-neon" style="animation-delay: 2s"></div>
 
-    <!-- ============================================================
-         CONCEPT B: AURORA GRADIENT BLOBS (Floating morphing orbs)
-         6 blobs positioned on left & right sides to fill empty space.
-         Layered behind content (z-index: 0), pointer-events: none.
-         Colors: Teal (#00C6FF), Blue (#0072FF), Purple (#8A2387).
-         Hidden on mobile (<768px) via CSS media query.
-         ============================================================ -->
-    <div class="aurora-blob-container" aria-hidden="true">
-      <!-- Left side blobs -->
+    <!-- ═══ LAYER 2: FLOATING BLUR ORBS (CSS morphing blobs) ═══ -->
+    <div class="aurora-blob-container parallax-layer" aria-hidden="true">
+      <!-- Left side orbs -->
       <div class="aurora-blob aurora-blob--left-1"></div>
       <div class="aurora-blob aurora-blob--left-2"></div>
       <div class="aurora-blob aurora-blob--left-3"></div>
-      <!-- Right side blobs -->
+      <!-- Right side orbs -->
       <div class="aurora-blob aurora-blob--right-1"></div>
       <div class="aurora-blob aurora-blob--right-2"></div>
       <div class="aurora-blob aurora-blob--right-3"></div>
+      <!-- Center depth orbs (extra depth) -->
+      <div class="aurora-blob aurora-blob--center-1"></div>
+      <div class="aurora-blob aurora-blob--center-2"></div>
     </div>
 
     <!-- Content Container -->
@@ -132,8 +133,10 @@
       <!-- Tiêu đề tạp chí đậm nét (anim-fade-in-up) -->
       <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight text-slate-900 anim-fade-in-up anim-delay-200">
         Hành trình làm chủ <br>
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600">
-          Công nghệ số & AI
+        <span class="hero-glow-wrapper">
+          <span class="hero-gradient-text">
+            Công nghệ số & AI
+          </span>
         </span>
       </h1>
 
@@ -153,11 +156,11 @@
       <!-- Các nút bấm CTA đẳng cấp (anim-fade-in-up anim-delay-700) -->
       <div class="flex flex-col sm:flex-row items-center gap-4 anim-fade-in-up anim-delay-700 w-full sm:w-auto">
         <!-- Khám phá bài tập (Gradient Neon Glow hover) -->
-        <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-bold shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/25 hover:scale-105 transition-all duration-300 text-center">
+        <a href="#projects" class="btn-primary-glow w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-bold shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 text-center">
           Khám phá Bài tập dự án
         </a>
-        <!-- Đọc Tổng kết (Slate Fill hover) -->
-        <a href="#reflection" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white border border-slate-300/80 hover:border-slate-800 text-slate-700 hover:text-white hover:bg-slate-900 font-bold shadow-sm transition-all duration-300 text-center">
+        <!-- Đọc Tổng kết (Morphing Fill hover) -->
+        <a href="#reflection" class="btn-secondary-morph w-full sm:w-auto px-8 py-4 rounded-xl bg-white border border-slate-300/80 text-slate-700 font-bold shadow-sm transition-all duration-300 text-center">
           Đọc Tổng kết học tập
         </a>
       </div>

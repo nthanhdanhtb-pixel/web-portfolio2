@@ -1,55 +1,70 @@
 /* ==========================================================================
-   PORTFOLIO STYLE SHEET - PREMIUM LIGHTMODE CYBER SYSTEM
-   Thiết kế bởi: Antigravity - Senior UI/UX & Frontend Developer
-   Chủ sở hữu: Nguyễn Thành Danh - UET - MSSV: 25020058
+   PORTFOLIO STYLE SHEET — AI PREMIUM LANDING SYSTEM
+   Thiết kế bởi: Antigravity — Senior UI/UX & Creative Developer
+   Chủ sở hữu: Nguyễn Thành Danh — UET — MSSV: 25020058
+   Phong cách: OpenAI × Vercel × Stripe × Linear — Prestige Edition
    ========================================================================== */
 
 /* --- GOOGLE FONTS --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-/* --- CUSTOM VARIABLES (PREMIUM LIGHTMODE) --- */
+/* ==========================================================================
+   1. DESIGN TOKENS (CSS CUSTOM PROPERTIES)
+   ========================================================================== */
 :root {
-  --bg-deep: #f8fafc; /* Slate 50 - Apple/Notion background */
+  /* ── Core Backgrounds ── */
+  --bg-deep: #f8fafc;
   --bg-card: #ffffff;
   --bg-glass: rgba(255, 255, 255, 0.65);
   --bg-glass-hover: rgba(255, 255, 255, 0.85);
-  
-  --glass-border: rgba(226, 232, 240, 0.8); /* Slate 200 border */
-  --glass-border-glow: rgba(59, 130, 246, 0.35); /* Soft Blue glow */
-  
+
+  /* ── Glass & Borders ── */
+  --glass-border: rgba(226, 232, 240, 0.8);
+  --glass-border-glow: rgba(59, 130, 246, 0.35);
+
+  /* ── Brand Palette ── */
+  --color-teal: #00C6FF;
   --color-cyan: #06b6d4;
   --color-blue: #3b82f6;
   --color-purple: #8b5cf6;
-  --color-word: #2b579a; /* Microsoft Word Blue */
-  --color-pdf: #e81123;  /* PDF Red */
-  
+  --color-magenta: #8A2387;
+  --color-word: #2b579a;
+  --color-pdf: #e81123;
+
+  /* ── Gradients ── */
+  --gradient-brand: linear-gradient(135deg, #00C6FF 0%, #0072FF 50%, #8A2387 100%);
   --gradient-cyber: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
   --gradient-accent: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6);
   --gradient-light: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.6) 100%);
-  
-  --text-primary: #0f172a; /* Slate 900 */
-  --text-secondary: #334155; /* Slate 700 */
-  --text-muted: #64748b; /* Slate 500 */
-  --text-dim: #94a3b8; /* Slate 400 */
-  
+
+  /* ── Text ── */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+
+  /* ── Glow & Shadows ── */
   --glow-cyan: 0 0 25px rgba(6, 182, 212, 0.12);
   --glow-blue: 0 0 25px rgba(59, 130, 246, 0.12);
-  --glow-card: 0 12px 30px -8px rgba(15, 23, 42, 0.04);
-  --glow-card-hover: 0 20px 40px -10px rgba(15, 23, 42, 0.08), 0 0 25px -5px rgba(59, 130, 246, 0.15);
-  
-  --font-sans: 'Inter', sans-serif;
+  --glow-card: 0 4px 24px -4px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --glow-card-hover: 0 20px 48px -12px rgba(15, 23, 42, 0.12), 0 0 30px -8px rgba(59, 130, 246, 0.15);
+
+  /* ── Typography ── */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: 'Montserrat', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* --- BASE STYLES --- */
+/* ==========================================================================
+   2. BASE STYLES
+   ========================================================================== */
 body {
   background-color: var(--bg-deep);
   color: var(--text-secondary);
   font-family: var(--font-sans);
   overflow-x: hidden;
-  /* Premium layout grid overlay */
-  background-image: 
+  /* Premium micro-grid overlay */
+  background-image:
     radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.03) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.04) 0%, transparent 45%),
     linear-gradient(rgba(15, 23, 42, 0.015) 1px, transparent 1px),
@@ -59,29 +74,217 @@ body {
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+h1, h2, h3, h4, .heading-font {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--bg-deep);
+/* ==========================================================================
+   3. LAYER 1 — AURORA GRADIENT ANIMATION (CSS)
+   Large, slowly-moving color washes behind the hero content.
+   Uses CSS pseudo-elements for GPU-accelerated rendering.
+   ========================================================================== */
+.aurora-base-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1; /* Slate 300 */
-  border-radius: 4px;
+/* Soft ambient aurora wash behind hero */
+.aurora-base-layer::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: -20%;
+  width: 140%;
+  height: 160%;
+  background:
+    radial-gradient(ellipse 600px 500px at 15% 30%, rgba(0, 198, 255, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 600px at 85% 25%, rgba(138, 35, 135, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 700px 400px at 50% 80%, rgba(0, 114, 255, 0.05) 0%, transparent 70%);
+  animation: auroraDrift 25s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8; /* Slate 400 */
+.aurora-base-layer::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 120%;
+  height: 140%;
+  background:
+    radial-gradient(ellipse 400px 500px at 75% 60%, rgba(6, 182, 212, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 400px at 25% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+  animation: auroraDrift2 30s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-/* --- GLASSMORPHISM UTILITIES --- */
+@keyframes auroraDrift {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate(40px, -30px) rotate(2deg) scale(1.05); }
+}
+
+@keyframes auroraDrift2 {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate(-30px, 20px) rotate(-1.5deg) scale(1.03); }
+}
+
+/* ==========================================================================
+   4. LAYER 2 — FLOATING BLUR ORBS (CSS)
+   Multiple blurred orbs at varying depths. Each has unique
+   position, size, color, and animation timing.
+   ========================================================================== */
+.aurora-blob-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Base orb styling */
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.22;
+  will-change: transform, border-radius;
+  pointer-events: none;
+}
+
+/* ── LEFT SIDE ORBS ── */
+.aurora-blob--left-1 {
+  width: 380px; height: 380px;
+  top: 5%; left: -8%;
+  background: radial-gradient(circle, rgba(0, 198, 255, 0.6) 0%, rgba(0, 114, 255, 0.2) 60%, transparent 100%);
+  animation: orbFloat1 14s ease-in-out infinite, orbMorph1 20s ease-in-out infinite;
+}
+
+.aurora-blob--left-2 {
+  width: 280px; height: 280px;
+  top: 55%; left: 0%;
+  background: radial-gradient(circle, rgba(138, 35, 135, 0.5) 0%, rgba(0, 114, 255, 0.15) 70%, transparent 100%);
+  animation: orbFloat2 17s ease-in-out infinite, orbMorph2 22s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.aurora-blob--left-3 {
+  width: 200px; height: 200px;
+  top: 28%; left: 5%;
+  background: radial-gradient(circle, rgba(0, 198, 255, 0.4) 0%, rgba(138, 35, 135, 0.1) 80%, transparent 100%);
+  animation: orbFloat3 11s ease-in-out infinite, orbMorph1 16s ease-in-out infinite;
+  animation-delay: -7s;
+  opacity: 0.16;
+}
+
+/* ── RIGHT SIDE ORBS ── */
+.aurora-blob--right-1 {
+  width: 400px; height: 400px;
+  top: 10%; right: -10%;
+  background: radial-gradient(circle, rgba(138, 35, 135, 0.5) 0%, rgba(0, 114, 255, 0.15) 55%, transparent 100%);
+  animation: orbFloat2 16s ease-in-out infinite, orbMorph2 18s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.aurora-blob--right-2 {
+  width: 300px; height: 300px;
+  top: 58%; right: -2%;
+  background: radial-gradient(circle, rgba(0, 114, 255, 0.5) 0%, rgba(0, 198, 255, 0.15) 65%, transparent 100%);
+  animation: orbFloat1 15s ease-in-out infinite, orbMorph1 24s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+.aurora-blob--right-3 {
+  width: 220px; height: 220px;
+  top: 32%; right: 6%;
+  background: radial-gradient(circle, rgba(0, 198, 255, 0.4) 0%, rgba(138, 35, 135, 0.1) 70%, transparent 100%);
+  animation: orbFloat3 12s ease-in-out infinite, orbMorph2 17s ease-in-out infinite;
+  animation-delay: -9s;
+  opacity: 0.16;
+}
+
+/* ── CENTER DEPTH ORBS (new — adds depth to center area) ── */
+.aurora-blob--center-1 {
+  width: 500px; height: 500px;
+  top: 20%; left: 30%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  animation: orbFloat1 20s ease-in-out infinite;
+  animation-delay: -10s;
+  opacity: 0.1;
+  filter: blur(100px);
+}
+
+.aurora-blob--center-2 {
+  width: 350px; height: 350px;
+  bottom: 10%; right: 25%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  animation: orbFloat2 18s ease-in-out infinite;
+  animation-delay: -5s;
+  opacity: 0.08;
+  filter: blur(120px);
+}
+
+/* Orb floating keyframes — gentle multi-axis drift */
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  25%      { transform: translate3d(35px, -45px, 0) scale(1.06); }
+  50%      { transform: translate3d(-25px, 25px, 0) scale(0.94); }
+  75%      { transform: translate3d(18px, 40px, 0) scale(1.08); }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate3d(-40px, 30px, 0) scale(1.1); }
+  66%      { transform: translate3d(30px, -35px, 0) scale(0.92); }
+}
+
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  20%      { transform: translate3d(25px, 35px, 0) scale(1.07); }
+  40%      { transform: translate3d(-35px, -18px, 0) scale(0.93); }
+  60%      { transform: translate3d(12px, -40px, 0) scale(1.12); }
+  80%      { transform: translate3d(-18px, 22px, 0) scale(0.97); }
+}
+
+/* Organic blob shape morphing */
+@keyframes orbMorph1 {
+  0%, 100% { border-radius: 50%; }
+  25%      { border-radius: 62% 38% 56% 44%; }
+  50%      { border-radius: 44% 56% 38% 62%; }
+  75%      { border-radius: 56% 44% 62% 38%; }
+}
+
+@keyframes orbMorph2 {
+  0%, 100% { border-radius: 50%; }
+  20%      { border-radius: 38% 62% 50% 50%; }
+  40%      { border-radius: 50% 50% 62% 38%; }
+  60%      { border-radius: 62% 38% 38% 62%; }
+  80%      { border-radius: 44% 56% 56% 44%; }
+}
+
+/* ==========================================================================
+   5. PARALLAX CONTAINER UTILITY
+   ========================================================================== */
+.parallax-layer {
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ==========================================================================
+   6. GLASSMORPHISM UTILITIES (Apple / Stripe Premium)
+   ========================================================================== */
 .glass-panel {
   background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glow-card);
 }
@@ -92,18 +295,41 @@ body {
 }
 
 .glass-card-cyber {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glow-card);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle animated border gradient on hover */
+.glass-card-cyber::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), transparent 40%, rgba(139, 92, 246, 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 .glass-card-cyber:hover {
-  transform: translateY(-4px);
-  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-6px);
+  border-color: rgba(59, 130, 246, 0.2);
   box-shadow: var(--glow-card-hover);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.glass-card-cyber:hover::before {
+  opacity: 1;
 }
 
 /* Premium Light Cyber Border */
@@ -130,7 +356,192 @@ body {
   opacity: 0.7;
 }
 
-/* --- TYPOGRAPHY & GRADIENTS --- */
+/* ==========================================================================
+   7. HERO TYPOGRAPHY — GRADIENT GLOW + SHINE ANIMATION
+   ========================================================================== */
+
+/* Animated gradient text with shimmer */
+.hero-gradient-text {
+  background: linear-gradient(
+    90deg,
+    #06b6d4 0%,
+    #3b82f6 20%,
+    #8b5cf6 40%,
+    #c084fc 55%,
+    #3b82f6 70%,
+    #06b6d4 85%,
+    #3b82f6 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroShine 8s linear infinite;
+}
+
+@keyframes heroShine {
+  0%   { background-position: 0% center; }
+  100% { background-position: 250% center; }
+}
+
+/* Glow aura behind the gradient text */
+.hero-glow-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-glow-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -15px -30px;
+  background: linear-gradient(90deg,
+    rgba(6, 182, 212, 0.15),
+    rgba(59, 130, 246, 0.2),
+    rgba(139, 92, 246, 0.15)
+  );
+  filter: blur(40px);
+  border-radius: 50%;
+  z-index: -1;
+  animation: glowPulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%      { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* ==========================================================================
+   8. BUTTON MICRO-INTERACTIONS
+   ========================================================================== */
+
+/* Primary CTA button with animated gradient border */
+.btn-primary-glow {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6, #06b6d4);
+  background-size: 300% 300%;
+  animation: gradientRotate 4s linear infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.btn-primary-glow:hover::before {
+  opacity: 1;
+}
+
+.btn-primary-glow:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+}
+
+.btn-primary-glow:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@keyframes gradientRotate {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Secondary button interaction */
+.btn-secondary-morph {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-secondary-morph::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-blue), var(--color-purple));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.btn-secondary-morph:hover {
+  transform: translateY(-2px) scale(1.03);
+  border-color: transparent !important;
+  color: white !important;
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2);
+}
+
+.btn-secondary-morph:hover::after {
+  opacity: 1;
+}
+
+.btn-secondary-morph:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Download button micro-interaction */
+.glass-card-cyber a[download]:hover {
+  transform: translateY(-1px) scale(1.05);
+}
+
+.glass-card-cyber a[download]:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* ==========================================================================
+   9. NAVIGATION MICRO-INTERACTIONS
+   ========================================================================== */
+
+/* Desktop nav link underline animation */
+header nav a {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+header nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-50%);
+}
+
+header nav a:hover::after,
+header nav a.active::after {
+  width: 100%;
+}
+
+/* Active nav state */
+header nav a.active {
+  color: var(--color-blue);
+}
+
+/* Header CTA button interaction */
+header a[href="#contact"] {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+header a[href="#contact"]:hover {
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.2);
+}
+
+/* ==========================================================================
+   10. GRADIENT TEXT UTILITIES
+   ========================================================================== */
 .text-gradient-accent {
   background: var(--gradient-accent);
   -webkit-background-clip: text;
@@ -145,170 +556,30 @@ body {
   background-clip: text;
 }
 
-h1, h2, h3, h4, .heading-font {
-  font-family: var(--font-heading);
-  letter-spacing: -0.02em;
-}
-
-/* --- KEYFRAMES & DYNAMIC ANIMATIONS --- */
+/* ==========================================================================
+   11. KEYFRAMES & ANIMATION SYSTEM
+   ========================================================================== */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(25px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-15px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes cursor-blink {
   0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
+  50%      { opacity: 1; }
 }
 
 @keyframes bounce-slow {
   0%, 100% { transform: translateY(0px) translateX(-50%); }
-  50% { transform: translateY(-8px) translateX(-50%); }
+  50%      { transform: translateY(-8px) translateX(-50%); }
 }
 
-/* ============================================================
-   CONCEPT B: AURORA GRADIENT BLOBS (CSS-only floating orbs)
-   Soft, blurred, morphing gradient blobs on left & right sides
-   ============================================================ */
-
-/* Container: sits behind all hero content */
-.aurora-blob-container {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* Individual blob base style */
-.aurora-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.2;
-  will-change: transform, border-radius;
-  pointer-events: none;
-}
-
-/* === LEFT SIDE BLOBS === */
-.aurora-blob--left-1 {
-  width: 320px;
-  height: 320px;
-  top: 10%;
-  left: -5%;
-  background: radial-gradient(circle, #00C6FF 0%, #0072FF 60%, transparent 100%);
-  animation: auroraFloat1 12s ease-in-out infinite, auroraMorph1 18s ease-in-out infinite;
-}
-
-.aurora-blob--left-2 {
-  width: 250px;
-  height: 250px;
-  top: 55%;
-  left: 2%;
-  background: radial-gradient(circle, #8A2387 0%, #0072FF 70%, transparent 100%);
-  animation: auroraFloat2 15s ease-in-out infinite, auroraMorph2 20s ease-in-out infinite;
-  animation-delay: -3s;
-}
-
-.aurora-blob--left-3 {
-  width: 180px;
-  height: 180px;
-  top: 30%;
-  left: 8%;
-  background: radial-gradient(circle, #00C6FF 0%, #8A2387 80%, transparent 100%);
-  animation: auroraFloat3 10s ease-in-out infinite, auroraMorph1 14s ease-in-out infinite;
-  animation-delay: -6s;
-  opacity: 0.15;
-}
-
-/* === RIGHT SIDE BLOBS === */
-.aurora-blob--right-1 {
-  width: 350px;
-  height: 350px;
-  top: 15%;
-  right: -6%;
-  background: radial-gradient(circle, #8A2387 0%, #0072FF 55%, transparent 100%);
-  animation: auroraFloat2 14s ease-in-out infinite, auroraMorph2 16s ease-in-out infinite;
-  animation-delay: -2s;
-}
-
-.aurora-blob--right-2 {
-  width: 280px;
-  height: 280px;
-  top: 60%;
-  right: 1%;
-  background: radial-gradient(circle, #0072FF 0%, #00C6FF 65%, transparent 100%);
-  animation: auroraFloat1 13s ease-in-out infinite, auroraMorph1 22s ease-in-out infinite;
-  animation-delay: -5s;
-}
-
-.aurora-blob--right-3 {
-  width: 200px;
-  height: 200px;
-  top: 35%;
-  right: 10%;
-  background: radial-gradient(circle, #00C6FF 0%, #8A2387 70%, transparent 100%);
-  animation: auroraFloat3 11s ease-in-out infinite, auroraMorph2 15s ease-in-out infinite;
-  animation-delay: -8s;
-  opacity: 0.15;
-}
-
-/* Floating motion keyframes — gentle drifting paths */
-@keyframes auroraFloat1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25%      { transform: translate(30px, -40px) scale(1.05); }
-  50%      { transform: translate(-20px, 20px) scale(0.95); }
-  75%      { transform: translate(15px, 35px) scale(1.08); }
-}
-
-@keyframes auroraFloat2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%      { transform: translate(-35px, 25px) scale(1.1); }
-  66%      { transform: translate(25px, -30px) scale(0.92); }
-}
-
-@keyframes auroraFloat3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  20%      { transform: translate(20px, 30px) scale(1.06); }
-  40%      { transform: translate(-30px, -15px) scale(0.94); }
-  60%      { transform: translate(10px, -35px) scale(1.12); }
-  80%      { transform: translate(-15px, 20px) scale(0.98); }
-}
-
-/* Morphing shape keyframes — organic blob deformation */
-@keyframes auroraMorph1 {
-  0%, 100% { border-radius: 50% 50% 50% 50%; }
-  25%      { border-radius: 60% 40% 55% 45%; }
-  50%      { border-radius: 45% 55% 40% 60%; }
-  75%      { border-radius: 55% 45% 60% 40%; }
-}
-
-@keyframes auroraMorph2 {
-  0%, 100% { border-radius: 50% 50% 50% 50%; }
-  20%      { border-radius: 40% 60% 50% 50%; }
-  40%      { border-radius: 50% 50% 60% 40%; }
-  60%      { border-radius: 60% 40% 40% 60%; }
-  80%      { border-radius: 45% 55% 55% 45%; }
-}
-
-/* Animation trigger classes */
+/* Stagger entry animations */
 .anim-fade-in-down {
   opacity: 0;
   animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -319,11 +590,11 @@ h1, h2, h3, h4, .heading-font {
   animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.anim-delay-100 { animation-delay: 0.1s; }
-.anim-delay-200 { animation-delay: 0.2s; }
-.anim-delay-300 { animation-delay: 0.3s; }
-.anim-delay-500 { animation-delay: 0.5s; }
-.anim-delay-700 { animation-delay: 0.7s; }
+.anim-delay-100  { animation-delay: 0.1s; }
+.anim-delay-200  { animation-delay: 0.2s; }
+.anim-delay-300  { animation-delay: 0.3s; }
+.anim-delay-500  { animation-delay: 0.5s; }
+.anim-delay-700  { animation-delay: 0.7s; }
 .anim-delay-1000 { animation-delay: 1s; }
 
 /* Typing Cursor */
@@ -335,16 +606,17 @@ h1, h2, h3, h4, .heading-font {
   animation: cursor-blink 1s step-end infinite;
 }
 
-/* Scroll Bounce anim */
+/* Scroll Bounce */
 .scroll-bounce-indicator {
   animation: bounce-slow 2s infinite ease-in-out;
 }
 
-/* Reveal scroll animations */
+/* Reveal-on-scroll */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(25px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-on-scroll.active {
@@ -352,7 +624,19 @@ h1, h2, h3, h4, .heading-font {
   transform: translateY(0);
 }
 
-/* --- INTERACTIVE FILE TREE COMPONENT (LIGHTMODE) --- */
+/* Pulse glow for neon-style elements */
+@keyframes pulseNeon {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50%      { opacity: 0.35; transform: scale(1.02); }
+}
+
+.animate-pulse-neon {
+  animation: pulseNeon 6s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   12. INTERACTIVE FILE TREE COMPONENT
+   ========================================================================== */
 .file-tree-container {
   background: rgba(248, 250, 252, 0.85);
   border: 1px solid rgba(226, 232, 240, 0.8);
@@ -367,10 +651,8 @@ h1, h2, h3, h4, .heading-font {
 .file-tree-container::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
   background: var(--gradient-accent);
 }
 
@@ -382,20 +664,16 @@ h1, h2, h3, h4, .heading-font {
 .tree-node::before {
   content: '';
   position: absolute;
-  left: -10px;
-  top: -4px;
-  bottom: 12px;
+  left: -10px; top: -4px; bottom: 12px;
   width: 1px;
-  border-left: 1px dashed rgba(148, 163, 184, 0.3); /* Slate 400 dotted */
+  border-left: 1px dashed rgba(148, 163, 184, 0.3);
 }
 
 .tree-node::after {
   content: '';
   position: absolute;
-  left: -10px;
-  top: 12px;
-  width: 8px;
-  height: 1px;
+  left: -10px; top: 12px;
+  width: 8px; height: 1px;
   border-top: 1px dashed rgba(148, 163, 184, 0.3);
 }
 
@@ -418,36 +696,24 @@ h1, h2, h3, h4, .heading-font {
 }
 
 .tree-item.active {
-  background: rgba(59, 130, 246, 0.08); /* Light Blue BG */
+  background: rgba(59, 130, 246, 0.08);
   border-left: 2px solid var(--color-blue);
   color: var(--text-primary);
   font-weight: 500;
 }
 
-.tree-folder {
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-.tree-file {
-  color: var(--text-secondary);
-}
+.tree-folder { color: var(--text-primary); font-weight: 500; }
+.tree-file   { color: var(--text-secondary); }
 
 .tree-toggle-icon {
-  width: 12px;
-  height: 12px;
+  width: 12px; height: 12px;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   fill: currentColor;
   opacity: 0.6;
 }
 
-.tree-item:hover .tree-toggle-icon {
-  opacity: 1;
-}
-
-.folder-collapsed .tree-toggle-icon {
-  transform: rotate(-90deg);
-}
+.tree-item:hover .tree-toggle-icon { opacity: 1; }
+.folder-collapsed .tree-toggle-icon { transform: rotate(-90deg); }
 
 .folder-content {
   max-height: 500px;
@@ -463,26 +729,14 @@ h1, h2, h3, h4, .heading-font {
 }
 
 /* File Icon Colors */
-.icon-folder {
-  color: var(--color-blue);
-  filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.2));
-}
+.icon-folder { color: var(--color-blue); filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.2)); }
+.icon-docx   { color: var(--color-word); filter: drop-shadow(0 2px 4px rgba(43, 87, 154, 0.2)); }
+.icon-pdf    { color: var(--color-pdf);  filter: drop-shadow(0 2px 4px rgba(232, 17, 35, 0.2)); }
+.icon-img    { color: #d97706; }
 
-.icon-docx {
-  color: var(--color-word);
-  filter: drop-shadow(0 2px 4px rgba(43, 87, 154, 0.2));
-}
-
-.icon-pdf {
-  color: var(--color-pdf);
-  filter: drop-shadow(0 2px 4px rgba(232, 17, 35, 0.2));
-}
-
-.icon-img {
-  color: #d97706; /* Amber 600 */
-}
-
-/* Metadata Panel styles (Lightmode Glassmorphic) */
+/* ==========================================================================
+   13. METADATA PANEL
+   ========================================================================== */
 .metadata-panel {
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(226, 232, 240, 0.8);
@@ -507,19 +761,56 @@ h1, h2, h3, h4, .heading-font {
   opacity: 0.15;
 }
 
-/* Responsive fixes and helper styles */
+/* ==========================================================================
+   14. MOUSE RIPPLE OVERLAY (Created by JS)
+   ========================================================================== */
+.ripple-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.3);
+  pointer-events: none;
+  z-index: 9999;
+  animation: rippleExpand 0.6s ease-out forwards;
+}
+
+@keyframes rippleExpand {
+  0%   { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(6); opacity: 0; }
+}
+
+/* ==========================================================================
+   15. RESPONSIVE DESIGN
+   ========================================================================== */
 @media (max-width: 768px) {
-  .file-tree-container {
-    padding: 12px;
-  }
-  .tree-node {
-    margin-left: 8px;
-  }
+  .file-tree-container { padding: 12px; }
+  .tree-node { margin-left: 8px; }
 
-  /* === CONCEPT B: Hide aurora blobs on mobile for performance === */
-  .aurora-blob-container {
-    display: none;
-  }
+  /* Hide aurora blobs on mobile for performance */
+  .aurora-blob-container { display: none; }
+  .aurora-base-layer { display: none; }
 
-  /* === CONCEPT A: Canvas is handled in JS (reduces particle count) === */
+  /* Reduce hero glow effects */
+  .hero-glow-wrapper::after { display: none; }
+
+  /* Simplify card interactions on touch */
+  .glass-card-cyber:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-gradient-text {
+    animation: none;
+    background-size: 100% auto;
+  }
+}
+
+/* Large screens: bigger orbs for wider empty space */
+@media (min-width: 1440px) {
+  .aurora-blob--left-1  { width: 450px; height: 450px; }
+  .aurora-blob--right-1 { width: 480px; height: 480px; }
+  .aurora-blob--left-2  { width: 350px; height: 350px; }
+  .aurora-blob--right-2 { width: 380px; height: 380px; }
 }
