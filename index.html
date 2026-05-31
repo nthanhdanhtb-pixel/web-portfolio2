@@ -97,14 +97,36 @@
   </header>
 
   <!-- ================= HERO SECTION (AI PREMIUM SYSTEM) ================= -->
-  <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-gradient-to-br from-slate-50 via-slate-50/50 to-slate-100/80">
+  <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
 
     <!-- ═══ LAYER 1: AURORA GRADIENT BASE (CSS animated wash) ═══ -->
     <div class="aurora-base-layer parallax-layer" aria-hidden="true"></div>
 
-    <!-- Ambient soft glow accents -->
-    <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-cyan-200/20 rounded-full blur-3xl animate-pulse-neon"></div>
-    <div class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-purple-200/20 rounded-full blur-3xl animate-pulse-neon" style="animation-delay: 2s"></div>
+    <!-- Ambient soft glow accents (Matching background.png champagne/peach and lavender tones) -->
+    <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-amber-100/10 rounded-full blur-3xl animate-pulse-neon"></div>
+    <div class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-purple-100/10 rounded-full blur-3xl animate-pulse-neon" style="animation-delay: 2s"></div>
+
+    <!-- ═══ LAYER 6: HOLOGRAPHIC TECH ORNAMENTS (Layered Above Background) ═══ -->
+    <!-- Left Cyber Ring HUD overlay -->
+    <div class="absolute left-12 top-1/3 -translate-y-1/2 w-48 h-48 opacity-15 pointer-events-none hidden lg:block z-5">
+      <svg class="w-full h-full animate-[spin_40s_linear_infinite]" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" stroke="#06b6d4" stroke-width="0.5" fill="none" stroke-dasharray="2, 6" />
+        <circle cx="50" cy="50" r="38" stroke="#c084fc" stroke-width="0.25" fill="none" stroke-dasharray="10, 5" />
+        <circle cx="50" cy="50" r="30" stroke="#ffd7a8" stroke-width="1" fill="none" stroke-dasharray="4, 15" />
+        <path d="M 50 5 L 50 15 M 50 85 L 50 95 M 5 50 L 15 50 M 85 50 L 95 50" stroke="#06b6d4" stroke-width="0.5" />
+      </svg>
+    </div>
+
+    <!-- Right Target Sight HUD overlay -->
+    <div class="absolute right-12 top-1/4 w-64 h-64 opacity-12 pointer-events-none hidden lg:block z-5">
+      <svg class="w-full h-full animate-[spin_60s_linear_infinite_reverse]" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="48" stroke="#c084fc" stroke-width="0.5" fill="none" stroke-dasharray="4, 8" />
+        <circle cx="50" cy="50" r="40" stroke="#06b6d4" stroke-width="0.25" fill="none" />
+        <circle cx="50" cy="50" r="10" stroke="#ffd7a8" stroke-width="0.5" fill="none" stroke-dasharray="2, 2" />
+        <rect x="48" y="4" width="4" height="4" fill="#06b6d4" opacity="0.6" />
+        <rect x="48" y="92" width="4" height="4" fill="#06b6d4" opacity="0.6" />
+      </svg>
+    </div>
 
     <!-- ═══ LAYER 2: FLOATING BLUR ORBS (CSS morphing blobs) ═══ -->
     <div class="aurora-blob-container parallax-layer" aria-hidden="true">

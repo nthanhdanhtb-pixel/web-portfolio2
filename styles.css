@@ -15,27 +15,28 @@
   /* ── Core Backgrounds ── */
   --bg-deep: #f8fafc;
   --bg-card: #ffffff;
-  --bg-glass: rgba(255, 255, 255, 0.65);
-  --bg-glass-hover: rgba(255, 255, 255, 0.85);
+  --bg-glass: rgba(255, 255, 255, 0.58);
+  --bg-glass-hover: rgba(255, 255, 255, 0.78);
 
   /* ── Glass & Borders ── */
-  --glass-border: rgba(226, 232, 240, 0.8);
-  --glass-border-glow: rgba(59, 130, 246, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-border-glow: rgba(192, 132, 252, 0.25);
 
-  /* ── Brand Palette ── */
-  --color-teal: #00C6FF;
+  /* ── Brand Palette (Extracted from background.png) ── */
+  --color-lavender: #c084fc;
   --color-cyan: #06b6d4;
-  --color-blue: #3b82f6;
-  --color-purple: #8b5cf6;
-  --color-magenta: #8A2387;
+  --color-mint: #2dd4bf;
+  --color-gold: #facc15;
+  --color-champagne: #ffd7a8;
+  --color-peach: #ffedd5;
+  --color-pink: #f472b6;
   --color-word: #2b579a;
   --color-pdf: #e81123;
 
   /* ── Gradients ── */
-  --gradient-brand: linear-gradient(135deg, #00C6FF 0%, #0072FF 50%, #8A2387 100%);
-  --gradient-cyber: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
-  --gradient-accent: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6);
-  --gradient-light: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.6) 100%);
+  --gradient-cyber: linear-gradient(135deg, #06b6d4 0%, #c084fc 40%, #ffd7a8 70%, #f472b6 100%);
+  --gradient-accent: linear-gradient(90deg, #06b6d4, #c084fc, #ffd7a8);
+  --gradient-light: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.4) 100%);
 
   /* ── Text ── */
   --text-primary: #0f172a;
@@ -44,10 +45,10 @@
   --text-dim: #94a3b8;
 
   /* ── Glow & Shadows ── */
-  --glow-cyan: 0 0 25px rgba(6, 182, 212, 0.12);
-  --glow-blue: 0 0 25px rgba(59, 130, 246, 0.12);
-  --glow-card: 0 4px 24px -4px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
-  --glow-card-hover: 0 20px 48px -12px rgba(15, 23, 42, 0.12), 0 0 30px -8px rgba(59, 130, 246, 0.15);
+  --glow-cyan: 0 0 25px rgba(6, 182, 212, 0.08);
+  --glow-purple: 0 0 25px rgba(192, 132, 252, 0.08);
+  --glow-card: 0 8px 32px -4px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+  --glow-card-hover: 0 20px 48px -12px rgba(15, 23, 42, 0.08), 0 0 30px -8px rgba(192, 132, 252, 0.12);
 
   /* ── Typography ── */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -63,12 +64,12 @@ body {
   color: var(--text-secondary);
   font-family: var(--font-sans);
   overflow-x: hidden;
-  /* Premium micro-grid overlay */
+  /* Premium micro-grid overlay with soft pastel hints */
   background-image:
-    radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.04) 0%, transparent 45%),
-    linear-gradient(rgba(15, 23, 42, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.015) 1px, transparent 1px);
+    radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(244, 114, 182, 0.04) 0%, transparent 45%),
+    linear-gradient(rgba(148, 163, 184, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.015) 1px, transparent 1px);
   background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
   background-attachment: fixed;
 }
@@ -85,9 +86,20 @@ h1, h2, h3, h4, .heading-font {
 }
 
 /* ==========================================================================
-   3. LAYER 1 — AURORA GRADIENT ANIMATION (CSS)
-   Large, slowly-moving color washes behind the hero content.
-   Uses CSS pseudo-elements for GPU-accelerated rendering.
+   3. HERO BACKGROUND INTEGRATION & FADE
+   ========================================================================== */
+#home {
+  position: relative;
+  /* Fade smoothly into white at bottom, while keeping background.png fully visible in top 80% */
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 65%, rgba(248, 250, 252, 0.95) 96%), url('./background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: background-position;
+}
+
+/* ==========================================================================
+   4. LAYER 1 — SOFT VOLUMETRIC WASH (CSS)
    ========================================================================== */
 .aurora-base-layer {
   position: absolute;
@@ -97,7 +109,7 @@ h1, h2, h3, h4, .heading-font {
   overflow: hidden;
 }
 
-/* Soft ambient aurora wash behind hero */
+/* Extremely light ambient wash on top of background.png to create breathing atmosphere */
 .aurora-base-layer::before {
   content: '';
   position: absolute;
@@ -106,9 +118,9 @@ h1, h2, h3, h4, .heading-font {
   width: 140%;
   height: 160%;
   background:
-    radial-gradient(ellipse 600px 500px at 15% 30%, rgba(0, 198, 255, 0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 500px 600px at 85% 25%, rgba(138, 35, 135, 0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 700px 400px at 50% 80%, rgba(0, 114, 255, 0.05) 0%, transparent 70%);
+    radial-gradient(ellipse 600px 500px at 15% 30%, rgba(6, 182, 212, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 600px at 85% 25%, rgba(192, 132, 252, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 700px 400px at 50% 80%, rgba(254, 215, 170, 0.04) 0%, transparent 70%);
   animation: auroraDrift 25s ease-in-out infinite alternate;
   will-change: transform;
 }
@@ -121,26 +133,25 @@ h1, h2, h3, h4, .heading-font {
   width: 120%;
   height: 140%;
   background:
-    radial-gradient(ellipse 400px 500px at 75% 60%, rgba(6, 182, 212, 0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 500px 400px at 25% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+    radial-gradient(ellipse 400px 500px at 75% 60%, rgba(6, 182, 212, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 400px at 25% 70%, rgba(192, 132, 252, 0.04) 0%, transparent 70%);
   animation: auroraDrift2 30s ease-in-out infinite alternate;
   will-change: transform;
 }
 
 @keyframes auroraDrift {
   0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
-  100% { transform: translate(40px, -30px) rotate(2deg) scale(1.05); }
+  100% { transform: translate(30px, -20px) rotate(1deg) scale(1.03); }
 }
 
 @keyframes auroraDrift2 {
   0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
-  100% { transform: translate(-30px, 20px) rotate(-1.5deg) scale(1.03); }
+  100% { transform: translate(-20px, 15px) rotate(-1deg) scale(1.02); }
 }
 
 /* ==========================================================================
-   4. LAYER 2 — FLOATING BLUR ORBS (CSS)
-   Multiple blurred orbs at varying depths. Each has unique
-   position, size, color, and animation timing.
+   5. LAYER 2 — FLOATING VOLUMETRIC ORBS (CSS)
+   Super lightweight, low-opacity ambient light blobs that float above background.png.
    ========================================================================== */
 .aurora-blob-container {
   position: absolute;
@@ -150,12 +161,11 @@ h1, h2, h3, h4, .heading-font {
   overflow: hidden;
 }
 
-/* Base orb styling */
 .aurora-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.22;
+  filter: blur(100px);
+  opacity: 0.12; /* Low opacity keeps background.png highly visible */
   will-change: transform, border-radius;
   pointer-events: none;
 }
@@ -164,14 +174,14 @@ h1, h2, h3, h4, .heading-font {
 .aurora-blob--left-1 {
   width: 380px; height: 380px;
   top: 5%; left: -8%;
-  background: radial-gradient(circle, rgba(0, 198, 255, 0.6) 0%, rgba(0, 114, 255, 0.2) 60%, transparent 100%);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.45) 0%, rgba(59, 130, 246, 0.15) 60%, transparent 100%);
   animation: orbFloat1 14s ease-in-out infinite, orbMorph1 20s ease-in-out infinite;
 }
 
 .aurora-blob--left-2 {
   width: 280px; height: 280px;
   top: 55%; left: 0%;
-  background: radial-gradient(circle, rgba(138, 35, 135, 0.5) 0%, rgba(0, 114, 255, 0.15) 70%, transparent 100%);
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.4) 0%, rgba(244, 114, 182, 0.12) 70%, transparent 100%);
   animation: orbFloat2 17s ease-in-out infinite, orbMorph2 22s ease-in-out infinite;
   animation-delay: -4s;
 }
@@ -179,17 +189,17 @@ h1, h2, h3, h4, .heading-font {
 .aurora-blob--left-3 {
   width: 200px; height: 200px;
   top: 28%; left: 5%;
-  background: radial-gradient(circle, rgba(0, 198, 255, 0.4) 0%, rgba(138, 35, 135, 0.1) 80%, transparent 100%);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, rgba(192, 132, 252, 0.08) 80%, transparent 100%);
   animation: orbFloat3 11s ease-in-out infinite, orbMorph1 16s ease-in-out infinite;
   animation-delay: -7s;
-  opacity: 0.16;
+  opacity: 0.08;
 }
 
 /* ── RIGHT SIDE ORBS ── */
 .aurora-blob--right-1 {
   width: 400px; height: 400px;
   top: 10%; right: -10%;
-  background: radial-gradient(circle, rgba(138, 35, 135, 0.5) 0%, rgba(0, 114, 255, 0.15) 55%, transparent 100%);
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.4) 0%, rgba(244, 114, 182, 0.12) 55%, transparent 100%);
   animation: orbFloat2 16s ease-in-out infinite, orbMorph2 18s ease-in-out infinite;
   animation-delay: -2s;
 }
@@ -197,7 +207,7 @@ h1, h2, h3, h4, .heading-font {
 .aurora-blob--right-2 {
   width: 300px; height: 300px;
   top: 58%; right: -2%;
-  background: radial-gradient(circle, rgba(0, 114, 255, 0.5) 0%, rgba(0, 198, 255, 0.15) 65%, transparent 100%);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, rgba(254, 215, 170, 0.12) 65%, transparent 100%);
   animation: orbFloat1 15s ease-in-out infinite, orbMorph1 24s ease-in-out infinite;
   animation-delay: -6s;
 }
@@ -205,73 +215,71 @@ h1, h2, h3, h4, .heading-font {
 .aurora-blob--right-3 {
   width: 220px; height: 220px;
   top: 32%; right: 6%;
-  background: radial-gradient(circle, rgba(0, 198, 255, 0.4) 0%, rgba(138, 35, 135, 0.1) 70%, transparent 100%);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, rgba(192, 132, 252, 0.08) 70%, transparent 100%);
   animation: orbFloat3 12s ease-in-out infinite, orbMorph2 17s ease-in-out infinite;
   animation-delay: -9s;
-  opacity: 0.16;
+  opacity: 0.08;
 }
 
-/* ── CENTER DEPTH ORBS (new — adds depth to center area) ── */
+/* ── CENTER DEPTH ORBS ── */
 .aurora-blob--center-1 {
   width: 500px; height: 500px;
   top: 20%; left: 30%;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
   animation: orbFloat1 20s ease-in-out infinite;
   animation-delay: -10s;
-  opacity: 0.1;
-  filter: blur(100px);
+  opacity: 0.06;
+  filter: blur(120px);
 }
 
 .aurora-blob--center-2 {
   width: 350px; height: 350px;
   bottom: 10%; right: 25%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.08) 0%, transparent 70%);
   animation: orbFloat2 18s ease-in-out infinite;
   animation-delay: -5s;
-  opacity: 0.08;
-  filter: blur(120px);
+  opacity: 0.05;
+  filter: blur(130px);
 }
 
-/* Orb floating keyframes — gentle multi-axis drift */
 @keyframes orbFloat1 {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  25%      { transform: translate3d(35px, -45px, 0) scale(1.06); }
-  50%      { transform: translate3d(-25px, 25px, 0) scale(0.94); }
-  75%      { transform: translate3d(18px, 40px, 0) scale(1.08); }
+  25%      { transform: translate3d(20px, -25px, 0) scale(1.03); }
+  50%      { transform: translate3d(-15px, 15px, 0) scale(0.97); }
+  75%      { transform: translate3d(10px, 20px, 0) scale(1.04); }
 }
 
 @keyframes orbFloat2 {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  33%      { transform: translate3d(-40px, 30px, 0) scale(1.1); }
-  66%      { transform: translate3d(30px, -35px, 0) scale(0.92); }
+  33%      { transform: translate3d(-25px, 20px, 0) scale(1.05); }
+  66%      { transform: translate3d(20px, -20px, 0) scale(0.95); }
 }
 
 @keyframes orbFloat3 {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  20%      { transform: translate3d(25px, 35px, 0) scale(1.07); }
-  40%      { transform: translate3d(-35px, -18px, 0) scale(0.93); }
-  60%      { transform: translate3d(12px, -40px, 0) scale(1.12); }
-  80%      { transform: translate3d(-18px, 22px, 0) scale(0.97); }
+  20%      { transform: translate3d(15px, 20px, 0) scale(1.04); }
+  40%      { transform: translate3d(-20px, -10px, 0) scale(0.96); }
+  60%      { transform: translate3d(10px, -25px, 0) scale(1.06); }
+  80%      { transform: translate3d(-10px, 15px, 0) scale(0.98); }
 }
 
-/* Organic blob shape morphing */
 @keyframes orbMorph1 {
   0%, 100% { border-radius: 50%; }
-  25%      { border-radius: 62% 38% 56% 44%; }
-  50%      { border-radius: 44% 56% 38% 62%; }
-  75%      { border-radius: 56% 44% 62% 38%; }
+  25%      { border-radius: 58% 42% 54% 46%; }
+  50%      { border-radius: 46% 54% 42% 58%; }
+  75%      { border-radius: 54% 46% 58% 42%; }
 }
 
 @keyframes orbMorph2 {
   0%, 100% { border-radius: 50%; }
-  20%      { border-radius: 38% 62% 50% 50%; }
-  40%      { border-radius: 50% 50% 62% 38%; }
-  60%      { border-radius: 62% 38% 38% 62%; }
-  80%      { border-radius: 44% 56% 56% 44%; }
+  20%      { border-radius: 42% 58% 50% 50%; }
+  40%      { border-radius: 50% 50% 58% 42%; }
+  60%      { border-radius: 58% 42% 42% 58%; }
+  80%      { border-radius: 46% 54% 54% 46%; }
 }
 
 /* ==========================================================================
-   5. PARALLAX CONTAINER UTILITY
+   6. PARALLAX CONTAINER UTILITY
    ========================================================================== */
 .parallax-layer {
   will-change: transform;
@@ -279,23 +287,23 @@ h1, h2, h3, h4, .heading-font {
 }
 
 /* ==========================================================================
-   6. GLASSMORPHISM UTILITIES (Apple / Stripe Premium)
+   7. GLASSMORPHISM UTILITIES (Premium control panel look matching background.png)
    ========================================================================== */
 .glass-panel {
   background: var(--bg-glass);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glow-card);
 }
 
 .glass-panel:hover {
-  border-color: rgba(203, 213, 225, 0.8);
+  border-color: rgba(255, 255, 255, 0.8);
   background: var(--bg-glass-hover);
 }
 
 .glass-card-cyber {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.62);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--glass-border);
@@ -312,7 +320,7 @@ h1, h2, h3, h4, .heading-font {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), transparent 40%, rgba(139, 92, 246, 0.3));
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), transparent 40%, rgba(192, 132, 252, 0.25));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -323,9 +331,9 @@ h1, h2, h3, h4, .heading-font {
 
 .glass-card-cyber:hover {
   transform: translateY(-6px);
-  border-color: rgba(59, 130, 246, 0.2);
+  border-color: rgba(192, 132, 252, 0.25);
   box-shadow: var(--glow-card-hover);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.76);
 }
 
 .glass-card-cyber:hover::before {
@@ -343,7 +351,7 @@ h1, h2, h3, h4, .heading-font {
   inset: 0;
   border-radius: inherit;
   padding: 1.5px;
-  background: linear-gradient(135deg, var(--color-cyan) 0%, transparent 60%, var(--color-purple) 100%);
+  background: linear-gradient(135deg, var(--color-cyan) 0%, transparent 60%, var(--color-lavender) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -357,31 +365,30 @@ h1, h2, h3, h4, .heading-font {
 }
 
 /* ==========================================================================
-   7. HERO TYPOGRAPHY — GRADIENT GLOW + SHINE ANIMATION
+   8. HERO TYPOGRAPHY — GRADIENT GLOW + SHINE ANIMATION
    ========================================================================== */
 
-/* Animated gradient text with shimmer */
+/* Animated gradient text with shimmer (Matching pink, lavender, cyan, champagne) */
 .hero-gradient-text {
   background: linear-gradient(
     90deg,
     #06b6d4 0%,
-    #3b82f6 20%,
-    #8b5cf6 40%,
-    #c084fc 55%,
-    #3b82f6 70%,
-    #06b6d4 85%,
-    #3b82f6 100%
+    #8b5cf6 22%,
+    #ffd7a8 44%,
+    #f472b6 66%,
+    #8b5cf6 82%,
+    #06b6d4 100%
   );
-  background-size: 250% auto;
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: heroShine 8s linear infinite;
+  animation: heroShine 6s linear infinite;
 }
 
 @keyframes heroShine {
   0%   { background-position: 0% center; }
-  100% { background-position: 250% center; }
+  100% { background-position: 200% center; }
 }
 
 /* Glow aura behind the gradient text */
@@ -395,11 +402,11 @@ h1, h2, h3, h4, .heading-font {
   position: absolute;
   inset: -15px -30px;
   background: linear-gradient(90deg,
-    rgba(6, 182, 212, 0.15),
-    rgba(59, 130, 246, 0.2),
-    rgba(139, 92, 246, 0.15)
+    rgba(6, 182, 212, 0.12),
+    rgba(192, 132, 252, 0.18),
+    rgba(254, 215, 170, 0.12)
   );
-  filter: blur(40px);
+  filter: blur(35px);
   border-radius: 50%;
   z-index: -1;
   animation: glowPulse 4s ease-in-out infinite;
@@ -408,14 +415,14 @@ h1, h2, h3, h4, .heading-font {
 
 @keyframes glowPulse {
   0%, 100% { opacity: 0.4; transform: scale(1); }
-  50%      { opacity: 0.7; transform: scale(1.05); }
+  50%      { opacity: 0.75; transform: scale(1.03); }
 }
 
 /* ==========================================================================
-   8. BUTTON MICRO-INTERACTIONS
+   9. BUTTON MICRO-INTERACTIONS
    ========================================================================== */
 
-/* Primary CTA button with animated gradient border */
+/* Primary CTA button with animated gradient border matching the image colors */
 .btn-primary-glow {
   position: relative;
   overflow: hidden;
@@ -427,7 +434,7 @@ h1, h2, h3, h4, .heading-font {
   position: absolute;
   inset: -2px;
   border-radius: inherit;
-  background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6, #06b6d4);
+  background: linear-gradient(135deg, #06b6d4, #c084fc, #ffd7a8, #f472b6, #06b6d4);
   background-size: 300% 300%;
   animation: gradientRotate 4s linear infinite;
   z-index: -1;
@@ -441,7 +448,7 @@ h1, h2, h3, h4, .heading-font {
 
 .btn-primary-glow:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 8px 30px rgba(192, 132, 252, 0.2), 0 0 40px rgba(6, 182, 212, 0.1);
 }
 
 .btn-primary-glow:active {
@@ -465,7 +472,7 @@ h1, h2, h3, h4, .heading-font {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--color-cyan), var(--color-blue), var(--color-purple));
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-lavender), var(--color-champagne));
   opacity: 0;
   transition: opacity 0.4s ease;
   border-radius: inherit;
@@ -476,7 +483,7 @@ h1, h2, h3, h4, .heading-font {
   transform: translateY(-2px) scale(1.03);
   border-color: transparent !important;
   color: white !important;
-  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 8px 30px rgba(192, 132, 252, 0.15);
 }
 
 .btn-secondary-morph:hover::after {
@@ -497,7 +504,7 @@ h1, h2, h3, h4, .heading-font {
 }
 
 /* ==========================================================================
-   9. NAVIGATION MICRO-INTERACTIONS
+   10. NAVIGATION MICRO-INTERACTIONS
    ========================================================================== */
 
 /* Desktop nav link underline animation */
@@ -526,7 +533,7 @@ header nav a.active::after {
 
 /* Active nav state */
 header nav a.active {
-  color: var(--color-blue);
+  color: var(--color-cyan);
 }
 
 /* Header CTA button interaction */

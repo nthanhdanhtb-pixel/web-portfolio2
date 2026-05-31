@@ -360,20 +360,17 @@ document.addEventListener('DOMContentLoaded', () => {
   updateActiveNav();
 });
 
-
 // ==========================================================================
-// 6-LAYER CANVAS BACKGROUND ENGINE
+// 6-LAYER CANVAS BACKGROUND ENGINE — PRESTIGE PASTEL EDITION
 // ==========================================================================
-// Renders on a single <canvas> with position:fixed behind all content.
+// Rebuilt to align with background.png color palette and depth style.
 //
-// Layer 1: Aurora Gradients — Large, slow-moving radial color washes
-// Layer 2: Floating Orbs    — Medium blurred circles (pre-rendered textures)
-// Layer 3: AI Particles     — 80–150 small moving dots
-// Layer 4: Neural Network   — Lines connecting nearby particles
-// Layer 5: Mouse Interaction — Attraction force + ripple rings
-// Layer 6: Parallax Depth   — Mouse-based coordinate offsets per layer
-//
-// Performance targets: 60 FPS, no heavy libraries, requestAnimationFrame.
+// Layer 1: Volumetric Aurora washes & Ambient lighting
+// Layer 2: Curved Data Streams (Cubic Bezier trajectories)
+// Layer 3: AI Network Nodes (Pulsing nodes with glowing halos)
+// Layer 4: Signal Transmission Pulses (Traveling energy packets along networks)
+// Layer 5: Holographic HUD Ornaments (Targeting reticles, scanning sweeps, coordinates)
+// Layer 6: Parallax Depth & Interactive mouse forces
 // ==========================================================================
 (function() {
   const canvas = document.getElementById('interactive-grid-canvas');
@@ -385,64 +382,24 @@ document.addEventListener('DOMContentLoaded', () => {
   let W = window.innerWidth;
   let H = window.innerHeight;
 
-  // ─── CONFIGURATION ───
-  const CONFIG = {
-    // Layer 3: Particle count (adaptive)
-    get particleCount() { return isMobile ? 25 : 120; },
-    particleSpeed: 0.35,
-    edgeBias: 0.65,          // 65% of particles on left/right edges
-    edgeZoneWidth: 0.28,     // Edge zone = 28% of screen width
-
-    // Layer 4: Neural network
-    maxConnectionDist: 150,
-    get lineOpacityMax() { return isMobile ? 0.03 : 0.08; },
-
-    // Layer 5: Mouse interaction
-    mouseRadius: 200,
-    mouseForce: 0.10,
-    attractMode: true,       // true = attract, false = repel
-
-    // Layer 1: Aurora count
-    auroraCount: 3,
-
-    // Layer 2: Orb count
-    get orbCount() { return isMobile ? 3 : 6; },
-
-    // Layer 6: Parallax depths (multipliers)
-    parallax: {
-      aurora: 0.015,
-      orbs: 0.03,
-      particles: 0.05,
-    },
-
-    // Color palette
+  // ─── DESIGN THEME & CONFIGURATION ───
+  const THEME = {
     colors: {
-      teal:   { r: 0,   g: 198, b: 255 },
-      blue:   { r: 0,   g: 114, b: 255 },
-      purple: { r: 138, g: 35,  b: 135 },
+      lavender: { r: 192, g: 132, b: 252 },  // #c084fc (dominant pastel purple)
+      cyan:     { r: 6,   g: 182, b: 212 },  // #06b6d4 (pastel tech cyan)
+      peach:    { r: 254, g: 215, b: 170 },  // #ffd7a8 (champagne/peach gold)
+      pink:     { r: 244, g: 114, b: 182 },  // #f472b6 (accent pink)
+      white:    { r: 255, g: 255, b: 255 },  // core lighting glow
     },
-
-    // Opacity ranges
-    get particleOpacityRange() { return isMobile ? [0.02, 0.06] : [0.06, 0.25]; },
-
-    // Grid
-    gridSize: 50,
-    gridOpacity: 0.018,
+    // Particle count by depth plane (0=bg, 1=mid, 2=fg)
+    nodeCounts:       isMobile ? [12, 18, 5] : [35, 55, 12],
+    streamCounts:     isMobile ? [40, 60, 0] : [100, 180, 20],
+    
+    maxConnectionDist: [95, 155, 230], // connection ranges per depth
+    parallax:          [0.012, 0.028, 0.055], // parallax offsets per depth
   };
 
-  // ─── STATE ───
-  let particles = [];
-  let auroras = [];
-  let orbs = [];
-  let ripples = [];
-  let mouse = { x: null, y: null };
-  let parallaxMouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
-  let animFrameId = null;
-  let orbTextures = {};
-  let time = 0;
-
-  // ─── UTILITIES ───
-  const palette = [CONFIG.colors.teal, CONFIG.colors.blue, CONFIG.colors.purple];
+  const palette = [THEME.colors.lavender, THEME.colors.cyan, THEME.colors.peach, THEME.colors.pink];
 
   function randomColor() {
     return palette[Math.floor(Math.random() * palette.length)];
@@ -452,7 +409,18 @@ document.addEventListener('DOMContentLoaded', () => {
     return a + (b - a) * t;
   }
 
-  // ─── CANVAS RESIZE (DPI-aware) ───
+  // ─── SYSTEM STATE ───
+  let nodes = [];
+  let streams = [];
+  let signalPulses = [];
+  let HUDAnchors = [];
+  let mouse = { x: null, y: null };
+  let parallaxMouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+  let animFrameId = null;
+  let time = 0;
+  let laserScanY = 0;
+
+  // ─── CANVAS RESIZE ───
   function resizeCanvas() {
     dpr = window.devicePixelRatio || 1;
     isMobile = window.innerWidth <= 768;
@@ -465,367 +433,119 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    canvas.style.opacity = isMobile ? '0.4' : '0.9';
+    // Keep it light but highly immersive
+    canvas.style.opacity = isMobile ? '0.45' : '0.9';
 
-    initAuroras();
-    initOrbs();
-    initParticles();
+    initVolumetricSystem();
   }
 
-  // ─── LAYER 1: AURORA GRADIENTS ───
-  // Large radial gradients that drift slowly across the canvas.
-  // Rendered using createRadialGradient (no blur filter needed).
-
-  function initAuroras() {
-    auroras = [];
-    const positions = [
-      { x: W * 0.15, y: H * 0.25 },
-      { x: W * 0.85, y: H * 0.20 },
-      { x: W * 0.50, y: H * 0.75 },
-    ];
-    const colors = [CONFIG.colors.teal, CONFIG.colors.purple, CONFIG.colors.blue];
-    const radii = [Math.min(W, H) * 0.35, Math.min(W, H) * 0.30, Math.min(W, H) * 0.28];
-
-    for (let i = 0; i < CONFIG.auroraCount; i++) {
-      auroras.push({
-        baseX: positions[i].x,
-        baseY: positions[i].y,
-        x: positions[i].x,
-        y: positions[i].y,
-        radius: radii[i],
-        color: colors[i],
-        phase: (Math.PI * 2 / CONFIG.auroraCount) * i,
-        speed: 0.0008 + Math.random() * 0.0005,
-        driftX: 40 + Math.random() * 30,
-        driftY: 30 + Math.random() * 25,
-        opacity: isMobile ? 0.03 : 0.06,
-      });
-    }
-  }
-
-  function drawAuroras(px, py) {
-    auroras.forEach(a => {
-      // Slow orbital drift
-      a.x = a.baseX + Math.sin(time * a.speed) * a.driftX + px * CONFIG.parallax.aurora * W;
-      a.y = a.baseY + Math.cos(time * a.speed * 0.7) * a.driftY + py * CONFIG.parallax.aurora * H;
-
-      const grad = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, a.radius);
-      grad.addColorStop(0, `rgba(${a.color.r}, ${a.color.g}, ${a.color.b}, ${a.opacity})`);
-      grad.addColorStop(0.5, `rgba(${a.color.r}, ${a.color.g}, ${a.color.b}, ${a.opacity * 0.4})`);
-      grad.addColorStop(1, `rgba(${a.color.r}, ${a.color.g}, ${a.color.b}, 0)`);
-
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, W, H);
-    });
-  }
-
-  // ─── LAYER 2: FLOATING BLUR ORBS ───
-  // Pre-rendered blurred circle textures drawn as images for performance.
-
-  function createOrbTexture(radius, color, alpha) {
-    const padding = radius * 0.5;
-    const size = (radius + padding) * 2;
-    const offscreen = document.createElement('canvas');
-    offscreen.width = size;
-    offscreen.height = size;
-    const octx = offscreen.getContext('2d');
-
-    // Draw a soft radial gradient (simulates blur without filter)
-    const grad = octx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, radius);
-    grad.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`);
-    grad.addColorStop(0.4, `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.5})`);
-    grad.addColorStop(0.7, `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.15})`);
-    grad.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
-
-    octx.fillStyle = grad;
-    octx.beginPath();
-    octx.arc(size / 2, size / 2, radius + padding, 0, Math.PI * 2);
-    octx.fill();
-
-    return { canvas: offscreen, size: size };
-  }
-
-  function initOrbs() {
-    orbs = [];
-    for (let i = 0; i < CONFIG.orbCount; i++) {
-      const col = randomColor();
-      const radius = 60 + Math.random() * 80;
-      const alpha = isMobile ? 0.04 : 0.08 + Math.random() * 0.06;
-      const tex = createOrbTexture(radius, col, alpha);
-
-      orbs.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.15,
-        vy: (Math.random() - 0.5) * 0.12,
-        radius: radius,
-        texture: tex,
-        phase: Math.random() * Math.PI * 2,
-        floatSpeed: 0.002 + Math.random() * 0.003,
-        floatAmpX: 30 + Math.random() * 40,
-        floatAmpY: 25 + Math.random() * 35,
-        baseX: Math.random() * W,
-        baseY: Math.random() * H,
-      });
-    }
-  }
-
-  function drawOrbs(px, py) {
-    orbs.forEach(o => {
-      // Gentle floating motion
-      o.x = o.baseX + Math.sin(time * o.floatSpeed + o.phase) * o.floatAmpX + px * CONFIG.parallax.orbs * W;
-      o.y = o.baseY + Math.cos(time * o.floatSpeed * 0.8 + o.phase) * o.floatAmpY + py * CONFIG.parallax.orbs * H;
-
-      // Soft wrap around edges
-      if (o.x < -o.texture.size) o.baseX += W + o.texture.size;
-      if (o.x > W + o.texture.size) o.baseX -= W + o.texture.size;
-      if (o.y < -o.texture.size) o.baseY += H + o.texture.size;
-      if (o.y > H + o.texture.size) o.baseY -= H + o.texture.size;
-
-      ctx.drawImage(o.texture.canvas, o.x - o.texture.size / 2, o.y - o.texture.size / 2);
-    });
-  }
-
-  // ─── LAYER 3: AI PARTICLE SYSTEM ───
-  // 80–150 particles of varying size, opacity, and color.
-  // Edge-biased distribution fills the left/right empty spaces.
-
+  // Edge-biased spawning keeps the center clean and highlights left/right spaces
   function spawnX() {
-    const edgeW = W * CONFIG.edgeZoneWidth;
-    if (Math.random() < CONFIG.edgeBias) {
-      return Math.random() < 0.5
-        ? Math.random() * edgeW
-        : W - Math.random() * edgeW;
+    const zoneW = W * 0.28;
+    if (Math.random() < 0.70) {
+      return Math.random() < 0.5 ? Math.random() * zoneW : W - Math.random() * zoneW;
     }
     return Math.random() * W;
   }
 
-  function initParticles() {
-    particles = [];
-    const count = CONFIG.particleCount;
-    const [opMin, opMax] = CONFIG.particleOpacityRange;
+  // ─── TRAJECTORY SYSTEM: CUBIC BEZIER CONSTRUCTOR ───
+  function createBezierCurve(depth) {
+    const startX = spawnX();
+    const startY = Math.random() * (H + 100) - 50;
+    const endX = spawnX();
+    const endY = Math.random() * (H + 100) - 50;
 
-    for (let i = 0; i < count; i++) {
-      const col = randomColor();
-      const isNode = Math.random() < 0.2;
-      const opacity = opMin + Math.random() * (opMax - opMin);
+    // Control points curve elegantly around the canvas
+    const cp1x = startX + (Math.random() - 0.5) * W * 0.35;
+    const cp1y = startY + (Math.random() - 0.5) * H * 0.35;
+    const cp2x = endX + (Math.random() - 0.5) * W * 0.35;
+    const cp2y = endY + (Math.random() - 0.5) * H * 0.35;
 
-      particles.push({
-        x: spawnX(),
-        y: Math.random() * H,
-        vx: (Math.random() - 0.5) * CONFIG.particleSpeed,
-        vy: (Math.random() - 0.5) * CONFIG.particleSpeed,
-        radius: isNode ? (2 + Math.random() * 2.5) : (0.5 + Math.random() * 1.5),
-        color: col,
-        opacity: opacity,
-        isNode: isNode,
-        pulsePhase: Math.random() * Math.PI * 2,
-        pulseSpeed: 0.015 + Math.random() * 0.02,
-      });
-    }
-  }
-
-  function updateAndDrawParticles(px, py) {
-    particles.forEach(p => {
-      // Apply parallax offset (Layer 6)
-      const drawX = p.x + px * CONFIG.parallax.particles * W;
-      const drawY = p.y + py * CONFIG.parallax.particles * H;
-
-      // Drift motion
-      p.x += p.vx;
-      p.y += p.vy;
-
-      // Soft edge wrap
-      if (p.x < -30)    p.x = W + 30;
-      if (p.x > W + 30) p.x = -30;
-      if (p.y < -30)    p.y = H + 30;
-      if (p.y > H + 30) p.y = -30;
-
-      // Layer 5: Mouse interaction (attraction + glow boost)
-      if (mouse.x !== null && mouse.y !== null) {
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const distSq = dx * dx + dy * dy;
-        const radiusSq = CONFIG.mouseRadius * CONFIG.mouseRadius;
-
-        if (distSq < radiusSq) {
-          const dist = Math.sqrt(distSq) || 1;
-          const force = (CONFIG.mouseRadius - dist) / CONFIG.mouseRadius;
-
-          if (CONFIG.attractMode) {
-            // Gentle attraction toward cursor
-            p.x -= (dx / dist) * force * CONFIG.mouseForce * 8;
-            p.y -= (dy / dist) * force * CONFIG.mouseForce * 8;
-          } else {
-            // Repulsion away from cursor
-            p.x += (dx / dist) * force * CONFIG.mouseForce * 12;
-            p.y += (dy / dist) * force * CONFIG.mouseForce * 12;
-          }
-        }
-      }
-
-      // Pulse for node-type particles
-      let drawRadius = p.radius;
-      if (p.isNode) {
-        p.pulsePhase += p.pulseSpeed;
-        drawRadius = p.radius * (1 + Math.sin(p.pulsePhase) * 0.25);
-      }
-
-      const { r, g, b } = p.color;
-
-      // Draw glow halo for nodes
-      if (p.isNode && !isMobile) {
-        const glowGrad = ctx.createRadialGradient(drawX, drawY, 0, drawX, drawY, drawRadius * 4);
-        glowGrad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.15})`);
-        glowGrad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
-        ctx.fillStyle = glowGrad;
-        ctx.beginPath();
-        ctx.arc(drawX, drawY, drawRadius * 4, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Draw particle core
-      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity})`;
-      ctx.beginPath();
-      ctx.arc(drawX, drawY, drawRadius, 0, Math.PI * 2);
-      ctx.fill();
-    });
-  }
-
-  // ─── LAYER 4: NEURAL NETWORK CONNECTIONS ───
-  // Draw lines between particles that are close enough.
-  // Line opacity fades with distance. Uses gradient coloring.
-
-  function drawNeuralNetwork(px, py) {
-    const maxDist = CONFIG.maxConnectionDist;
-    const maxDistSq = maxDist * maxDist;
-
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const p1 = particles[i];
-        const p2 = particles[j];
-
-        const dx = p1.x - p2.x;
-        const dy = p1.y - p2.y;
-        const distSq = dx * dx + dy * dy;
-
-        if (distSq < maxDistSq) {
-          const dist = Math.sqrt(distSq);
-          const alpha = (1 - dist / maxDist) * CONFIG.lineOpacityMax;
-
-          // Apply parallax offsets
-          const x1 = p1.x + px * CONFIG.parallax.particles * W;
-          const y1 = p1.y + py * CONFIG.parallax.particles * H;
-          const x2 = p2.x + px * CONFIG.parallax.particles * W;
-          const y2 = p2.y + py * CONFIG.parallax.particles * H;
-
-          // Gradient line between two particle colors
-          const grad = ctx.createLinearGradient(x1, y1, x2, y2);
-          grad.addColorStop(0, `rgba(${p1.color.r}, ${p1.color.g}, ${p1.color.b}, ${alpha})`);
-          grad.addColorStop(1, `rgba(${p2.color.r}, ${p2.color.g}, ${p2.color.b}, ${alpha})`);
-
-          ctx.strokeStyle = grad;
-          ctx.lineWidth = 0.6;
-          ctx.beginPath();
-          ctx.moveTo(x1, y1);
-          ctx.lineTo(x2, y2);
-          ctx.stroke();
-        }
-      }
-    }
-
-    // Layer 5: Mouse synaptic connections (lines from cursor to nearby particles)
-    if (mouse.x !== null && mouse.y !== null && !isMobile) {
-      particles.forEach(p => {
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < CONFIG.mouseRadius) {
-          const alpha = (1 - dist / CONFIG.mouseRadius) * 0.12;
-          const { r, g, b } = p.color;
-          const px2 = p.x + px * CONFIG.parallax.particles * W;
-          const py2 = p.y + py * CONFIG.parallax.particles * H;
-
-          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
-          ctx.lineWidth = 0.5;
-          ctx.beginPath();
-          ctx.moveTo(mouse.x, mouse.y);
-          ctx.lineTo(px2, py2);
-          ctx.stroke();
-        }
-      });
-    }
-  }
-
-  // ─── LAYER 5 (continued): MOUSE RIPPLE EFFECT ───
-  // Expanding, fading concentric rings at the mouse position.
-
-  function addRipple(x, y) {
-    if (ripples.length > 3) return; // Limit active ripples
-    ripples.push({
-      x: x,
-      y: y,
-      radius: 5,
-      maxRadius: 80 + Math.random() * 40,
-      opacity: 0.15,
-      speed: 1.2 + Math.random() * 0.5,
+    return {
+      t: Math.random(),
+      speed: 0.0012 + Math.random() * 0.0022,
+      startX, startY,
+      cp1x, cp1y,
+      cp2x, cp2y,
+      endX, endY,
+      depth: depth,
       color: randomColor(),
-    });
+      radius: depth === 0 ? 0.55 : (depth === 1 ? 1.2 : 2.8),
+      opacity: depth === 0 ? 0.12 : (depth === 1 ? 0.28 : 0.45),
+    };
   }
 
-  let lastRippleTime = 0;
-  let lastMouseX = 0, lastMouseY = 0;
+  // Compute points along cubic bezier paths
+  function getBezierPoint(b) {
+    const t = b.t;
+    const mt = 1 - t;
+    const mt2 = mt * mt;
+    const mt3 = mt2 * mt;
+    const t2 = t * t;
+    const t3 = t2 * t;
 
-  function maybeAddRipple() {
-    if (mouse.x === null || isMobile) return;
-
-    const now = Date.now();
-    const dx = mouse.x - lastMouseX;
-    const dy = mouse.y - lastMouseY;
-    const speed = Math.sqrt(dx * dx + dy * dy);
-
-    // Only create ripple when mouse moves fast enough, with cooldown
-    if (speed > 50 && now - lastRippleTime > 300) {
-      addRipple(mouse.x, mouse.y);
-      lastRippleTime = now;
-    }
-
-    lastMouseX = mouse.x;
-    lastMouseY = mouse.y;
+    const x = mt3 * b.startX + 3 * mt2 * t * b.cp1x + 3 * mt * t2 * b.cp2x + t3 * b.endX;
+    const y = mt3 * b.startY + 3 * mt2 * t * b.cp1y + 3 * mt * t2 * b.cp2y + t3 * b.endY;
+    return { x, y };
   }
 
-  function updateAndDrawRipples() {
-    for (let i = ripples.length - 1; i >= 0; i--) {
-      const r = ripples[i];
-      r.radius += r.speed;
-      r.opacity *= 0.96; // Fade out
+  // ─── INITIALIZE VOLUMETRIC SYSTEM ───
+  function initVolumetricSystem() {
+    nodes = [];
+    streams = [];
+    signalPulses = [];
+    HUDAnchors = [];
 
-      if (r.radius >= r.maxRadius || r.opacity < 0.005) {
-        ripples.splice(i, 1);
-        continue;
+    // Spawning Nodes across three depth zones
+    for (let depth = 0; depth < 3; depth++) {
+      const count = THEME.nodeCounts[depth];
+      for (let i = 0; i < count; i++) {
+        nodes.push({
+          x: spawnX(),
+          y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.16,
+          vy: (Math.random() - 0.5) * 0.14,
+          depth: depth,
+          radius: depth === 0 ? 1.2 : (depth === 1 ? 2.6 : 5.5),
+          opacity: depth === 0 ? 0.14 : (depth === 1 ? 0.32 : 0.52),
+          color: randomColor(),
+          pulsePhase: Math.random() * Math.PI * 2,
+          pulseSpeed: 0.008 + Math.random() * 0.012,
+          glowAmp: depth === 2 ? 6 : 0,
+        });
       }
+    }
 
-      ctx.strokeStyle = `rgba(${r.color.r}, ${r.color.g}, ${r.color.b}, ${r.opacity})`;
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
-      ctx.stroke();
+    // Spawning Curved Data Streams
+    for (let depth = 0; depth < 3; depth++) {
+      const count = THEME.streamCounts[depth];
+      for (let i = 0; i < count; i++) {
+        streams.push(createBezierCurve(depth));
+      }
+    }
+
+    // Spawning Static Holographic HUD Anchors
+    if (!isMobile) {
+      HUDAnchors = [
+        { x: W * 0.15, y: H * 0.35, size: 80, speed: 0.004, color: THEME.colors.cyan },
+        { x: W * 0.82, y: H * 0.65, size: 110, speed: -0.002, color: THEME.colors.lavender }
+      ];
     }
   }
 
-  // ─── SUBTLE BACKGROUND GRID ───
-  function drawGrid() {
-    ctx.strokeStyle = `rgba(148, 163, 184, ${CONFIG.gridOpacity})`;
+  // ─── LAYER 1: AMBIENT LIGHT & SUBTLE GRID ───
+  function drawBackgroundGrid() {
+    ctx.strokeStyle = `rgba(148, 163, 184, 0.016)`;
     ctx.lineWidth = 0.5;
 
-    for (let x = 0; x < W; x += CONFIG.gridSize) {
+    const gridSize = 45;
+    for (let x = 0; x < W; x += gridSize) {
       ctx.beginPath();
       ctx.moveTo(x, 0);
       ctx.lineTo(x, H);
       ctx.stroke();
     }
-    for (let y = 0; y < H; y += CONFIG.gridSize) {
+    for (let y = 0; y < H; y += gridSize) {
       ctx.beginPath();
       ctx.moveTo(0, y);
       ctx.lineTo(W, y);
@@ -833,7 +553,278 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ─── MOUSE TRACKING ───
+  // ─── LAYER 2: CURVED DATA STREAMS ───
+  function drawDataStreams(px, py) {
+    streams.forEach(b => {
+      b.t += b.speed;
+      if (b.t >= 1) {
+        // Recycle curve once it completes
+        const fresh = createBezierCurve(b.depth);
+        Object.assign(b, fresh);
+        b.t = 0;
+      }
+
+      const p = getBezierPoint(b);
+      // Apply volumetric parallax coordinate offset
+      const drawX = p.x + px * THEME.parallax[b.depth] * W;
+      const drawY = p.y + py * THEME.parallax[b.depth] * H;
+
+      // Mouse attraction force bends data streams slightly
+      let mx = 0, my = 0;
+      if (mouse.x !== null) {
+        const dx = drawX - mouse.x;
+        const dy = drawY - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 180) {
+          const force = (180 - dist) / 180;
+          mx = -(dx / dist) * force * 15;
+          my = -(dy / dist) * force * 15;
+        }
+      }
+
+      ctx.fillStyle = `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, ${b.opacity})`;
+      ctx.beginPath();
+      ctx.arc(drawX + mx, drawY + my, b.radius, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  // ─── LAYER 3 & 4: AI NETWORK & SIGNAL PULSES ───
+  function drawAINetwork(px, py) {
+    // 1. Update and draw nodes
+    nodes.forEach(n => {
+      n.x += n.vx;
+      n.y += n.vy;
+
+      // Wall rebounds
+      if (n.x < -30)    n.x = W + 30;
+      if (n.x > W + 30) n.x = -30;
+      if (n.y < -30)    n.y = H + 30;
+      if (n.y > H + 30) n.y = -30;
+
+      const drawX = n.x + px * THEME.parallax[n.depth] * W;
+      const drawY = n.y + py * THEME.parallax[n.depth] * H;
+
+      n.pulsePhase += n.pulseSpeed;
+      const wave = Math.sin(n.pulsePhase);
+      const drawRadius = n.radius * (1 + wave * 0.15);
+
+      // Brighten nodes when cursor is nearby
+      let hoverGlow = 0;
+      if (mouse.x !== null) {
+        const dx = drawX - mouse.x;
+        const dy = drawY - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          hoverGlow = (150 - dist) / 150;
+        }
+      }
+
+      // Dynamic Node Glow halo (Volumetric Lighting)
+      if (n.depth === 2 || hoverGlow > 0) {
+        const glowRad = drawRadius * (hoverGlow > 0 ? (2 + hoverGlow * 3) : 3.5);
+        const glowAlpha = n.opacity * (0.18 + hoverGlow * 0.45);
+        const grad = ctx.createRadialGradient(drawX, drawY, 0, drawX, drawY, glowRad);
+        grad.addColorStop(0, `rgba(${n.color.r}, ${n.color.g}, ${n.color.b}, ${glowAlpha})`);
+        grad.addColorStop(1, `rgba(${n.color.r}, ${n.color.g}, ${n.color.b}, 0)`);
+        
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(drawX, drawY, glowRad, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Node core
+      ctx.fillStyle = `rgba(${n.color.r}, ${n.color.g}, ${n.color.b}, ${n.opacity + hoverGlow * 0.35})`;
+      ctx.beginPath();
+      ctx.arc(drawX, drawY, drawRadius, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // 2. Establish connections (glowing connection lines)
+    const maxDist = THEME.maxConnectionDist;
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const n1 = nodes[i];
+        const n2 = nodes[j];
+
+        // Connect only if they reside in the identical depth plane to preserve clean volumetric depth layering
+        if (n1.depth !== n2.depth) continue;
+
+        const dx = n1.x - n2.x;
+        const dy = n1.y - n2.y;
+        const distSq = dx * dx + dy * dy;
+        const range = maxDist[n1.depth];
+
+        if (distSq < range * range) {
+          const dist = Math.sqrt(distSq);
+          let alpha = (1 - dist / range) * (n1.depth === 0 ? 0.05 : (n1.depth === 1 ? 0.12 : 0.22));
+
+          const x1 = n1.x + px * THEME.parallax[n1.depth] * W;
+          const y1 = n1.y + py * THEME.parallax[n1.depth] * H;
+          const x2 = n2.x + px * THEME.parallax[n2.depth] * W;
+          const y2 = n2.y + py * THEME.parallax[n2.depth] * H;
+
+          // Increase intensity near mouse
+          if (mouse.x !== null) {
+            const mx = (x1 + x2) / 2;
+            const my = (y1 + y2) / 2;
+            const mdx = mx - mouse.x;
+            const mdy = my - mouse.y;
+            const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+            if (mdist < 140) {
+              alpha += (1 - mdist / 140) * 0.25;
+            }
+          }
+
+          const grad = ctx.createLinearGradient(x1, y1, x2, y2);
+          grad.addColorStop(0, `rgba(${n1.color.r}, ${n1.color.g}, ${n1.color.b}, ${alpha})`);
+          grad.addColorStop(1, `rgba(${n2.color.r}, ${n2.color.g}, ${n2.color.b}, ${alpha})`);
+
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = n1.depth === 0 ? 0.45 : (n1.depth === 1 ? 0.8 : 1.3);
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+
+          // Chance to trigger dynamic Signal Transmission Pulse (Layer 4)
+          if (time % 80 === 0 && Math.random() < 0.015 && signalPulses.length < 24) {
+            signalPulses.push({
+              n1: n1,
+              n2: n2,
+              progress: 0,
+              speed: 0.008 + Math.random() * 0.012,
+              color: THEME.colors.peach,
+            });
+          }
+        }
+      }
+    }
+
+    // 3. Render traveling network energy pulses
+    for (let i = signalPulses.length - 1; i >= 0; i--) {
+      const pulse = signalPulses[i];
+      pulse.progress += pulse.speed;
+
+      if (pulse.progress >= 1) {
+        signalPulses.splice(i, 1);
+        continue;
+      }
+
+      const x1 = pulse.n1.x + px * THEME.parallax[pulse.n1.depth] * W;
+      const y1 = pulse.n1.y + py * THEME.parallax[pulse.n1.depth] * H;
+      const x2 = pulse.n2.x + px * THEME.parallax[pulse.n2.depth] * W;
+      const y2 = pulse.n2.y + py * THEME.parallax[pulse.n2.depth] * H;
+
+      const pxPos = lerp(x1, x2, pulse.progress);
+      const pyPos = lerp(y1, y2, pulse.progress);
+      const drawSize = pulse.n1.depth === 0 ? 2 : (pulse.n1.depth === 1 ? 3.5 : 5);
+
+      // Pulse Glow halo
+      const pulseGrad = ctx.createRadialGradient(pxPos, pyPos, 0, pxPos, pyPos, drawSize * 2.8);
+      pulseGrad.addColorStop(0, `rgba(${pulse.color.r}, ${pulse.color.g}, ${pulse.color.b}, 0.7)`);
+      pulseGrad.addColorStop(1, `rgba(${pulse.color.r}, ${pulse.color.g}, ${pulse.color.b}, 0)`);
+
+      ctx.fillStyle = pulseGrad;
+      ctx.beginPath();
+      ctx.arc(pxPos, pyPos, drawSize * 2.8, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Core signal node
+      ctx.fillStyle = `rgba(${THEME.colors.white.r}, ${THEME.colors.white.g}, ${THEME.colors.white.b}, 0.95)`;
+      ctx.beginPath();
+      ctx.arc(pxPos, pyPos, drawSize * 0.8, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // ─── LAYER 5: HOLOGRAPHIC TECH HUDS ───
+  function drawHolographicHUDs(px, py) {
+    if (isMobile) return;
+
+    // 1. Rotating concentric structural circles
+    HUDAnchors.forEach(a => {
+      const drawX = a.x + px * 0.035 * W;
+      const drawY = a.y + px * 0.035 * H;
+      a.speed = a.speed;
+      const angle = time * a.speed;
+
+      ctx.strokeStyle = `rgba(${a.color.r}, ${a.color.g}, ${a.color.b}, 0.08)`;
+      ctx.lineWidth = 0.5;
+
+      // Outer dashed circle
+      ctx.save();
+      ctx.translate(drawX, drawY);
+      ctx.rotate(angle);
+      ctx.beginPath();
+      ctx.arc(0, 0, a.size, 0, Math.PI * 2);
+      ctx.setLineDash([4, 12]);
+      ctx.stroke();
+      ctx.restore();
+
+      // Inner thin solid ring
+      ctx.beginPath();
+      ctx.arc(drawX, drawY, a.size * 0.75, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Center crosshair sights
+      ctx.beginPath();
+      ctx.moveTo(drawX - 6, drawY); ctx.lineTo(drawX + 6, drawY);
+      ctx.moveTo(drawX, drawY - 6); ctx.lineTo(drawX, drawY + 6);
+      ctx.stroke();
+    });
+
+    // 2. Continuous horizontal scanning laser sweep
+    laserScanY += 0.85;
+    if (laserScanY > H) laserScanY = 0;
+
+    const grad = ctx.createLinearGradient(0, laserScanY - 15, 0, laserScanY + 1);
+    grad.addColorStop(0, 'rgba(6, 182, 212, 0)');
+    grad.addColorStop(0.8, 'rgba(6, 182, 212, 0.015)');
+    grad.addColorStop(1, 'rgba(6, 182, 212, 0.06)');
+
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, laserScanY - 15, W, 16);
+
+    // 3. Mouse active targeting corner HUD sights
+    if (mouse.x !== null) {
+      const mx = mouse.x;
+      const my = mouse.y;
+      
+      ctx.strokeStyle = `rgba(${THEME.colors.cyan.r}, ${THEME.colors.cyan.g}, ${THEME.colors.cyan.b}, 0.28)`;
+      ctx.lineWidth = 0.8;
+      
+      // Top-Left corner bracket
+      ctx.beginPath();
+      ctx.moveTo(mx - 18, my - 10);
+      ctx.lineTo(mx - 18, my - 18);
+      ctx.lineTo(mx - 10, my - 18);
+      ctx.stroke();
+
+      // Bottom-Right corner bracket
+      ctx.beginPath();
+      ctx.moveTo(mx + 10, my + 18);
+      ctx.lineTo(mx + 18, my + 18);
+      ctx.lineTo(mx + 18, my + 10);
+      ctx.stroke();
+
+      // Tech coordinates read-out
+      ctx.fillStyle = `rgba(${THEME.colors.cyan.r}, ${THEME.colors.cyan.g}, ${THEME.colors.cyan.b}, 0.4)`;
+      ctx.font = '8px JetBrains Mono, monospace';
+      ctx.fillText(`LOC: [X:${mx.toFixed(0)}, Y:${my.toFixed(0)}]`, mx + 22, my - 8);
+      ctx.fillText(`STATE: ACTIVE_SYS`, mx + 22, my + 2);
+    }
+  }
+
+  // ─── DEBOUNCED RESIZE ───
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(resizeCanvas, 200);
+  });
+
+  // ─── MOUSE BINDINGS ───
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
@@ -848,57 +839,34 @@ document.addEventListener('DOMContentLoaded', () => {
     parallaxMouse.targetY = 0;
   });
 
-  // Debounced resize
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(resizeCanvas, 200);
-  });
-
-  // ─── MAIN RENDER LOOP ───
-  function animate() {
+  // ─── MAIN ANIMATION LOOP ───
+  function renderFrame() {
     time++;
-    W = window.innerWidth;
-    H = window.innerHeight;
-
     ctx.clearRect(0, 0, W, H);
 
-    // Layer 6: Smooth parallax interpolation
+    // Apply volumetric parallax smoothing via linear interpolation (lerp)
     parallaxMouse.x = lerp(parallaxMouse.x, parallaxMouse.targetX, 0.025);
     parallaxMouse.y = lerp(parallaxMouse.y, parallaxMouse.targetY, 0.025);
     const px = parallaxMouse.x;
     const py = parallaxMouse.y;
 
-    // ─── Render order (back to front) ───
+    // Render multi-layer canvas elements back-to-front
+    drawBackgroundGrid();                     // Layer 1 Grid
+    drawDataStreams(px, py);                  // Layer 2 Curved Streams
+    drawAINetwork(px, py);                    // Layer 3 + 4 AI Connections & energy signals
+    drawHolographicHUDs(px, py);              // Layer 5 Holographic tech indicators
 
-    // Layer 1: Aurora gradient washes
-    drawAuroras(px, py);
-
-    // Subtle grid overlay
-    drawGrid();
-
-    // Layer 2: Floating blur orbs
-    drawOrbs(px, py);
-
-    // Layer 3 + 6: AI Particles with parallax
-    updateAndDrawParticles(px, py);
-
-    // Layer 4 + 5 + 6: Neural network + mouse connections + parallax
-    drawNeuralNetwork(px, py);
-
-    // Layer 5: Ripple effect
-    maybeAddRipple();
-    updateAndDrawRipples();
-
-    animFrameId = requestAnimationFrame(animate);
+    animFrameId = requestAnimationFrame(renderFrame);
   }
 
   // ─── INIT & START ───
   resizeCanvas();
-  animate();
+  renderFrame();
 
   // Cleanup
   window.addEventListener('beforeunload', () => {
     if (animFrameId) cancelAnimationFrame(animFrameId);
   });
 })();
+
+
