@@ -85,8 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ================= 3. HEADER SCROLL INTERACTION =================
+  // ================= 3. HEADER SCROLL INTERACTION & VECTOR PARALLAX =================
   const header = document.querySelector('header');
+  const parallaxWireframes = document.querySelectorAll('.parallax-wireframe');
+
   window.addEventListener('scroll', () => {
     if (header) {
       if (window.scrollY > 40) {
@@ -97,6 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
         header.classList.add('bg-white/70', 'border-slate-200/80');
       }
     }
+
+    // Volumetric scroll-based translation of decorative wireframe polyhedrons
+    const sy = window.scrollY;
+    parallaxWireframes.forEach((el, i) => {
+      const factor = (i % 2 === 0 ? 0.12 : -0.18);
+      el.style.transform = `translateY(${sy * factor}px)`;
+    });
   });
 
   // ================= 4. SMOOTH SCROLL =================

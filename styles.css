@@ -60,18 +60,18 @@
    2. BASE STYLES
    ========================================================================== */
 body {
-  background-color: var(--bg-deep);
   color: var(--text-secondary);
   font-family: var(--font-sans);
   overflow-x: hidden;
-  /* Premium micro-grid overlay with soft pastel hints */
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.04) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(244, 114, 182, 0.04) 0%, transparent 45%),
-    linear-gradient(rgba(148, 163, 184, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.015) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
-  background-attachment: fixed;
+  /* Continuous luxurious page-wide gradient sweep representing the color tones of background.png */
+  background: linear-gradient(180deg, 
+    #f8fafc 0%,       /* Hero base integration */
+    #f5f3ff 25%,      /* About: soft lavender */
+    #ecfeff 55%,      /* Projects: mint cyan */
+    #fffbeb 82%,      /* Reflection: warm gold/peach */
+    #fdf2f8 100%      /* Ethics/Footer: soft pink */
+  );
+  background-attachment: scroll;
 }
 
 /* Custom Scrollbar */
@@ -338,6 +338,143 @@ h1, h2, h3, h4, .heading-font {
 
 .glass-card-cyber:hover::before {
   opacity: 1;
+}
+
+/* Cyber Corner Brackets */
+.cyber-bracket {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--color-cyan);
+  border-style: solid;
+  pointer-events: none;
+  opacity: 0.3;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cyber-bracket--tl { top: 10px; left: 10px; border-width: 1.5px 0 0 1.5px; }
+.cyber-bracket--tr { top: 10px; right: 10px; border-width: 1.5px 1.5px 0 0; }
+.cyber-bracket--bl { bottom: 10px; left: 10px; border-width: 0 0 1.5px 1.5px; }
+.cyber-bracket--br { bottom: 10px; right: 10px; border-width: 0 1.5px 1.5px 0; }
+
+.glass-card-cyber:hover .cyber-bracket {
+  opacity: 0.85;
+  border-color: var(--color-lavender);
+  transform: scale(1.1);
+}
+
+/* Technology Certification Badge */
+.tech-cert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03), 0 0 15px rgba(6, 182, 212, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-cert-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-lavender), var(--color-champagne));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
+}
+
+.tech-cert-badge:hover::before {
+  opacity: 0.95;
+}
+
+.tech-cert-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.06), 0 0 25px rgba(192, 132, 252, 0.12);
+}
+
+/* Spinning AI core icon */
+.tech-cert-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px dashed var(--color-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spinCore 15s linear infinite;
+  position: relative;
+}
+
+.tech-cert-icon::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gradient-accent);
+  position: absolute;
+  animation: pulseCore 2s ease-in-out infinite;
+}
+
+@keyframes spinCore {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseCore {
+  0%, 100% { transform: scale(0.85); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.tech-cert-label-sub {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.tech-cert-label-main {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+/* Section Specific Structural Vectors */
+.section-bg-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.section-bg-art svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.parallax-wireframe {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.055;
+  will-change: transform;
+  transition: transform 0.2s ease-out;
 }
 
 /* Premium Light Cyber Border */

@@ -146,10 +146,13 @@
     <!-- Content Container -->
     <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
       
-      <!-- Badge mượt mà trượt xuống (anim-fade-in-down) -->
-      <div class="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/70 border border-slate-200 text-xs font-semibold tracking-wide text-blue-600 mb-8 shadow-sm backdrop-blur-sm anim-fade-in-down">
-        <span class="w-2 h-2 rounded-full bg-cyan-500 animate-ping"></span>
-        Hồ sơ năng lực học tập môn Công nghệ số & AI
+      <!-- Redesigned Tech Cert Label Badge (Premium layered & glowing) -->
+      <div class="tech-cert-badge mb-8 anim-fade-in-down">
+        <div class="tech-cert-icon" aria-hidden="true"></div>
+        <div class="flex flex-col text-left">
+          <span class="tech-cert-label-sub">CNTT - UET - HỌC PHẦN</span>
+          <span class="tech-cert-label-main">CÔNG NGHỆ SỐ & AI [MSSV: 25020058]</span>
+        </div>
       </div>
 
       <!-- Tiêu đề tạp chí đậm nét (anim-fade-in-up) -->
@@ -198,12 +201,39 @@
   </section>
 
   <!-- ================= ABOUT ME & INTRODUCTION (LIGHTMODE PRESTIGE) ================= -->
-  <section id="intro" class="py-24 border-t border-slate-200/60 relative bg-white reveal-on-scroll">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="intro" class="py-24 border-y border-slate-200/50 relative bg-transparent overflow-hidden reveal-on-scroll">
+
+    <!-- ═══ Section Background Artwork (Floating 3D Polyhedrons & Technical Motifs) ═══ -->
+    <div class="section-bg-art animate-pulse-neon" aria-hidden="true" style="animation-duration: 8s">
+      <!-- 3D wireframe polyhedrons (derived from background.png gimbals and icosahedrons) -->
+      <svg viewBox="0 0 800 600" fill="none" class="opacity-[0.055] w-full h-full">
+        <!-- Floating Dodecahedron Left -->
+        <g class="parallax-wireframe" style="transform: translate(60px, 80px) scale(0.9); transform-origin: center;">
+          <polygon points="50,15 90,35 90,80 50,100 10,80 10,35" stroke="#c084fc" stroke-width="0.8" fill="none" />
+          <polygon points="50,15 50,45 10,35" stroke="#c084fc" stroke-width="0.5" fill="none" />
+          <polygon points="90,35 50,45 90,80" stroke="#c084fc" stroke-width="0.5" fill="none" />
+          <polygon points="50,100 50,45 10,80" stroke="#c084fc" stroke-width="0.5" fill="none" />
+        </g>
+        <!-- Floating Icosahedron Right -->
+        <g class="parallax-wireframe" style="transform: translate(680px, 280px) scale(1.15); transform-origin: center;">
+          <polygon points="50,5 95,30 95,80 50,95 5,80 5,30" stroke="#06b6d4" stroke-width="0.8" fill="none" />
+          <line x1="50" y1="5" x2="50" y2="95" stroke="#06b6d4" stroke-width="0.5" />
+          <line x1="5" y1="30" x2="95" y2="30" stroke="#06b6d4" stroke-width="0.5" />
+          <line x1="5" y1="80" x2="95" y2="80" stroke="#06b6d4" stroke-width="0.5" />
+          <line x1="5" y1="30" x2="50" y2="95" stroke="#06b6d4" stroke-width="0.5" />
+          <line x1="95" y1="30" x2="50" y2="95" stroke="#06b6d4" stroke-width="0.5" />
+        </g>
+        <!-- Faint technology grid alignment corner brackets -->
+        <path d="M 30,30 L 10,30 L 10,10 L 30,10" stroke="#94a3b8" stroke-width="0.75" />
+        <path d="M 770,30 L 790,30 L 790,10 L 770,10" stroke="#94a3b8" stroke-width="0.75" />
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-bold tracking-widest uppercase text-blue-600">Giới thiệu</span>
+        <span class="text-xs font-bold tracking-widest uppercase text-cyan-600">Giới thiệu</span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Giới Thiệu Bản Thân</h2>
         <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mt-4 rounded-full"></div>
       </div>
@@ -216,7 +246,13 @@
           <div class="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl blur opacity-15 group-hover:opacity-35 transition duration-1000 group-hover:duration-200 animate-pulse-neon"></div>
 
           <!-- Portrait Frame (Hiển thị 3/4 ảnh gốc toàn thân không bị méo và crop) -->
-          <div class="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[3/4] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center group/img shadow-md">
+          <div class="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[3/4] rounded-2xl overflow-hidden bg-white/40 border border-white/60 flex items-center justify-center group/img shadow-md backdrop-blur-md">
+            <!-- Corner Brackets around Avatar -->
+            <div class="cyber-bracket cyber-bracket--tl"></div>
+            <div class="cyber-bracket cyber-bracket--tr"></div>
+            <div class="cyber-bracket cyber-bracket--bl"></div>
+            <div class="cyber-bracket cyber-bracket--br"></div>
+
             <!-- Fallback Student Design Card -->
             <div class="absolute inset-0 bg-gradient-to-tr from-slate-100 via-slate-50 to-slate-200 flex flex-col items-center justify-center p-6 text-center z-0">
               <span class="text-4xl font-black text-slate-200 tracking-widest uppercase mb-1">STUDENT</span>
@@ -300,12 +336,44 @@
   </section>
 
   <!-- ================= LAB SHOWCASE SECTION (PREMIUM LIGHT SYSTEM) ================= -->
-  <section id="projects" class="py-24 border-t border-slate-200/60 bg-slate-50/50 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="projects" class="py-24 border-y border-slate-200/50 bg-transparent relative overflow-hidden">
+
+    <!-- ═══ Section Background Artwork (Technical Grid & Golden PCB Tracks) ═══ -->
+    <div class="section-bg-art" aria-hidden="true">
+      <svg viewBox="0 0 1200 800" fill="none" class="opacity-[0.055] w-full h-full">
+        <!-- Digital Grid -->
+        <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#94a3b8" stroke-width="0.5" />
+        </pattern>
+        <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+        
+        <!-- Diagonal Glowing PCB Tracks (Matching background.png diagonal circuits) -->
+        <g stroke="#ffd7a8" stroke-width="1.2" stroke-linecap="round">
+          <!-- Main diagonal circuit bus left-to-right -->
+          <path d="M 0,200 L 300,200 L 500,400 L 900,400 L 1050,550 L 1200,550" stroke-dasharray="10, 5" />
+          <path d="M 50,220 L 280,220 L 480,420 L 880,420 L 1030,570" />
+          <path d="M 200,100 L 320,220" />
+          <path d="M 750,420 L 800,470 L 950,470" />
+          
+          <!-- Node Terminal Points -->
+          <circle cx="300" cy="200" r="3.5" fill="#ffd7a8" />
+          <circle cx="500" cy="400" r="3.5" fill="#ffd7a8" />
+          <circle cx="900" cy="400" r="3.5" fill="#ffd7a8" />
+          <circle cx="1050" cy="550" r="3.5" fill="#ffd7a8" />
+          <circle cx="800" cy="470" r="2.5" fill="#ffd7a8" />
+        </g>
+        
+        <!-- Cyber details -->
+        <rect x="880" y="380" width="40" height="8" stroke="#06b6d4" stroke-width="0.75" />
+        <line x1="890" y1="384" x2="910" y2="384" stroke="#06b6d4" stroke-width="0.5" />
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-20 reveal-on-scroll">
-        <span class="text-xs font-bold tracking-widest uppercase text-blue-600">Bài tập Thực hành</span>
+        <span class="text-xs font-bold tracking-widest uppercase text-cyan-600">Bài tập Thực hành</span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Chi tiết 6 Bài tập & Dự án Thực nghiệm</h2>
         <p class="text-slate-500 mt-4 leading-relaxed">
           Ghi nhận lộ trình rèn luyện kỹ năng số một cách tuần tự, khoa học và thực chất trong học tập và hợp tác.
@@ -318,6 +386,11 @@
 
         <!-- BÀI 1 (Interactive File Tree & Metadata Panel) -->
         <article class="glass-card-cyber rounded-3xl p-6 sm:p-8 lg:p-12 reveal-on-scroll">
+          <!-- Cyber Corner Brackets -->
+          <div class="cyber-bracket cyber-bracket--tl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--tr" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--bl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--br" aria-hidden="true"></div>
           <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
@@ -533,6 +606,11 @@
 
         <!-- BÀI 2 -->
         <article class="glass-card-cyber rounded-3xl p-6 sm:p-8 lg:p-12 reveal-on-scroll">
+          <!-- Cyber Corner Brackets -->
+          <div class="cyber-bracket cyber-bracket--tl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--tr" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--bl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--br" aria-hidden="true"></div>
           <div class="flex flex-col lg:flex-row-reverse gap-8 lg:gap-12">
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
@@ -609,6 +687,11 @@
 
         <!-- BÀI 3 -->
         <article class="glass-card-cyber rounded-3xl p-6 sm:p-8 lg:p-12 reveal-on-scroll">
+          <!-- Cyber Corner Brackets -->
+          <div class="cyber-bracket cyber-bracket--tl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--tr" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--bl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--br" aria-hidden="true"></div>
           <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
@@ -690,6 +773,11 @@
 
         <!-- BÀI 4 -->
         <article class="glass-card-cyber rounded-3xl p-6 sm:p-8 lg:p-12 reveal-on-scroll">
+          <!-- Cyber Corner Brackets -->
+          <div class="cyber-bracket cyber-bracket--tl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--tr" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--bl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--br" aria-hidden="true"></div>
           <div class="flex flex-col lg:flex-row-reverse gap-8 lg:gap-12">
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
@@ -770,6 +858,11 @@
 
         <!-- BÀI 5 (AI Assisted Art Conception featuring Portrait Image 1.jpg) -->
         <article class="glass-card-cyber rounded-3xl p-6 sm:p-8 lg:p-12 reveal-on-scroll">
+          <!-- Cyber Corner Brackets -->
+          <div class="cyber-bracket cyber-bracket--tl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--tr" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--bl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--br" aria-hidden="true"></div>
           <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
@@ -862,6 +955,11 @@
 
         <!-- BÀI 6 -->
         <article class="glass-card-cyber rounded-3xl p-6 sm:p-8 lg:p-12 reveal-on-scroll">
+          <!-- Cyber Corner Brackets -->
+          <div class="cyber-bracket cyber-bracket--tl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--tr" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--bl" aria-hidden="true"></div>
+          <div class="cyber-bracket cyber-bracket--br" aria-hidden="true"></div>
           <div class="flex flex-col lg:flex-row-reverse gap-8 lg:gap-12">
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
@@ -943,19 +1041,45 @@
   </section>
 
   <!-- ================= FINAL REFLECTION SECTION (LIGHTMODE GLASSMOPHISM) ================= -->
-  <section id="reflection" class="py-24 border-t border-slate-200/60 relative reveal-on-scroll">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="reflection" class="py-24 border-y border-slate-200/50 bg-transparent relative overflow-hidden reveal-on-scroll">
+
+    <!-- ═══ Section Background Artwork (Bezier Data Curves & Timeline Nodes) ═══ -->
+    <div class="section-bg-art" aria-hidden="true">
+      <svg viewBox="0 0 1000 700" fill="none" class="opacity-[0.055] w-full h-full">
+        <!-- Flowing vertical Bezier curves representing growth timeline streams -->
+        <path d="M 100,0 Q 150,150 100,300 T 100,600 Q 50,650 100,700" stroke="#c084fc" stroke-width="1.5" />
+        <path d="M 120,0 Q 170,150 120,300 T 120,600 Q 70,650 120,700" stroke="#c084fc" stroke-width="0.5" stroke-dasharray="5, 5" />
+        
+        <path d="M 900,0 Q 850,100 900,250 T 900,500 Q 950,600 900,700" stroke="#06b6d4" stroke-width="1.5" />
+        <path d="M 880,0 Q 830,100 880,250 T 880,500 Q 930,600 880,700" stroke="#06b6d4" stroke-width="0.5" stroke-dasharray="5, 5" />
+
+        <!-- Timeline microchip connectors -->
+        <g stroke="#f472b6" stroke-width="0.8">
+          <circle cx="500" cy="100" r="4" fill="#f472b6" />
+          <line x1="500" y1="104" x2="500" y2="180" />
+          <circle cx="500" cy="250" r="4" fill="#f472b6" />
+          <line x1="500" y1="254" x2="500" y2="350" />
+          <circle cx="500" cy="450" r="4" fill="#f472b6" />
+          <line x1="500" y1="454" x2="500" y2="600" />
+        </g>
+      </svg>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
       <div class="text-center mb-16">
-        <span class="text-xs font-bold tracking-widest uppercase text-blue-600">Phản tư học thuật</span>
+        <span class="text-xs font-bold tracking-widest uppercase text-cyan-600">Phản tư học thuật</span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Tổng kết & Đánh giá Toàn diện</h2>
         <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mt-4 rounded-full"></div>
       </div>
 
       <!-- Styled deep-dive document block (Nâng cấp kính mờ Light Glassmorphism mượt mà) -->
-      <article class="glass-panel rounded-3xl p-8 sm:p-12 shadow-md space-y-8 relative overflow-hidden bg-white/70">
-        <!-- Abstract glowing blob inside card -->
-        <div class="absolute -top-24 -right-24 w-48 h-48 bg-blue-100/30 rounded-full blur-3xl pointer-events-none"></div>
+      <article class="glass-card-cyber rounded-3xl p-8 sm:p-12 shadow-md space-y-8 relative overflow-hidden bg-white/65 backdrop-blur-md">
+        <!-- Cyber Corner Brackets -->
+        <div class="cyber-bracket cyber-bracket--tl" aria-hidden="true"></div>
+        <div class="cyber-bracket cyber-bracket--tr" aria-hidden="true"></div>
+        <div class="cyber-bracket cyber-bracket--bl" aria-hidden="true"></div>
+        <div class="cyber-bracket cyber-bracket--br" aria-hidden="true"></div>
         
         <div class="border-b border-slate-200 pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-slate-400 font-mono">
           <div>
@@ -1010,8 +1134,31 @@
   </section>
 
   <!-- ================= RESPONSIBLE AI REPORT SECTION (ĐỔI SANG LIÊM CHÍNH HỌC THUẬT) ================= -->
-  <section id="ethics" class="py-24 border-t border-slate-200/60 bg-slate-50/40 relative reveal-on-scroll">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="ethics" class="py-24 border-t border-slate-200/50 bg-transparent relative overflow-hidden reveal-on-scroll">
+
+    <!-- ═══ Section Background Artwork (Hexagonal Blueprint & Architectural Borders) ═══ -->
+    <div class="section-bg-art" aria-hidden="true">
+      <svg viewBox="0 0 1000 600" fill="none" class="opacity-[0.05] w-full h-full">
+        <!-- Hexagonal grid network blueprint -->
+        <path d="M 500,200 L 530,220 L 530,260 L 500,280 L 470,260 L 470,220 Z" stroke="#94a3b8" stroke-width="0.8" />
+        <path d="M 530,220 L 560,200 L 590,220 L 590,260 L 560,280 L 530,260" stroke="#94a3b8" stroke-width="0.8" />
+        <path d="M 470,220 L 440,200 L 410,220 L 410,260 L 440,280 L 470,260" stroke="#94a3b8" stroke-width="0.8" />
+        <path d="M 500,280 L 500,320 L 530,340 L 560,320 L 560,280" stroke="#94a3b8" stroke-width="0.8" />
+        <path d="M 470,280 L 440,320 L 410,300 L 410,260" stroke="#94a3b8" stroke-width="0.8" />
+
+        <!-- Symmetrical blueprint lines & technical brackets -->
+        <path d="M 50,50 L 50,550 L 950,550 L 950,50 Z" stroke="#c084fc" stroke-width="0.5" stroke-dasharray="15, 10" />
+        <!-- Corner alignment targets -->
+        <circle cx="50" cy="50" r="10" stroke="#06b6d4" stroke-width="0.5" />
+        <circle cx="950" cy="50" r="10" stroke="#06b6d4" stroke-width="0.5" />
+        <circle cx="50" cy="550" r="10" stroke="#06b6d4" stroke-width="0.5" />
+        <circle cx="950" cy="550" r="10" stroke="#06b6d4" stroke-width="0.5" />
+        <path d="M 40,50 L 60,50 M 50,40 L 50,60" stroke="#06b6d4" stroke-width="0.5" />
+        <path d="M 940,50 L 960,50 M 950,40 L 950,60" stroke="#06b6d4" stroke-width="0.5" />
+      </svg>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
       <div class="text-center mb-16">
         <span class="text-xs font-bold tracking-widest uppercase text-purple-600">Liêm chính học thuật</span>
@@ -1020,9 +1167,12 @@
       </div>
 
       <!-- High-End Report card with Light Premium Effect -->
-      <article class="glass-panel rounded-3xl p-8 sm:p-12 shadow-md relative overflow-hidden bg-white/80">
-        <!-- Subtle background glow -->
-        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-100/10 rounded-full blur-3xl pointer-events-none"></div>
+      <article class="glass-card-cyber rounded-3xl p-8 sm:p-12 shadow-md relative overflow-hidden bg-white/65 backdrop-blur-md">
+        <!-- Cyber Corner Brackets -->
+        <div class="cyber-bracket cyber-bracket--tl" aria-hidden="true"></div>
+        <div class="cyber-bracket cyber-bracket--tr" aria-hidden="true"></div>
+        <div class="cyber-bracket cyber-bracket--bl" aria-hidden="true"></div>
+        <div class="cyber-bracket cyber-bracket--br" aria-hidden="true"></div>
 
         <div class="space-y-6 text-slate-600 leading-relaxed text-sm sm:text-base">
           <div class="p-5 bg-blue-50/50 border border-blue-200/80 rounded-2xl flex items-start gap-4 shadow-sm">
