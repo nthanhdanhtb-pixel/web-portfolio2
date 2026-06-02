@@ -361,6 +361,10 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.add('active');
           }
         });
+
+        // Dynamic body active-section class tracking for scroll-responsive backgrounds
+        document.body.className = document.body.className.replace(/\bactive-section-\S+/g, '').trim();
+        document.body.classList.add('active-section-' + id);
       }
     });
   }
