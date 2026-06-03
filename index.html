@@ -42,6 +42,14 @@
 
 <body class="selection:bg-blue-500/10 selection:text-blue-700">
 
+  <!-- Mesh Gradient Background System -->
+  <div class="mesh-gradient-bg" aria-hidden="true">
+    <div class="mesh-orb mesh-orb--1"></div>
+    <div class="mesh-orb mesh-orb--2"></div>
+    <div class="mesh-orb mesh-orb--3"></div>
+    <div class="mesh-orb mesh-orb--4"></div>
+  </div>
+
   <!-- Thẻ Canvas nền tương tác động (Phương án 1) -->
   <canvas id="interactive-grid-canvas" class="fixed inset-0 pointer-events-none z-[-10] w-full h-full block opacity-70"></canvas>
 
@@ -50,7 +58,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <!-- Logo/Brand -->
       <a href="#home" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-600 flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform duration-300">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-500 to-blue-600 flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform duration-300">
           <span class="text-white font-extrabold text-lg">TD</span>
         </div>
         <div class="flex flex-col">
@@ -102,29 +110,29 @@
     <!-- ═══ LAYER 1: AURORA GRADIENT BASE (CSS animated wash) ═══ -->
     <div class="aurora-base-layer parallax-layer" aria-hidden="true"></div>
 
-    <!-- Ambient soft glow accents (Matching background.png champagne/peach and lavender tones) -->
-    <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-amber-100/10 rounded-full blur-3xl animate-pulse-neon"></div>
-    <div class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-purple-100/10 rounded-full blur-3xl animate-pulse-neon" style="animation-delay: 2s"></div>
+    <!-- Ambient soft glow accents (Matching background style with cyan and slate space tones) -->
+    <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-cyan-100/10 rounded-full blur-3xl animate-pulse-neon"></div>
+    <div class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-slate-100/10 rounded-full blur-3xl animate-pulse-neon" style="animation-delay: 2s"></div>
 
     <!-- ═══ LAYER 6: HOLOGRAPHIC TECH ORNAMENTS (Layered Above Background) ═══ -->
     <!-- Left Cyber Ring HUD overlay -->
     <div class="absolute left-12 top-1/3 -translate-y-1/2 w-48 h-48 opacity-15 pointer-events-none hidden lg:block z-5">
       <svg class="w-full h-full animate-[spin_40s_linear_infinite]" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" stroke="#06b6d4" stroke-width="0.5" fill="none" stroke-dasharray="2, 6" />
-        <circle cx="50" cy="50" r="38" stroke="#c084fc" stroke-width="0.25" fill="none" stroke-dasharray="10, 5" />
-        <circle cx="50" cy="50" r="30" stroke="#ffd7a8" stroke-width="1" fill="none" stroke-dasharray="4, 15" />
-        <path d="M 50 5 L 50 15 M 50 85 L 50 95 M 5 50 L 15 50 M 85 50 L 95 50" stroke="#06b6d4" stroke-width="0.5" />
+        <circle cx="50" cy="50" r="45" stroke="#0ea5e9" stroke-width="0.5" fill="none" stroke-dasharray="2, 6" />
+        <circle cx="50" cy="50" r="38" stroke="#0f766e" stroke-width="0.25" fill="none" stroke-dasharray="10, 5" />
+        <circle cx="50" cy="50" r="30" stroke="#64748b" stroke-width="1" fill="none" stroke-dasharray="4, 15" />
+        <path d="M 50 5 L 50 15 M 50 85 L 50 95 M 5 50 L 15 50 M 85 50 L 95 50" stroke="#0ea5e9" stroke-width="0.5" />
       </svg>
     </div>
 
     <!-- Right Target Sight HUD overlay -->
     <div class="absolute right-12 top-1/4 w-64 h-64 opacity-12 pointer-events-none hidden lg:block z-5">
       <svg class="w-full h-full animate-[spin_60s_linear_infinite_reverse]" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="48" stroke="#c084fc" stroke-width="0.5" fill="none" stroke-dasharray="4, 8" />
-        <circle cx="50" cy="50" r="40" stroke="#06b6d4" stroke-width="0.25" fill="none" />
-        <circle cx="50" cy="50" r="10" stroke="#ffd7a8" stroke-width="0.5" fill="none" stroke-dasharray="2, 2" />
-        <rect x="48" y="4" width="4" height="4" fill="#06b6d4" opacity="0.6" />
-        <rect x="48" y="92" width="4" height="4" fill="#06b6d4" opacity="0.6" />
+        <circle cx="50" cy="50" r="48" stroke="#0f766e" stroke-width="0.5" fill="none" stroke-dasharray="4, 8" />
+        <circle cx="50" cy="50" r="40" stroke="#0ea5e9" stroke-width="0.25" fill="none" />
+        <circle cx="50" cy="50" r="10" stroke="#64748b" stroke-width="0.5" fill="none" stroke-dasharray="2, 2" />
+        <rect x="48" y="4" width="4" height="4" fill="#0ea5e9" opacity="0.6" />
+        <rect x="48" y="92" width="4" height="4" fill="#0ea5e9" opacity="0.6" />
       </svg>
     </div>
 
@@ -181,7 +189,7 @@
       <!-- Các nút bấm CTA đẳng cấp (anim-fade-in-up anim-delay-700) -->
       <div class="flex flex-col sm:flex-row items-center gap-4 anim-fade-in-up anim-delay-700 w-full sm:w-auto">
         <!-- Khám phá bài tập (Gradient Neon Glow hover) -->
-        <a href="#projects" class="btn-primary-glow w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-bold shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 text-center">
+        <a href="#projects" class="btn-primary-glow w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-blue-600 text-white font-bold shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 text-center">
           Khám phá Bài tập dự án
         </a>
         <!-- Đọc Tổng kết (Morphing Fill hover) -->
@@ -209,19 +217,19 @@
       <svg viewBox="0 0 800 600" fill="none" class="opacity-[0.055] w-full h-full">
         <!-- Floating Dodecahedron Left -->
         <g class="parallax-wireframe" style="transform: translate(60px, 80px) scale(0.9); transform-origin: center;">
-          <polygon points="50,15 90,35 90,80 50,100 10,80 10,35" stroke="#c084fc" stroke-width="0.8" fill="none" />
-          <polygon points="50,15 50,45 10,35" stroke="#c084fc" stroke-width="0.5" fill="none" />
-          <polygon points="90,35 50,45 90,80" stroke="#c084fc" stroke-width="0.5" fill="none" />
-          <polygon points="50,100 50,45 10,80" stroke="#c084fc" stroke-width="0.5" fill="none" />
+          <polygon points="50,15 90,35 90,80 50,100 10,80 10,35" stroke="#0f766e" stroke-width="0.8" fill="none" />
+          <polygon points="50,15 50,45 10,35" stroke="#0f766e" stroke-width="0.5" fill="none" />
+          <polygon points="90,35 50,45 90,80" stroke="#0f766e" stroke-width="0.5" fill="none" />
+          <polygon points="50,100 50,45 10,80" stroke="#0f766e" stroke-width="0.5" fill="none" />
         </g>
         <!-- Floating Icosahedron Right -->
         <g class="parallax-wireframe" style="transform: translate(680px, 280px) scale(1.15); transform-origin: center;">
-          <polygon points="50,5 95,30 95,80 50,95 5,80 5,30" stroke="#06b6d4" stroke-width="0.8" fill="none" />
-          <line x1="50" y1="5" x2="50" y2="95" stroke="#06b6d4" stroke-width="0.5" />
-          <line x1="5" y1="30" x2="95" y2="30" stroke="#06b6d4" stroke-width="0.5" />
-          <line x1="5" y1="80" x2="95" y2="80" stroke="#06b6d4" stroke-width="0.5" />
-          <line x1="5" y1="30" x2="50" y2="95" stroke="#06b6d4" stroke-width="0.5" />
-          <line x1="95" y1="30" x2="50" y2="95" stroke="#06b6d4" stroke-width="0.5" />
+          <polygon points="50,5 95,30 95,80 50,95 5,80 5,30" stroke="#0ea5e9" stroke-width="0.8" fill="none" />
+          <line x1="50" y1="5" x2="50" y2="95" stroke="#0ea5e9" stroke-width="0.5" />
+          <line x1="5" y1="30" x2="95" y2="30" stroke="#0ea5e9" stroke-width="0.5" />
+          <line x1="5" y1="80" x2="95" y2="80" stroke="#0ea5e9" stroke-width="0.5" />
+          <line x1="5" y1="30" x2="50" y2="95" stroke="#0ea5e9" stroke-width="0.5" />
+          <line x1="95" y1="30" x2="50" y2="95" stroke="#0ea5e9" stroke-width="0.5" />
         </g>
         <!-- Faint technology grid alignment corner brackets -->
         <path d="M 30,30 L 10,30 L 10,10 L 30,10" stroke="#94a3b8" stroke-width="0.75" />
@@ -235,7 +243,7 @@
       <div class="text-center max-w-3xl mx-auto mb-16">
         <span class="text-xs font-bold tracking-widest uppercase text-cyan-600">Giới thiệu</span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Giới Thiệu Bản Thân</h2>
-        <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mt-4 rounded-full"></div>
+        <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 mx-auto mt-4 rounded-full"></div>
       </div>
 
       <!-- Responsive Grid System -->
@@ -243,7 +251,7 @@
 
         <!-- Left Column: Stylized Avatar Container (Light Portrait frame) -->
         <div class="relative group flex justify-center">
-          <div class="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl blur opacity-15 group-hover:opacity-35 transition duration-1000 group-hover:duration-200 animate-pulse-neon"></div>
+          <div class="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur opacity-15 group-hover:opacity-35 transition duration-1000 group-hover:duration-200 animate-pulse-neon"></div>
 
           <!-- Portrait Frame (Hiển thị 3/4 ảnh gốc toàn thân không bị méo và crop) -->
           <div class="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[3/4] rounded-2xl overflow-hidden bg-white/40 border border-white/60 flex items-center justify-center group/img shadow-md backdrop-blur-md">
@@ -303,15 +311,15 @@
             </a>
 
             <!-- GitHub Root Link -->
-            <a href="https://github.com/nthanhdanhtb-pixel" target="_blank" class="group flex items-center gap-3.5 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-purple-500/30 hover:bg-white hover:shadow-md transition-all duration-300">
-              <div class="w-10 h-10 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-600 group-hover:scale-105 transition-transform duration-300">
+            <a href="https://github.com/nthanhdanhtb-pixel" target="_blank" class="group flex items-center gap-3.5 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-cyan-500/30 hover:bg-white hover:shadow-md transition-all duration-300">
+              <div class="w-10 h-10 rounded-lg bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-600 group-hover:scale-105 transition-transform duration-300">
                 <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                   <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
                 </svg>
               </div>
               <div>
                 <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">Kênh Source Code</span>
-                <span class="text-xs text-slate-700 font-mono group-hover:text-purple-600 transition-colors duration-200">github.com/nthanhdanhtb-pixel</span>
+                <span class="text-xs text-slate-700 font-mono group-hover:text-cyan-600 transition-colors duration-200">github.com/nthanhdanhtb-pixel</span>
               </div>
             </a>
           </div>
@@ -378,7 +386,7 @@
         <p class="text-slate-500 mt-4 leading-relaxed">
           Ghi nhận lộ trình rèn luyện kỹ năng số một cách tuần tự, khoa học và thực chất trong học tập và hợp tác.
         </p>
-        <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mt-6 rounded-full"></div>
+        <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 mx-auto mt-6 rounded-full"></div>
       </div>
 
       <!-- Labs Container (Alternating Layouts in Premium Lightmode) -->
@@ -412,7 +420,7 @@
                   <div class="lab-process-prompt font-mono text-xs text-blue-600 bg-slate-50 border border-slate-200 rounded-xl p-4 overflow-x-auto leading-relaxed shadow-sm">
                     <span class="text-slate-400">// Thiết lập cây thư mục logic theo từng module học tập</span><br>
                     <span class="text-slate-700 font-semibold">Quy tắc đặt tên tệp nhất quán:</span><br>
-                    <span class="text-purple-600 font-medium">[Ngày tháng]_[Tên môn học]_[Nội dung chính]_v[Phiên bản]</span><br>
+                    <span class="text-cyan-700 font-medium">[Ngày tháng]_[Tên môn học]_[Nội dung chính]_v[Phiên bản]</span><br>
                     Ví dụ: 20260528_BT1.pdf
                   </div>
                 </div>
@@ -615,7 +623,7 @@
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
               <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-600 mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-xs font-bold text-teal-700 mb-6">
                   Bài tập 02
                 </div>
                 <h3 class="lab-title text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Khai thác dữ liệu và thông tin học thuật</h3>
@@ -632,14 +640,14 @@
                   <div class="lab-process-prompt font-mono text-xs text-blue-600 bg-slate-50 border border-slate-200 rounded-xl p-4 overflow-x-auto leading-relaxed shadow-sm">
                     <span class="text-slate-400">// Sử dụng các toán tử tìm kiếm học thuật nâng cao</span><br>
                     <span class="text-slate-700 font-semibold">Từ khóa tìm kiếm:</span><br>
-                    "Generative AI in Education" <span class="text-purple-600">site:edu</span> <span class="text-purple-600">filetype:pdf</span> <span class="text-purple-600">intitle:"academic"</span>
+                    "Generative AI in Education" <span class="text-teal-700">site:edu</span> <span class="text-teal-700">filetype:pdf</span> <span class="text-teal-700">intitle:"academic"</span>
                   </div>
                 </div>
               </div>
 
               <!-- Lab Reflection -->
-              <div class="lab-reflection border-l-2 border-purple-500 bg-purple-50/50 rounded-r-xl p-4 mt-6">
-                <span class="text-xs font-bold text-purple-600 block mb-1">Phản hồi & Bài học</span>
+              <div class="lab-reflection border-l-2 border-teal-500 bg-teal-50/50 rounded-r-xl p-4 mt-6">
+                <span class="text-xs font-bold text-teal-700 block mb-1">Phản hồi & Bài học</span>
                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed italic">
                   "Không phải thông tin nào trên Internet cũng chính xác. Kỹ năng này giúp tôi rèn luyện tư duy phản biện (critical thinking) trước mọi dữ liệu tiếp nhận từ các nguồn trực tuyến."
                 </p>
@@ -782,7 +790,7 @@
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
               <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-600 mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-bold text-slate-700 mb-6">
                   Bài tập 04
                 </div>
                 <h3 class="lab-title text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Giao tiếp và hợp tác trực tuyến</h3>
@@ -806,8 +814,8 @@
               </div>
 
               <!-- Lab Reflection -->
-              <div class="lab-reflection border-l-2 border-purple-500 bg-purple-50/50 rounded-r-xl p-4 mt-6">
-                <span class="text-xs font-bold text-purple-400 block mb-1">Phản hồi & Bài học</span>
+              <div class="lab-reflection border-l-2 border-slate-500 bg-slate-100/50 rounded-r-xl p-4 mt-6">
+                <span class="text-xs font-bold text-slate-600 block mb-1">Phản hồi & Bài học</span>
                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed italic">
                   "Hiệu suất làm việc nhóm từ xa phụ thuộc rất lớn vào tính minh bạch trong phân công nhiệm vụ và sự đồng bộ, thống nhất về bộ công cụ quản lý dự án được sử dụng."
                 </p>
@@ -839,7 +847,7 @@
                 <!-- Mock Kanban Interface (Light theme) -->
                 <div class="grid grid-cols-3 gap-3">
                   <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
-                    <span class="text-[9px] font-bold text-purple-600 block mb-2 uppercase tracking-wide font-mono">CẦN LÀM</span>
+                    <span class="text-[9px] font-bold text-slate-600 block mb-2 uppercase tracking-wide font-mono">CẦN LÀM</span>
                     <div class="bg-slate-50 p-2 rounded border border-slate-100 text-[10px] text-slate-500 font-medium">Soạn thảo tài liệu</div>
                   </div>
                   <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
@@ -964,7 +972,7 @@
             <!-- Info Column -->
             <div class="lg:w-1/2 flex flex-col justify-between">
               <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-600 mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-xs font-bold text-teal-700 mb-6">
                   Bài tập 06
                 </div>
                 <h3 class="lab-title text-2xl sm:text-3xl font-bold text-slate-900 mb-4">An toàn & Liêm chính học thuật số</h3>
@@ -988,8 +996,8 @@
               </div>
 
               <!-- Lab Reflection -->
-              <div class="lab-reflection border-l-2 border-purple-500 bg-purple-50/50 rounded-r-xl p-4 mt-6">
-                <span class="text-xs font-bold text-purple-400 block mb-1">Phản hồi & Bài học</span>
+              <div class="lab-reflection border-l-2 border-teal-500 bg-teal-50/50 rounded-r-xl p-4 mt-6">
+                <span class="text-xs font-bold text-teal-700 block mb-1">Phản hồi & Bài học</span>
                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed italic">
                   "Sự phát triển vượt trội của công nghệ số và AI phải luôn luôn song hành chặt chẽ cùng tinh thần trách nhiệm xã hội và đạo đức nghề nghiệp sâu sắc."
                 </p>
@@ -1047,19 +1055,19 @@
     <div class="section-bg-art" aria-hidden="true">
       <svg viewBox="0 0 1000 700" fill="none" class="opacity-[0.055] w-full h-full">
         <!-- Flowing vertical Bezier curves representing growth timeline streams -->
-        <path d="M 100,0 Q 150,150 100,300 T 100,600 Q 50,650 100,700" stroke="#c084fc" stroke-width="1.5" />
-        <path d="M 120,0 Q 170,150 120,300 T 120,600 Q 70,650 120,700" stroke="#c084fc" stroke-width="0.5" stroke-dasharray="5, 5" />
+        <path d="M 100,0 Q 150,150 100,300 T 100,600 Q 50,650 100,700" stroke="#0f766e" stroke-width="1.5" />
+        <path d="M 120,0 Q 170,150 120,300 T 120,600 Q 70,650 120,700" stroke="#0f766e" stroke-width="0.5" stroke-dasharray="5, 5" />
         
-        <path d="M 900,0 Q 850,100 900,250 T 900,500 Q 950,600 900,700" stroke="#06b6d4" stroke-width="1.5" />
-        <path d="M 880,0 Q 830,100 880,250 T 880,500 Q 930,600 880,700" stroke="#06b6d4" stroke-width="0.5" stroke-dasharray="5, 5" />
+        <path d="M 900,0 Q 850,100 900,250 T 900,500 Q 950,600 900,700" stroke="#0ea5e9" stroke-width="1.5" />
+        <path d="M 880,0 Q 830,100 880,250 T 880,500 Q 930,600 880,700" stroke="#0ea5e9" stroke-width="0.5" stroke-dasharray="5, 5" />
 
         <!-- Timeline microchip connectors -->
-        <g stroke="#f472b6" stroke-width="0.8">
-          <circle cx="500" cy="100" r="4" fill="#f472b6" />
+        <g stroke="#64748b" stroke-width="0.8">
+          <circle cx="500" cy="100" r="4" fill="#64748b" />
           <line x1="500" y1="104" x2="500" y2="180" />
-          <circle cx="500" cy="250" r="4" fill="#f472b6" />
+          <circle cx="500" cy="250" r="4" fill="#64748b" />
           <line x1="500" y1="254" x2="500" y2="350" />
-          <circle cx="500" cy="450" r="4" fill="#f472b6" />
+          <circle cx="500" cy="450" r="4" fill="#64748b" />
           <line x1="500" y1="454" x2="500" y2="600" />
         </g>
       </svg>
@@ -1070,7 +1078,7 @@
       <div class="text-center mb-16">
         <span class="text-xs font-bold tracking-widest uppercase text-cyan-600">Phản tư học thuật</span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Tổng kết & Đánh giá Toàn diện</h2>
-        <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mt-4 rounded-full"></div>
+        <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 mx-auto mt-4 rounded-full"></div>
       </div>
 
       <!-- Styled deep-dive document block (Nâng cấp kính mờ Light Glassmorphism mượt mà) -->
@@ -1147,23 +1155,23 @@
         <path d="M 470,280 L 440,320 L 410,300 L 410,260" stroke="#94a3b8" stroke-width="0.8" />
 
         <!-- Symmetrical blueprint lines & technical brackets -->
-        <path d="M 50,50 L 50,550 L 950,550 L 950,50 Z" stroke="#c084fc" stroke-width="0.5" stroke-dasharray="15, 10" />
+        <path d="M 50,50 L 50,550 L 950,550 L 950,50 Z" stroke="#0f766e" stroke-width="0.5" stroke-dasharray="15, 10" />
         <!-- Corner alignment targets -->
-        <circle cx="50" cy="50" r="10" stroke="#06b6d4" stroke-width="0.5" />
-        <circle cx="950" cy="50" r="10" stroke="#06b6d4" stroke-width="0.5" />
-        <circle cx="50" cy="550" r="10" stroke="#06b6d4" stroke-width="0.5" />
-        <circle cx="950" cy="550" r="10" stroke="#06b6d4" stroke-width="0.5" />
-        <path d="M 40,50 L 60,50 M 50,40 L 50,60" stroke="#06b6d4" stroke-width="0.5" />
-        <path d="M 940,50 L 960,50 M 950,40 L 950,60" stroke="#06b6d4" stroke-width="0.5" />
+        <circle cx="50" cy="50" r="10" stroke="#0ea5e9" stroke-width="0.5" />
+        <circle cx="950" cy="50" r="10" stroke="#0ea5e9" stroke-width="0.5" />
+        <circle cx="50" cy="550" r="10" stroke="#0ea5e9" stroke-width="0.5" />
+        <circle cx="950" cy="550" r="10" stroke="#0ea5e9" stroke-width="0.5" />
+        <path d="M 40,50 L 60,50 M 50,40 L 50,60" stroke="#0ea5e9" stroke-width="0.5" />
+        <path d="M 940,50 L 960,50 M 950,40 L 950,60" stroke="#0ea5e9" stroke-width="0.5" />
       </svg>
     </div>
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
       <div class="text-center mb-16">
-        <span class="text-xs font-bold tracking-widest uppercase text-purple-600">Liêm chính học thuật</span>
+        <span class="text-xs font-bold tracking-widest uppercase text-cyan-600">Liêm chính học thuật</span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Báo cáo Đạo đức & Liêm chính Học thuật</h2>
-        <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mt-4 rounded-full"></div>
+        <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 mx-auto mt-4 rounded-full"></div>
       </div>
 
       <!-- High-End Report card with Light Premium Effect -->

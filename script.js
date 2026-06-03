@@ -398,10 +398,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // ─── DESIGN THEME & CONFIGURATION ───
   const THEME = {
     colors: {
-      lavender: { r: 196, g: 181, b: 253 },  // #c4b5fd (soft tech pastel purple)
-      cyan:     { r: 165, g: 243, b: 252 },  // #a5f3fc (soft tech pastel cyan)
-      peach:    { r: 241, g: 245, b: 249 },  // #f1f5f9 (slate-50 gray-white)
-      pink:     { r: 199, g: 210, b: 254 },  // #c7d2fe (soft tech pastel indigo)
+      lavender: { r: 15, g: 118, b: 110 },   // #0f766e (Subtle Teal)
+      cyan:     { r: 14, g: 165, b: 233 },   // #0ea5e9 (Sky Blue)
+      peach:    { r: 100, g: 116, b: 139 },  // #64748b (Space Grey)
+      pink:     { r: 29, g: 78, b: 216 },    // #1d4ed8 (Deep Blue)
       white:    { r: 255, g: 255, b: 255 },  // core lighting glow
     },
     // Particle count by depth plane (0=bg, 1=mid, 2=fg)
