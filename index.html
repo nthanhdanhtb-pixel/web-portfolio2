@@ -24,11 +24,51 @@
           },
           colors: {
             brand: {
-              light: '#f8fafc',
+              light: '#fff5f7',
               card: '#ffffff',
-              cyan: '#06b6d4',
-              blue: '#3b82f6',
-              purple: '#8b5cf6',
+              cyan: '#f48fb1',
+              blue: '#ec407a',
+              purple: '#d81b60',
+            },
+            // Mapping blue classes to pink/rose shades
+            blue: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              800: '#9f1239',
+              900: '#881337',
+              950: '#4c0519',
+            },
+            // Mapping cyan classes to light pink shades
+            cyan: {
+              50: '#fdf2f8',
+              100: '#fce7f3',
+              200: '#fbcfe8',
+              300: '#f9a8d4',
+              400: '#f472b6',
+              500: '#ec4899',
+              600: '#db2777',
+              700: '#be185d',
+              800: '#9d174d',
+              900: '#831843',
+            },
+            // Mapping teal classes to fuchsia/deep-pink shades
+            teal: {
+              50: '#fdf4ff',
+              100: '#fae8ff',
+              200: '#f5d0fe',
+              300: '#f0abfc',
+              400: '#e879f9',
+              500: '#d946ef',
+              600: '#c026d3',
+              700: '#a21caf',
+              800: '#86198f',
+              900: '#701a75',
             }
           }
         }
@@ -510,7 +550,7 @@
                           </div>
                           <div class="tree-item" data-tree-key="file-05-img">
                             <span class="icon-img">🖼️</span>
-                            <span class="tree-file">1.jpg</span>
+                            <span class="tree-file">background.png</span>
                           </div>
                         </div>
                       </div>
@@ -896,14 +936,14 @@
               <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3">Ấn phẩm Thiết kế minh họa (AI Assisted Art)</h4>
               <div class="lab-outputs bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col gap-4 shadow-sm animate-float-slow">
                 
-                <!-- Mockup Art Frame (Tông màu sáng cao cấp với bóng mờ) -->
-                <div class="relative group overflow-hidden rounded-xl border border-slate-200 bg-white aspect-video flex items-center justify-center shadow-md">
-                  <!-- Real Portrait 1.jpg as art display (object-contain so the full photo shows) -->
-                  <img src="1.jpg" alt="AI Assisted Art Conception" 
-                    class="absolute inset-0 w-full h-full object-contain opacity-55 group-hover:opacity-85 transition-all duration-700 blur-[1px] group-hover:blur-0 scale-102 group-hover:scale-100 z-0"
+                <!-- Mockup Art Frame (Tông màu sáng cao cấp với bóng mờ và bo góc nghệ thuật) -->
+                <div class="relative group overflow-hidden rounded-2xl border border-pink-200 bg-white aspect-video flex items-center justify-center shadow-lg hover:shadow-pink-300/20 transition-all duration-500">
+                  <!-- Real Portrait background.png as art display (object-cover) -->
+                  <img src="background.png" alt="AI Assisted Art Conception" 
+                    class="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 transition-all duration-700 scale-100 group-hover:scale-105 z-0"
                     onerror="this.style.display='none';">
 
-                  <div class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent opacity-90 z-10"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent opacity-90 z-10"></div>
 
                   <!-- High-tech interface overlays in Lightmode -->
                   <div class="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[9px] text-blue-600 font-mono font-bold shadow-sm">
@@ -918,8 +958,8 @@
                     <svg class="w-9 h-9 text-blue-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    <span class="text-xs text-slate-700 block font-bold">Bản phác thảo chân dung truyền thông</span>
-                    <span class="text-[10px] text-blue-600 font-mono font-medium mt-1">Prompt: "student studying in futuristic AI laboratory..."</span>
+                    <span class="text-xs text-slate-700 block font-bold">Hình ảnh nghệ thuật nền Portfolio</span>
+                    <span class="text-[10px] text-blue-600 font-mono font-medium mt-1">Prompt: "futuristic network grid with holographic circuits..."</span>
                   </div>
                 </div>
 

@@ -218,10 +218,10 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Báo cáo về quy trình phối hợp nhân-máy trong sáng tạo kịch bản và thiết kế hình ảnh truyền thông đa phương tiện.'
     },
     'file-05-img': {
-      name: '1.jpg', type: 'Hình ảnh JPG',
-      path: '.../05_sang_tao_noi_dung/1.jpg', size: '75.1 KB', date: '28/05/2026',
+      name: 'background.png', type: 'Hình ảnh PNG',
+      path: '.../05_sang_tao_noi_dung/background.png', size: '5.98 MB', date: '28/05/2026',
       items: 'N/A',
-      desc: 'Ảnh chân dung cá nhân của Nguyễn Hạnh Chi. Được tối ưu kỹ thuật và hiển thị sắc nét toàn diện.'
+      desc: 'Hình ảnh nghệ thuật nền Portfolio. Được thiết kế tối ưu, có bo góc và đổ bóng nghệ thuật.'
     },
     'folder-06': {
       name: '06_an_toan_lc/', type: 'Thư mục dự án',
@@ -398,11 +398,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // ─── DESIGN THEME & CONFIGURATION ───
   const THEME = {
     colors: {
-      lavender: { r: 15, g: 118, b: 110 },   // #0f766e (Subtle Teal)
-      cyan:     { r: 14, g: 165, b: 233 },   // #0ea5e9 (Sky Blue)
-      peach:    { r: 100, g: 116, b: 139 },  // #64748b (Space Grey)
-      pink:     { r: 29, g: 78, b: 216 },    // #1d4ed8 (Deep Blue)
-      white:    { r: 255, g: 255, b: 255 },  // core lighting glow
+      lavender: { r: 244, g: 143, b: 177 },   // #f48fb1 (Pastel Pink)
+      cyan:     { r: 255, g: 128, b: 171 },   // #ff80ab (Vibrant Rose)
+      peach:    { r: 255, g: 183, b: 77 },    // #ffb74d (Warm Peach)
+      pink:     { r: 236, g: 64, b: 122 },    // #ec407a (Deep Pink)
+      white:    { r: 255, g: 255, b: 255 },   // core lighting glow
     },
     // Particle count by depth plane (0=bg, 1=mid, 2=fg)
     nodeCounts:       isMobile ? [12, 18, 5] : [35, 55, 12],
@@ -793,9 +793,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (laserScanY > H) laserScanY = 0;
 
     const grad = ctx.createLinearGradient(0, laserScanY - 15, 0, laserScanY + 1);
-    grad.addColorStop(0, 'rgba(6, 182, 212, 0)');
-    grad.addColorStop(0.8, 'rgba(6, 182, 212, 0.015)');
-    grad.addColorStop(1, 'rgba(6, 182, 212, 0.06)');
+    grad.addColorStop(0, 'rgba(244, 143, 177, 0)');
+    grad.addColorStop(0.8, 'rgba(244, 143, 177, 0.015)');
+    grad.addColorStop(1, 'rgba(244, 143, 177, 0.06)');
 
     ctx.fillStyle = grad;
     ctx.fillRect(0, laserScanY - 15, W, 16);

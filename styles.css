@@ -13,42 +13,43 @@
    ========================================================================== */
 :root {
   /* ── Core Backgrounds ── */
-  --bg-deep: #f8fafc;
+  --bg-deep: #fff5f7;
   --bg-card: #ffffff;
-  --bg-glass: rgba(255, 255, 255, 0.58);
-  --bg-glass-hover: rgba(255, 255, 255, 0.78);
+  --bg-glass: rgba(255, 192, 203, 0.2);
+  --bg-glass-hover: rgba(255, 180, 195, 0.35);
 
   /* ── Glass & Borders ── */
-  --glass-border: rgba(255, 255, 255, 0.5);
-  --glass-border-glow: rgba(14, 165, 233, 0.2);
+  --glass-border: rgba(255, 192, 203, 0.4);
+  --glass-border-glow: rgba(244, 143, 177, 0.3);
 
-  /* ── Brand Palette (Non-purple Space Tech Theme) ── */
-  --color-lavender: #0f766e; /* Subtle Teal */
-  --color-cyan: #0ea5e9;     /* Sky/Cyan Blue */
-  --color-mint: #0d9488;     /* Mint/Teal */
-  --color-gold: #475569;     /* Slate Steel */
-  --color-champagne: #e2e8f0;/* Space Slate Light */
-  --color-peach: #f1f5f9;    /* Space Slate Extra Light */
-  --color-pink: #64748b;     /* Space Grey */
-  --color-word: #1e3a8a;     /* Deep Blue */
+  /* ── Brand Palette (Pink Tone Transformation) ── */
+  --color-lavender: #d81b60; /* Vibrant Deep Pink */
+  --color-cyan: #f48fb1;     /* Pastel Pink */
+  --color-mint: #ec407a;     /* Rose Pink */
+  --color-gold: #ffb74d;     /* Warm Peach Accent */
+  --color-champagne: #ffe4e6;/* Pink Slate Light */
+  --color-peach: #fff1f2;    /* Pink Slate Extra Light */
+  --color-pink: #f48fb1;     /* Main Pink */
+  --color-blue: #ec407a;     /* Accent Pink */
+  --color-word: #880e4f;     /* Deep Red/Pink for Word */
   --color-pdf: #e81123;      /* Keep standard PDF color */
 
   /* ── Gradients ── */
-  --gradient-cyber: linear-gradient(135deg, #0ea5e9 0%, #1d4ed8 40%, #0f766e 70%, #64748b 100%);
-  --gradient-accent: linear-gradient(90deg, #0ea5e9, #1d4ed8, #0f766e);
-  --gradient-light: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.4) 100%);
+  --gradient-cyber: linear-gradient(135deg, #f48fb1 0%, #ec407a 40%, #d81b60 70%, #ffb74d 100%);
+  --gradient-accent: linear-gradient(90deg, #f48fb1, #ec407a, #ffb74d);
+  --gradient-light: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 241, 242, 0.4) 100%);
 
-  /* ── Text ── */
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  --text-dim: #94a3b8;
+  /* ── Text (Dark Reddish Brown for Pink Contrast) ── */
+  --text-primary: #4a0e17;
+  --text-secondary: #5c1e28;
+  --text-muted: #884a55;
+  --text-dim: #b8858f;
 
   /* ── Glow & Shadows ── */
-  --glow-cyan: 0 0 25px rgba(14, 165, 233, 0.08);
-  --glow-purple: 0 0 25px rgba(15, 118, 110, 0.08);
-  --glow-card: 0 8px 32px -4px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
-  --glow-card-hover: 0 20px 48px -12px rgba(15, 23, 42, 0.08), 0 0 30px -8px rgba(14, 165, 233, 0.12);
+  --glow-cyan: 0 0 25px rgba(244, 143, 177, 0.15);
+  --glow-purple: 0 0 25px rgba(216, 27, 96, 0.12);
+  --glow-card: 0 8px 32px -4px rgba(74, 14, 23, 0.05), 0 1px 2px rgba(74, 14, 23, 0.02);
+  --glow-card-hover: 0 20px 48px -12px rgba(74, 14, 23, 0.12), 0 0 30px -8px rgba(244, 143, 177, 0.25);
 
   /* ── Typography ── */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -89,43 +90,43 @@ body {
   will-change: transform;
 }
 
-/* Orb 1: Deep Blue */
+/* Orb 1: Pastel Pink */
 .mesh-orb--1 {
   top: -15%;
   left: -10%;
   width: 55vw;
   height: 55vw;
-  background: radial-gradient(circle, rgba(29, 78, 216, 0.18) 0%, rgba(30, 64, 175, 0.05) 75%, transparent 100%);
+  background: radial-gradient(circle, rgba(244, 143, 177, 0.22) 0%, rgba(236, 64, 122, 0.08) 75%, transparent 100%);
   animation: meshMove1 26s ease-in-out infinite alternate;
 }
 
-/* Orb 2: Space Grey */
+/* Orb 2: Warm Peach/Pink */
 .mesh-orb--2 {
   bottom: -15%;
   right: -10%;
   width: 65vw;
   height: 65vw;
-  background: radial-gradient(circle, rgba(148, 163, 184, 0.22) 0%, rgba(71, 85, 105, 0.06) 75%, transparent 100%);
+  background: radial-gradient(circle, rgba(255, 183, 77, 0.22) 0%, rgba(244, 143, 177, 0.08) 75%, transparent 100%);
   animation: meshMove2 32s ease-in-out infinite alternate;
 }
 
-/* Orb 3: Subtle Teal */
+/* Orb 3: Rose Pink */
 .mesh-orb--3 {
   top: 35%;
   right: 5%;
   width: 50vw;
   height: 50vw;
-  background: radial-gradient(circle, rgba(13, 148, 136, 0.16) 0%, rgba(20, 184, 166, 0.04) 75%, transparent 100%);
+  background: radial-gradient(circle, rgba(236, 64, 122, 0.18) 0%, rgba(216, 27, 96, 0.06) 75%, transparent 100%);
   animation: meshMove3 28s ease-in-out infinite alternate;
 }
 
-/* Orb 4: Space Tech Blue */
+/* Orb 4: Soft Pink Glow */
 .mesh-orb--4 {
   bottom: 15%;
   left: 10%;
   width: 52vw;
   height: 52vw;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, rgba(14, 165, 233, 0.04) 75%, transparent 100%);
+  background: radial-gradient(circle, rgba(255, 192, 203, 0.25) 0%, rgba(244, 143, 177, 0.06) 75%, transparent 100%);
   animation: meshMove4 30s ease-in-out infinite alternate;
 }
 
@@ -165,8 +166,11 @@ h1, h2, h3, h4, .heading-font {
    ========================================================================== */
 #home {
   position: relative;
-  background: transparent !important;
-  background-image: none !important;
+  background-image: url('background.png') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
 }
 
 /* Completely disabled to prevent old purple assets from rendering */
@@ -225,7 +229,7 @@ h1, h2, h3, h4, .heading-font {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), transparent 45%, rgba(13, 148, 136, 0.3));
+  background: linear-gradient(135deg, rgba(244, 143, 177, 0.4), transparent 45%, rgba(216, 27, 96, 0.3));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -236,14 +240,14 @@ h1, h2, h3, h4, .heading-font {
 
 .glass-card-cyber:hover {
   transform: translateY(-6px);
-  border-color: rgba(14, 165, 233, 0.2);
+  border-color: rgba(244, 143, 177, 0.3);
   background: rgba(255, 255, 255, 0.72);
   /* Enhanced Neumorphism on hover */
   box-shadow:
-    0 20px 48px -12px rgba(15, 23, 42, 0.10),
-    0 0 30px -8px rgba(14, 165, 233, 0.10),
+    0 20px 48px -12px rgba(74, 14, 23, 0.10),
+    0 0 30px -8px rgba(244, 143, 177, 0.20),
     inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -1px 0 rgba(15, 23, 42, 0.04);
+    inset 0 -1px 0 rgba(74, 14, 23, 0.04);
 }
 
 .glass-card-cyber:hover::before {
@@ -283,7 +287,7 @@ h1, h2, h3, h4, .heading-font {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 14px;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03), 0 0 15px rgba(6, 182, 212, 0.05);
+  box-shadow: 0 4px 20px -2px rgba(74, 14, 23, 0.03), 0 0 15px rgba(244, 143, 177, 0.15);
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -309,7 +313,7 @@ h1, h2, h3, h4, .heading-font {
 
 .tech-cert-badge:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.06), 0 0 25px rgba(192, 132, 252, 0.12);
+  box-shadow: 0 10px 25px -4px rgba(74, 14, 23, 0.06), 0 0 25px rgba(236, 64, 122, 0.20);
 }
 
 /* Spinning AI core icon */
@@ -448,9 +452,9 @@ h1, h2, h3, h4, .heading-font {
   position: absolute;
   inset: -15px -30px;
   background: linear-gradient(90deg,
-    rgba(14, 165, 233, 0.12),
-    rgba(15, 118, 110, 0.18),
-    rgba(100, 116, 139, 0.12)
+    rgba(244, 143, 177, 0.15),
+    rgba(236, 64, 122, 0.18),
+    rgba(255, 183, 77, 0.12)
   );
   filter: blur(35px);
   border-radius: 50%;
@@ -480,7 +484,7 @@ h1, h2, h3, h4, .heading-font {
   position: absolute;
   inset: -2px;
   border-radius: inherit;
-  background: linear-gradient(135deg, #0ea5e9, #1d4ed8, #0f766e, #64748b, #0ea5e9);
+  background: linear-gradient(135deg, #f48fb1, #ec407a, #d81b60, #ffb74d, #f48fb1);
   background-size: 300% 300%;
   animation: gradientRotate 4s linear infinite;
   z-index: -1;
@@ -494,7 +498,7 @@ h1, h2, h3, h4, .heading-font {
 
 .btn-primary-glow:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 8px 30px rgba(29, 78, 216, 0.15), 0 0 40px rgba(14, 165, 233, 0.1);
+  box-shadow: 0 8px 30px rgba(236, 64, 122, 0.20), 0 0 40px rgba(244, 143, 177, 0.15);
 }
 
 .btn-primary-glow:active {
@@ -529,7 +533,7 @@ h1, h2, h3, h4, .heading-font {
   transform: translateY(-2px) scale(1.03);
   border-color: transparent !important;
   color: white !important;
-  box-shadow: 0 8px 30px rgba(192, 132, 252, 0.15);
+  box-shadow: 0 8px 30px rgba(244, 143, 177, 0.25);
 }
 
 .btn-secondary-morph:hover::after {
@@ -749,7 +753,7 @@ header a[href="#contact"]:hover {
 }
 
 .tree-item.active {
-  background: rgba(59, 130, 246, 0.08);
+  background: rgba(236, 64, 122, 0.08);
   border-left: 2px solid var(--color-blue);
   color: var(--text-primary);
   font-weight: 500;
@@ -782,8 +786,8 @@ header a[href="#contact"]:hover {
 }
 
 /* File Icon Colors */
-.icon-folder { color: var(--color-blue); filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.2)); }
-.icon-docx   { color: var(--color-word); filter: drop-shadow(0 2px 4px rgba(43, 87, 154, 0.2)); }
+.icon-folder { color: var(--color-blue); filter: drop-shadow(0 2px 4px rgba(236, 64, 122, 0.25)); }
+.icon-docx   { color: var(--color-word); filter: drop-shadow(0 2px 4px rgba(136, 14, 79, 0.25)); }
 .icon-pdf    { color: var(--color-pdf);  filter: drop-shadow(0 2px 4px rgba(232, 17, 35, 0.2)); }
 .icon-img    { color: #d97706; }
 
