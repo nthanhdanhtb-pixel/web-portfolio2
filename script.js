@@ -1,7 +1,7 @@
 /* ==========================================================================
    PORTFOLIO JAVASCRIPT — AI PREMIUM 6-LAYER ENGINE
    Thiết kế bởi: Antigravity — Senior UI/UX & Creative Developer
-   Chủ sở hữu: Nguyễn Thành Danh — UET — MSSV: 25020058
+   Chủ sở hữu: Nguyễn Hạnh Chi — ULIS — MSSV: 25040509
    
    Architecture:
    ─ Layer 1: Aurora Gradient Animation (Canvas radial gradients)
@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ================= 1. DYNAMIC TYPING EFFECT =================
   const typingTarget = document.getElementById('dynamic-typing-text');
   const phrases = [
-    "Tích hợp Trí tuệ Nhân tạo",
-    "Tối ưu hóa Hệ thống",
-    "Nâng cao Năng lực Số"
+    "Ứng dụng AI & Công nghệ Ngôn ngữ",
+    "Nâng cao Năng lực Số & Ngoại ngữ",
+    "Sáng tạo Nội dung Số Đa phương tiện"
   ];
 
   if (typingTarget) {
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: '1.jpg', type: 'Hình ảnh JPG',
       path: '.../05_sang_tao_noi_dung/1.jpg', size: '75.1 KB', date: '28/05/2026',
       items: 'N/A',
-      desc: 'Ảnh chân dung cá nhân của Nguyễn Thành Danh. Được tối ưu kỹ thuật và hiển thị sắc nét toàn diện.'
+      desc: 'Ảnh chân dung cá nhân của Nguyễn Hạnh Chi. Được tối ưu kỹ thuật và hiển thị sắc nét toàn diện.'
     },
     'folder-06': {
       name: '06_an_toan_lc/', type: 'Thư mục dự án',
