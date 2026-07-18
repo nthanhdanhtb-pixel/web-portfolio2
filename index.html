@@ -310,33 +310,38 @@
             </div>
           </div>
 
-          <!-- Contact Cards Grid (Đồng bộ Lightmode & Email mới, Không chứa GitHub) -->
-          <div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-slate-200">
-            <!-- Email Card (mailto:hanhchi.ulis@gmail.com) -->
-            <a href="mailto:hanhchi.ulis@gmail.com" class="group flex items-center gap-3.5 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-blue-500/30 hover:bg-white hover:shadow-md transition-all duration-300 w-full max-w-md">
-              <div class="w-10 h-10 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 group-hover:scale-105 transition-transform duration-300">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <div>
-                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">Địa chỉ Email</span>
-                <span class="text-xs text-slate-700 font-mono group-hover:text-blue-600 transition-colors duration-200">hanhchi.ulis@gmail.com</span>
-              </div>
-            </a>
-          </div>
+          <!-- Wrapper Container để căn giữa toàn bộ Email và Badges -->
+          <div class="contact-assignment-container border-t border-slate-200">
+            
+            <!-- Contact Cards Grid (Căn giữa thẻ Email) -->
+            <div class="flex justify-center w-full">
+              <!-- Email Card (mailto:hanhchi.ulis@gmail.com) -->
+              <a href="mailto:hanhchi.ulis@gmail.com" class="group flex items-center gap-3.5 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-blue-500/30 hover:bg-white hover:shadow-md transition-all duration-300 w-full max-w-md">
+                <div class="w-10 h-10 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 group-hover:scale-105 transition-transform duration-300">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div class="text-left">
+                  <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">Địa chỉ Email</span>
+                  <span class="text-xs text-slate-700 font-mono group-hover:text-blue-600 transition-colors duration-200">hanhchi.ulis@gmail.com</span>
+                </div>
+              </a>
+            </div>
 
-          <!-- Academic Info Badges -->
-          <div class="flex flex-wrap gap-3 mt-4 text-xs font-semibold">
-            <div class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500">
-              Mã số sinh viên: <strong class="text-slate-800">25040509</strong>
+            <!-- Academic Info Badges (Sắp xếp ngang, căn giữa với gap 20px - gap-5) -->
+            <div class="flex flex-wrap justify-center gap-5 mt-4 text-xs font-semibold w-full">
+              <div class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500">
+                Mã số sinh viên: <strong class="text-slate-800">25040509</strong>
+              </div>
+              <div class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500">
+                Ngành học: <strong class="text-slate-800">Ngôn ngữ Anh</strong>
+              </div>
+              <div class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500">
+                Trường học: <strong class="text-slate-800">Trường Đại học Ngoại ngữ - ĐHQGHN (ULIS)</strong>
+              </div>
             </div>
-            <div class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500">
-              Ngành học: <strong class="text-slate-800">Ngôn ngữ Anh</strong>
-            </div>
-            <div class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500">
-              Trường học: <strong class="text-slate-800">Trường Đại học Ngoại ngữ - ĐHQGHN (ULIS)</strong>
-            </div>
+
           </div>
 
         </div>

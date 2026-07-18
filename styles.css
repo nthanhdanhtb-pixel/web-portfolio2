@@ -1002,3 +1002,17 @@ body.active-section-ethics #ethics::after {
   0% { transform: translate(0, 0) scale(0.95); }
   100% { transform: translate(40px, 30px) scale(1.08); }
 }
+
+/* ==========================================================================
+   17. CONTACT & ACADEMIC INFO ALIGNMENT (Flexbox Center Alignment)
+   ========================================================================== */
+.contact-assignment-container {
+  display: flex;
+  flex-direction: column;         /* Sắp xếp trục dọc: Email trên, Badges dưới */
+  align-items: center;             /* Căn giữa theo trục ngang */
+  justify-content: center;         /* Căn giữa theo trục dọc */
+  text-align: center;              /* Đảm bảo text/inline content căn giữa */
+  width: 100%;
+  margin-top: 1.5rem;              /* Khoảng cách phía trên */
+  padding-top: 1.5rem;             /* Khoảng cách đệm phía trên */
+}
